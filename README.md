@@ -1,2 +1,1 @@
-# Lap trinh mang can ban
-#hello 
+# Lap trinh mang can ban 
