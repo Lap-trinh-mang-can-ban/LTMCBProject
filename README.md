@@ -1,1 +1,2 @@
-# Lap trinh mang can ban Quoc
+# Lap trinh mang can ban 
+# Thai dang code
