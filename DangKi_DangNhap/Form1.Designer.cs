@@ -68,6 +68,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(200, 27);
             textBox1.TabIndex = 1;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -147,9 +148,9 @@
             // 
             pictureBox2.BackgroundImage = Properties.Resources.AnhDoAn_NT106;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(-18, 0);
+            pictureBox2.Location = new Point(12, 63);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(612, 478);
+            pictureBox2.Size = new Size(605, 388);
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
@@ -184,7 +185,6 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "Form1";
             Text = "Đăng nhập ";
-           // Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);

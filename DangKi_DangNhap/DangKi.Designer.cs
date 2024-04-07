@@ -38,6 +38,8 @@
             button1 = new Button();
             label3 = new Label();
             textBox3 = new TextBox();
+            label5 = new Label();
+            textBox5 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -69,7 +71,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(158, 27);
             textBox1.TabIndex = 2;
-           // textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox2
             // 
@@ -110,7 +111,7 @@
             // 
             button1.BackColor = Color.Silver;
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(236, 366);
+            button1.Location = new Point(219, 409);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 9;
@@ -136,12 +137,30 @@
             textBox3.Size = new Size(113, 27);
             textBox3.TabIndex = 11;
             // 
+            // label5
+            // 
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.Location = new Point(115, 373);
+            label5.Name = "label5";
+            label5.Size = new Size(121, 25);
+            label5.TabIndex = 12;
+            label5.Text = "Tên người dùng";
+            // 
+            // textBox5
+            // 
+            textBox5.Location = new Point(231, 373);
+            textBox5.Name = "textBox5";
+            textBox5.Size = new Size(146, 27);
+            textBox5.TabIndex = 13;
+            // 
             // DangKi
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(488, 450);
+            Controls.Add(textBox5);
+            Controls.Add(label5);
             Controls.Add(textBox3);
             Controls.Add(label3);
             Controls.Add(button1);
@@ -168,8 +187,10 @@
         private Label label2;
         private Label label4;
         private TextBox textBox4;
-        private Button button1;
         private Label label3;
         private TextBox textBox3;
+        private Label label5;
+        public Button button1;
+        private TextBox textBox5;
     }
 }
