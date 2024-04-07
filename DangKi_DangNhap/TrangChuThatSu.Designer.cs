@@ -1,6 +1,6 @@
-﻿namespace Server
+﻿namespace DangKi_DangNhap
 {
-    partial class Form1
+    partial class TrangChuThatSu
     {
         /// <summary>
         /// Required designer variable.
@@ -28,34 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // pictureBox1
             // 
-            label1.BackColor = Color.Black;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(27, 36);
-            label1.Name = "label1";
-            label1.Size = new Size(841, 376);
-            label1.TabIndex = 0;
-            label1.Click += label1_Click;
+            pictureBox1.BackgroundImage = Properties.Resources.AnhDoAn_NT106;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(95, 51);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(629, 339);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
-            // Form1
+            // TrangChuThatSu
             // 
+            AccessibleRole = AccessibleRole.None;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            ClientSize = new Size(1067, 692);
-            Controls.Add(label1);
-            Margin = new Padding(4, 5, 4, 5);
-            Name = "Form1";
-            Text = "Server";
+            BackColor = Color.White;
+            ClientSize = new Size(800, 450);
+            Controls.Add(pictureBox1);
+            Name = "TrangChuThatSu";
+            Text = "TrangChuThatSu";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Label label1;
+        private PictureBox pictureBox1;
     }
 }

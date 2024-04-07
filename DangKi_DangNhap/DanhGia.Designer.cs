@@ -1,6 +1,6 @@
-﻿namespace Server
+﻿namespace DangKi_DangNhap
 {
-    partial class Form1
+    partial class DanhGia
     {
         /// <summary>
         /// Required designer variable.
@@ -33,24 +33,22 @@
             // 
             // label1
             // 
-            label1.BackColor = Color.Black;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(27, 36);
+            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(293, 160);
             label1.Name = "label1";
-            label1.Size = new Size(841, 376);
+            label1.Size = new Size(199, 136);
             label1.TabIndex = 0;
-            label1.Click += label1_Click;
+            label1.Text = "Đánh giá";
             // 
-            // Form1
+            // DanhGia
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Black;
-            ClientSize = new Size(1067, 692);
+            BackColor = Color.White;
+            ClientSize = new Size(800, 450);
             Controls.Add(label1);
-            Margin = new Padding(4, 5, 4, 5);
-            Name = "Form1";
-            Text = "Server";
+            Name = "DanhGia";
+            Text = "DanhGia";
             ResumeLayout(false);
         }
 
