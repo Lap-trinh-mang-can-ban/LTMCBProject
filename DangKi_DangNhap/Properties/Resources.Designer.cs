@@ -73,6 +73,16 @@ namespace DangKi_DangNhap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _10088 {
+            get {
+                object obj = ResourceManager.GetObject("10088", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap AnhDoAn_NT106 {
             get {
                 object obj = ResourceManager.GetObject("AnhDoAn_NT106", resourceCulture);
@@ -106,6 +116,147 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap circuit_digital_art_wallpaper_1920x1280_38 {
             get {
                 object obj = ResourceManager.GetObject("circuit-digital-art-wallpaper-1920x1280_38", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_bell_131965017347068855_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-bell-131965017347068855_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_Bell_131983734486474323_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-Bell-131983734486474323_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_bell_131983777596099980_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-bell-131983777596099980_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_bell_christmas_church_notification_icon_1320184120820039431_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-bell+christmas+church+notification+icon-1320184120820039431_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_bell_jingle_notification_ring_icon_1320086059740733183_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-bell+jingle+notification+ring+icon-1320086059740733183_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_bell_jingle_notification_ring_icon_1320086059740733183_481 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-bell+jingle+notification+ring+icon-1320086059740733183_481", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_calender_date_dates_reminder_reminders_icon_1320184526019246404_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-calender+date+dates+reminder+reminders+icon-1320184526019246404_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_home_house_shelf_study_icon_1320183785297551957_32 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-home+house+shelf+study+icon-1320183785297551957_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_home_house_shelf_study_icon_1320183785297551957_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-home+house+shelf+study+icon-1320183785297551957_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_home_house_thiago_pontes_icon_1320086034131259248_32 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-home+house+thiago+pontes+icon-1320086034131259248_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_home_house_thiago_pontes_icon_1320086034131259248_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-home+house+thiago+pontes+icon-1320086034131259248_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_message_131976794391720906_48 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-message-131976794391720906_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_message_131976794662403642_32 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-message-131976794662403642_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_message_messenger_network_plane_social_media_telegram_icon_1320137113135966803_32 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-message+messenger+network+plane+social+media+telegram+icon-13201371" +
+                        "13135966803_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,6 +314,16 @@ namespace DangKi_DangNhap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap istockphoto_1266601145_612x6121 {
+            get {
+                object obj = ResourceManager.GetObject("istockphoto-1266601145-612x6121", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap man_4140037 {
             get {
                 object obj = ResourceManager.GetObject("man_4140037", resourceCulture);
@@ -176,6 +337,76 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap nguon_tai_lieu_vo_han_tren_internet {
             get {
                 object obj = ResourceManager.GetObject("nguon-tai-lieu-vo-han-tren-internet", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification {
+            get {
+                object obj = ResourceManager.GetObject("notification", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification_6996775 {
+            get {
+                object obj = ResourceManager.GetObject("notification_6996775", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification_69967751 {
+            get {
+                object obj = ResourceManager.GetObject("notification_69967751", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification_bell_12657841 {
+            get {
+                object obj = ResourceManager.GetObject("notification-bell_12657841", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification_bell_7263459 {
+            get {
+                object obj = ResourceManager.GetObject("notification-bell_7263459", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification_bell_72634591 {
+            get {
+                object obj = ResourceManager.GetObject("notification-bell_72634591", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap notification1 {
+            get {
+                object obj = ResourceManager.GetObject("notification1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -216,6 +447,26 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap user_1144760 {
             get {
                 object obj = ResourceManager.GetObject("user_1144760", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_1177568 {
+            get {
+                object obj = ResourceManager.GetObject("user_1177568", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_11775681 {
+            get {
+                object obj = ResourceManager.GetObject("user_11775681", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
