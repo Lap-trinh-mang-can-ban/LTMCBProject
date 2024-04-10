@@ -1,45 +1,33 @@
-﻿using System.Net.Sockets;
+﻿using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using System;
+using System.Net.Sockets;
 using System.Text;
-using System.Web;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows.Forms;
 
 namespace DangKi_DangNhap
 {
     public partial class Form1 : Form
     {
-
-        private TcpClient client;
+        private IFirebaseClient firebaseClient;
 
         public Form1()
         {
             InitializeComponent();
-            client = new TcpClient();
-        }
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
 
-        }
+            // Khởi tạo cấu hình Firebase
+            IFirebaseConfig config = new FirebaseConfig
+            {
+                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
+                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+            };
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Hide();
-            DangKi dk = new DangKi();
-            dk.ShowDialog();
-            this.Show();
+            // Khởi tạo FirebaseClient
+            firebaseClient = new FireSharp.FirebaseClient(config);
         }
 
-        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            this.Hide();
-            QuenMK qmk = new QuenMK();
-            qmk.ShowDialog();
-            this.Show();
-        }
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             string taiKhoan = textBox1.Text;
             string matKhau = textBox2.Text;
@@ -57,51 +45,50 @@ namespace DangKi_DangNhap
 
             try
             {
-                if (client == null || !client.Connected) // Kiểm tra nếu kết nối chưa được thiết lập hoặc đã đóng
+                // Kiểm tra xem tài khoản có tồn tại và mật khẩu đúng không trên Firebase
+                FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{taiKhoan}");
+                if (userResponse.Body == "null")
                 {
-                    client = new TcpClient();
-                    client.Connect("127.0.0.1", 8888); // Kết nối tới máy chủ
+                    MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                // Gửi dữ liệu tài khoản và mật khẩu tới máy chủ
-                NetworkStream stream = client.GetStream();
-                byte[] data = Encoding.ASCII.GetBytes("DANGNHAP|" + taiKhoan + "|" + matKhau);
-                stream.Write(data, 0, data.Length);
-
-                // Nhận kết quả từ máy chủ
-                byte[] responseData = new byte[4096];
-                int bytesRead = stream.Read(responseData, 0, 4096);
-                string response = Encoding.ASCII.GetString(responseData, 0, bytesRead);
-
-                // Hiển thị kết quả đăng nhập
-                if (response == "True")
+                var user = userResponse.ResultAs<User>();
+                if (user.MatKhau != matKhau)
                 {
-                    MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Hide();
-                    TrangChu tc = new TrangChu();
-                    tc.ShowDialog();
-                    this.Show();
-                }
-                else
-                {
-                    MessageBox.Show("Đăng nhập thất bại. Vui lòng kiểm tra lại tên đăng nhập và mật khẩu!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
-                // Đóng kết nối sau khi xử lý xong
-                client.Close();
+                // Đăng nhập thành công
+                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Text = "";
+                textBox2.Text = "";
+                this.Hide();
+                TrangChu tc = new TrangChu();
+                tc.ShowDialog();
+                this.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Không thể kết nối tới máy chủ: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            this.Hide();
+            DangKi dk = new DangKi();
+            dk.ShowDialog();
+            this.Show();
+        }
 
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Hide();
+            QuenMK qmk = new QuenMK();
+            qmk.ShowDialog();
+            this.Show();
         }
     }
-
 }
-
-

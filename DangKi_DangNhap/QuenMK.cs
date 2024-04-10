@@ -1,62 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Net.Mail;
 using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using System.Text.RegularExpressions;
-using System.Net.Sockets;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
 
 namespace DangKi_DangNhap
 {
     public partial class QuenMK : Form
     {
-        private TcpClient client;
+        private IFirebaseClient firebaseClient;
+
         public QuenMK()
         {
             InitializeComponent();
+            IFirebaseConfig config = new FirebaseConfig
+            {
+                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
+                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+            };
+            // Khởi tạo FirebaseClient
+            firebaseClient = new FireSharp.FirebaseClient(config);
         }
-        private void button1_Click(object sender, EventArgs e)
+
+        private async void button1_Click(object sender, EventArgs e)
         {
             string email = textBox1.Text.Trim();
-            if (email == "")
+            string taikhoan = textBox2.Text.Trim();
+            string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
+            if (encodedEmail == "")
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             try
             {
-                if (client == null || !client.Connected) // Kiểm tra nếu kết nối chưa được thiết lập hoặc đã đóng
+               
+                FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{taikhoan}");
+              
+                if (userResponse.Body == "null")
                 {
-                    client = new TcpClient();
-                    client.Connect("127.0.0.1", 8888); // Kết nối tới máy chủ
+                    MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                NetworkStream stream = client.GetStream();
-                byte[] data = Encoding.ASCII.GetBytes("QUENMK|" + email); // Thêm dấu "|" để phân biệt giữa lệnh và dữ liệu
-                stream.Write(data, 0, data.Length);
 
-                // Đọc phản hồi từ máy chủ sau khi đăng kí
-                byte[] responseData = new byte[4096];
-                int bytesRead = stream.Read(responseData, 0, 4096);
-                string response = Encoding.ASCII.GetString(responseData, 0, bytesRead);
+                var user = userResponse.ResultAs<User>();
+                if (user.Email != (encodedEmail))
+                {
+                    MessageBox.Show("Email không đúng vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                string password = user.MatKhau;
+                string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(encodedEmail));
+                // Gửi email chứa mật khẩu đến người dùng
+                GuiEmailMatKhau(email1, password);
 
-                if (response.StartsWith("MATKHAU|"))
-                {
-                    string password = response.Substring(8); // Lấy mật khẩu từ phản hồi
-                    GuiEmailMatKhau(email, password); // Gửi email chứa mật khẩu đến địa chỉ email của người dùng
-                    MessageBox.Show("Mật khẩu đã được gửi về email của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else if (response == "MATKHAU_NOT_FOUND")
-                {
-                    MessageBox.Show("Không tìm thấy mật khẩu cho địa chỉ email này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                MessageBox.Show("Mật khẩu đã được gửi đến email của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -73,20 +75,20 @@ namespace DangKi_DangNhap
                 string subject = "Password Recovery"; // Tiêu đề email
                 string body = $"Mật khẩu của bạn: {password}"; // Nội dung email
 
-                MailMessage mail = new MailMessage(fromAddress, toAddress, subject, body);
-                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                smtp.EnableSsl = true;
-                smtp.Credentials = new NetworkCredential(fromAddress, "1429256805"); // Mật khẩu của bạn
-
-                smtp.Send(mail);
+                using (MailMessage mail = new MailMessage(fromAddress, toAddress, subject, body))
+                {
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.EnableSsl = true;
+                        smtp.Credentials = new NetworkCredential(fromAddress, "svlo zxtg dblm nycv"); // Mật khẩu của bạn
+                        smtp.Send(mail);
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi khi gửi email: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
     }
 }
-

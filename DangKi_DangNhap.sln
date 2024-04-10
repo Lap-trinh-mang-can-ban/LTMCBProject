@@ -5,7 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DangKi_DangNhap", "DangKi_DangNhap\DangKi_DangNhap.csproj", "{AAB76471-0D41-431B-B072-32C9E1C58096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Server", "Server\Server.csproj", "{6A73FE6F-B28D-47E4-910C-DF8258C23DBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csproj", "{6A73FE6F-B28D-47E4-910C-DF8258C23DBD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CCDB2CAA-2604-47ED-B776-F719B9D3E37A}"
 	ProjectSection(SolutionItems) = preProject
