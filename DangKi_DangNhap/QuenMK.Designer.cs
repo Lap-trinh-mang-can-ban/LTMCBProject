@@ -54,7 +54,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(69, 324);
+            label1.Location = new Point(58, 361);
             label1.Name = "label1";
             label1.Size = new Size(110, 20);
             label1.TabIndex = 1;
@@ -92,7 +92,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(69, 361);
+            label2.Location = new Point(88, 321);
             label2.Name = "label2";
             label2.Size = new Size(80, 20);
             label2.TabIndex = 7;

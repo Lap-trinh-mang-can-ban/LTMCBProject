@@ -31,7 +31,6 @@
             linkLabel1 = new LinkLabel();
             panel1 = new Panel();
             linkLabel2 = new LinkLabel();
-            label3 = new Label();
             pictureBox1 = new PictureBox();
             label2 = new Label();
             panel2 = new Panel();
@@ -54,6 +53,7 @@
             // linkLabel1
             // 
             linkLabel1.AutoSize = true;
+            linkLabel1.LinkColor = Color.White;
             linkLabel1.Location = new Point(33, 479);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(80, 20);
@@ -66,7 +66,6 @@
             // 
             panel1.BackColor = Color.Indigo;
             panel1.Controls.Add(linkLabel2);
-            panel1.Controls.Add(label3);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(-7, 1);
@@ -77,20 +76,15 @@
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
+            linkLabel2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(788, 30);
+            linkLabel2.Location = new Point(663, 30);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(76, 20);
+            linkLabel2.Size = new Size(125, 31);
             linkLabel2.TabIndex = 3;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "linkLabel2";
-            // 
-            // label3
-            // 
-            label3.Location = new Point(738, 30);
-            label3.Name = "label3";
-            label3.Size = new Size(137, 31);
-            label3.TabIndex = 2;
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // pictureBox1
             // 
@@ -225,10 +219,11 @@
             panel3.BackgroundImageLayout = ImageLayout.Stretch;
             panel3.Controls.Add(pictureBox2);
             panel3.Controls.Add(label1);
-            panel3.Location = new Point(148, 82);
+            panel3.Location = new Point(143, 84);
             panel3.Name = "panel3";
-            panel3.Size = new Size(924, 524);
+            panel3.Size = new Size(929, 535);
             panel3.TabIndex = 5;
+            panel3.Paint += panel3_Paint;
             // 
             // pictureBox2
             // 
@@ -239,13 +234,14 @@
             pictureBox2.Size = new Size(741, 413);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label1
             // 
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Indigo;
-            label1.Location = new Point(15, 40);
+            label1.Location = new Point(5, 35);
             label1.Name = "label1";
             label1.Size = new Size(832, 77);
             label1.TabIndex = 0;
@@ -285,7 +281,6 @@
         private Label label1;
         private Label label2;
         private PictureBox pictureBox1;
-        private Label label3;
         private Button button6;
         private PictureBox pictureBox2;
         private LinkLabel linkLabel2;

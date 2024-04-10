@@ -15,7 +15,8 @@ namespace DangKi_DangNhap
         // Dictionary để lưu màu ban đầu của các button
         Dictionary<Button, Color> originalButtonColors = new Dictionary<Button, Color>();
         private Form currentChildForm;
-        public TrangChu()
+        private User currentUser; // Thêm trường để lưu thông tin tài khoản
+        public TrangChu(User user)
         {
             InitializeComponent();
             // Gắn sự kiện MouseEnter và MouseLeave cho các button
@@ -43,6 +44,8 @@ namespace DangKi_DangNhap
             originalButtonColors.Add(button4, button4.BackColor);
             originalButtonColors.Add(button5, button5.BackColor);
             originalButtonColors.Add(button6, button5.BackColor);
+            currentUser = user;
+            linkLabel2.Text = currentUser.Username;
         }
         private void OpenChildForm(Form childForm)
         {
@@ -126,6 +129,22 @@ namespace DangKi_DangNhap
         }
 
         private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ThongTinNguoiDungForm infoForm = new ThongTinNguoiDungForm(currentUser);
+            infoForm.Show();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
         {
 
         }

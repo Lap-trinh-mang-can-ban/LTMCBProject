@@ -65,7 +65,7 @@ namespace DangKi_DangNhap
                 textBox1.Text = "";
                 textBox2.Text = "";
                 this.Hide();
-                TrangChu tc = new TrangChu();
+                TrangChu tc = new TrangChu(user);
                 tc.ShowDialog();
                 this.Show();
             }

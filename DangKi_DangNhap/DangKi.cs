@@ -34,7 +34,9 @@ namespace DangKi_DangNhap
             string email = textBox4.Text;
             string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
             string username = textBox5.Text;
-            if (string.IsNullOrWhiteSpace(taiKhoan) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username))
+            string ngaysinh = textBox6.Text;
+            string gioitinh = comboBox1.Text;
+            if (string.IsNullOrWhiteSpace(taiKhoan) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -76,6 +78,8 @@ namespace DangKi_DangNhap
                     MatKhau = matKhau,
                     Email = encodedEmail,
                     Username = username,
+                    Ngaysinh = ngaysinh,
+                    Gioitinh=gioitinh,
                 };
 
                 // Thêm người dùng mới vào Firebase Realtime Database
@@ -89,11 +93,18 @@ namespace DangKi_DangNhap
                 textBox3.Text = "";
                 textBox4.Text = "";
                 textBox5.Text = "";
+                textBox6.Text = "";
+                comboBox1.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -103,5 +114,9 @@ namespace DangKi_DangNhap
         public string MatKhau { get; set; }
         public string Email { get; set; }
         public string Username { get; set; }
+        public string Ngaysinh { get; set; }
+        public string Gioitinh { get; set; }
     }
 }
+
+

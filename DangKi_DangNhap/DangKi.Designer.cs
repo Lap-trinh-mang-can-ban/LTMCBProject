@@ -40,6 +40,10 @@
             textBox3 = new TextBox();
             label5 = new Label();
             textBox5 = new TextBox();
+            textBox6 = new TextBox();
+            label6 = new Label();
+            label7 = new Label();
+            comboBox1 = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -111,7 +115,7 @@
             // 
             button1.BackColor = Color.Silver;
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(219, 409);
+            button1.Location = new Point(181, 491);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 9;
@@ -153,12 +157,51 @@
             textBox5.Size = new Size(146, 27);
             textBox5.TabIndex = 13;
             // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(219, 418);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(158, 27);
+            textBox6.TabIndex = 15;
+            // 
+            // label6
+            // 
+            label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label6.Location = new Point(115, 418);
+            label6.Name = "label6";
+            label6.Size = new Size(90, 25);
+            label6.TabIndex = 14;
+            label6.Text = "Ngày sinh";
+            // 
+            // label7
+            // 
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(115, 463);
+            label7.Name = "label7";
+            label7.Size = new Size(90, 25);
+            label7.TabIndex = 16;
+            label7.Text = "Giới tính";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Nam", "Nữ ", "Không muốn tiết lộ" });
+            comboBox1.Location = new Point(219, 460);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(151, 28);
+            comboBox1.TabIndex = 17;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
+            // 
             // DangKi
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(488, 450);
+            ClientSize = new Size(488, 532);
+            Controls.Add(comboBox1);
+            Controls.Add(label7);
+            Controls.Add(textBox6);
+            Controls.Add(label6);
             Controls.Add(textBox5);
             Controls.Add(label5);
             Controls.Add(textBox3);
@@ -192,5 +235,9 @@
         private Label label5;
         public Button button1;
         private TextBox textBox5;
+        private TextBox textBox6;
+        private Label label6;
+        private Label label7;
+        private ComboBox comboBox1;
     }
 }
