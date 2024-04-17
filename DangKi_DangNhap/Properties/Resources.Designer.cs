@@ -203,6 +203,16 @@ namespace DangKi_DangNhap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap download_icon_home_house_shelf_study_icon_1320183785297551957_321 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-home+house+shelf+study+icon-1320183785297551957_321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap download_icon_home_house_shelf_study_icon_1320183785297551957_48 {
             get {
                 object obj = ResourceManager.GetObject("download-icon-home+house+shelf+study+icon-1320183785297551957_48", resourceCulture);
@@ -246,6 +256,16 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap download_icon_message_131976794662403642_32 {
             get {
                 object obj = ResourceManager.GetObject("download-icon-message-131976794662403642_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_message_131976794662403642_321 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-message-131976794662403642_321", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

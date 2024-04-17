@@ -78,7 +78,7 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(663, 30);
+            linkLabel2.Location = new Point(706, 30);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(125, 31);
             linkLabel2.TabIndex = 3;
@@ -142,13 +142,13 @@
             button6.BackColor = Color.Black;
             button6.FlatStyle = FlatStyle.Popup;
             button6.ForeColor = Color.White;
-            button6.Image = Properties.Resources.download_icon_home_house_shelf_study_icon_1320183785297551957_32;
+            button6.Image = Properties.Resources.download_icon_message_131976794662403642_321;
             button6.ImageAlign = ContentAlignment.MiddleLeft;
             button6.Location = new Point(3, 320);
             button6.Name = "button6";
-            button6.Size = new Size(166, 62);
+            button6.Size = new Size(183, 62);
             button6.TabIndex = 10;
-            button6.Text = "Môn học";
+            button6.Text = "Nhắn tin nhóm";
             button6.UseVisualStyleBackColor = false;
             button6.Click += button6_Click;
             // 
@@ -189,13 +189,13 @@
             button3.BackColor = Color.Black;
             button3.FlatStyle = FlatStyle.Popup;
             button3.ForeColor = Color.White;
-            button3.Image = Properties.Resources.download_icon_message_131976794662403642_32;
+            button3.Image = Properties.Resources.download_icon_home_house_shelf_study_icon_1320183785297551957_321;
             button3.ImageAlign = ContentAlignment.MiddleLeft;
             button3.Location = new Point(3, 155);
             button3.Name = "button3";
             button3.Size = new Size(183, 77);
             button3.TabIndex = 7;
-            button3.Text = "Nhắn tin nhóm";
+            button3.Text = "Nhóm môn học";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 

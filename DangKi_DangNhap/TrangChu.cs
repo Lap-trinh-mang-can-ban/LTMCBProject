@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
@@ -102,10 +103,10 @@ namespace DangKi_DangNhap
         {
             OpenChildForm(new ThongBao());
         }
-
+        private string user;
         private void button3_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom());
+            OpenChildForm(new TaoNhom(currentUser.Username)); // Truyền username của người dùng hiện tại
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -151,6 +152,6 @@ namespace DangKi_DangNhap
 
 
 
-        // Các phương thức xử lý sự kiện click cho các button khác có thể được thêm vào tương tự
+      
     }
 }
