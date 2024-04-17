@@ -5,6 +5,7 @@ using System;
 using System.Net.Sockets;
 using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
@@ -59,7 +60,7 @@ namespace DangKi_DangNhap
                     MessageBox.Show("Mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                string userName = user.Username;
                 // Đăng nhập thành công
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = "";
@@ -68,6 +69,7 @@ namespace DangKi_DangNhap
                 TrangChu tc = new TrangChu(user);
                 tc.ShowDialog();
                 this.Show();
+                TaoNhom taoNhom = new TaoNhom(userName);
             }
             catch (Exception ex)
             {
