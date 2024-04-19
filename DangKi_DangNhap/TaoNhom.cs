@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Text;
 using System.Windows.Forms;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
@@ -78,46 +80,13 @@ namespace DangKi_DangNhap
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            try
+            var newForm = new TrangTaoNhom(userName,firebaseClient);
+            newForm.Show();
+            newForm.TenNhomCreated += (sender, tenNhom) =>
             {
-                // Khi Button ô nhóm được nhấp, thêm nhóm mới vào Firebase
-                string tenNhom = textBox1.Text;
-                string nhomID = textBox2.Text;
-
-                // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
-                if (string.IsNullOrEmpty(tenNhom)|| string.IsNullOrEmpty(nhomID))
-                {
-                    MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Tạo dữ liệu để thêm vào Firebase
-                var data1 = new Dictionary<string, object>
-             {
-                { nhomID, true }
-             };
-
-                // Thực hiện thêm dữ liệu vào Firebase
-                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"nhoms/{userName}/{tenNhom}", data1);
-
-                // Hiển thị thông báo tạo nhóm thành công
-                MessageBox.Show("Đã tạo nhóm mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Thêm button nhóm mới vào form
                 AddNhomButton(tenNhom);
-                var data = new Dictionary<string, object>
-             {
-                { userName, true }
-             };
-
-                // Thực hiện thêm dữ liệu vào Firebase
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"group /{tenNhom}/", data);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi tạo nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-       
+            };
+           
         }
 
         private void BtnNhomMoi_Click(object sender, EventArgs e)
@@ -125,7 +94,7 @@ namespace DangKi_DangNhap
             Button btn = (Button)sender;
             tenNhom = btn.Text;
             // Tạo một form mới để hiển thị danh sách thành viên của nhóm
-            FormNhom newForm = new FormNhom(tenNhom);
+            FormNhom newForm = new FormNhom(tenNhom,userName);
             newForm.Text = "Danh sách thành viên của nhóm" + tenNhom; // Đặt tiêu đề cho form
             newForm.Show();
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới

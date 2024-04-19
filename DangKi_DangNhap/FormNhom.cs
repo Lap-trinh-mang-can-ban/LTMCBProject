@@ -10,11 +10,13 @@ namespace DangKi_DangNhap
     {
         public event EventHandler ButtonClickEvent;
         private string tenNhom;
+        private string userName;
         private readonly IFirebaseClient firebaseClient;
-        public FormNhom(string tenNhom)
+        public FormNhom(string tenNhom, string username)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
+            this.userName = username;
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
@@ -34,7 +36,7 @@ namespace DangKi_DangNhap
         private async void button1_Click(object sender, EventArgs e)
         {
 
-            string data = textBox1.Text; // Lấy dữ liệu từ textBox1
+            string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
             AddPostToRichTextBox(richTextBox1, data);
             // Gọi phương thức để đẩy dữ liệu lên Firebase
             await PushDataToFirebase(tenNhom, data);
