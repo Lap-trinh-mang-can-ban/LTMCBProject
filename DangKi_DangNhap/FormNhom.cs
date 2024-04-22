@@ -7,10 +7,23 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using Firebase.Database.Query;
+using Firebase.Storage;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Net.Sockets;
+using Firebase.Auth;
+using FirebaseConfigAuth = Firebase.Auth.FirebaseConfig;
+using FirebaseConfigFireSharp = FireSharp.Config.FirebaseConfig;
 namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
+        //Định dạng biến cho cho firebase storage
+        private const string ApiKey = "AIzaSyBdOidos1lLrKNWGLJKODYggh13HnmxuOQ";
+        private const string email = "123@gmail.com";
+        private const string password = "123123";
+        private const string Bucket = "databeseaccess.appspot.com";
+
+
         public event EventHandler ButtonClickEvent;
         private string tenNhom;
         private string userName;
@@ -21,7 +34,7 @@ namespace DangKi_DangNhap
             this.tenNhom = tenNhom;
             this.userName = username;
             // Khởi tạo cấu hình Firebase
-            IFirebaseConfig config = new FirebaseConfig
+            IFirebaseConfig config = new FireSharp.Config.FirebaseConfig
             {
                 AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
                 BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
@@ -150,20 +163,59 @@ namespace DangKi_DangNhap
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All Files|*.*";
-            openFileDialog.Title = "Chọn file";
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog.FileName;
-                string fileName = Path.GetFileName(filePath);
 
-                // Gán đường dẫn của file vào LinkLabel1
-                linkLabel1.Text = fileName;
-                linkLabel1.Tag = filePath; // Lưu đường dẫn của file vào Tag của LinkLabel1
+                // Call UploadFileAsync method and await it
+                await UploadFileAsync(filePath);
+            }
+        }
+
+        private async Task UploadFileAsync(string filePath)
+        {
+            try
+            {
+                using (var stream = File.Open(filePath, FileMode.Open)) // Open the file stream
+                {
+                    var auth = new FirebaseAuthProvider(new FirebaseConfigAuth(ApiKey));
+                    var authResult = await auth.SignInWithEmailAndPasswordAsync(email, password);
+
+                    var cancellationTokenSource = new CancellationTokenSource();
+
+                    var storage = new FirebaseStorage(
+                        Bucket,
+                        new FirebaseStorageOptions
+                        {
+                            AuthTokenAsyncFactory = () => Task.FromResult(authResult.FirebaseToken),
+                            ThrowOnCancel = true
+                        });
+
+                    var uploadTask = storage
+                        .Child(tenNhom)
+                        .Child(Path.GetFileName(filePath))
+                        .PutAsync(stream, cancellationTokenSource.Token);
+
+                    uploadTask.Progress.ProgressChanged += (s, e) =>
+                    {
+                        Console.WriteLine($"Progress: {e.Percentage}%");
+                        // Update UI here if needed
+                    };
+
+                    // You can cancel the upload by calling cancellationTokenSource.Cancel()
+
+                    var downloadUrl = await uploadTask;
+                    Console.WriteLine("Download link:\n" + downloadUrl);
+                    // Close the file stream after upload
+                    stream.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception was thrown: {0}", ex.Message);
             }
         }
 
@@ -198,7 +250,7 @@ namespace DangKi_DangNhap
 
                     // Xóa nhoms
                     FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
-                    
+
                     if (res.StatusCode == System.Net.HttpStatusCode.OK)
                     {
                         MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -221,6 +273,10 @@ namespace DangKi_DangNhap
             }
         }
 
+        private void FormNhom_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
