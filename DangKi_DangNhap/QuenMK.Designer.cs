@@ -121,6 +121,7 @@
             Controls.Add(pictureBox1);
             Name = "QuenMK";
             Text = "Quên mật khẩu";
+            Load += QuenMK_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

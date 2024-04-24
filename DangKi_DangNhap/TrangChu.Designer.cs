@@ -54,7 +54,7 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.LinkColor = Color.White;
-            linkLabel1.Location = new Point(33, 479);
+            linkLabel1.Location = new Point(31, 688);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(80, 20);
             linkLabel1.TabIndex = 2;
@@ -70,7 +70,7 @@
             panel1.Controls.Add(label2);
             panel1.Location = new Point(-7, 1);
             panel1.Name = "panel1";
-            panel1.Size = new Size(992, 85);
+            panel1.Size = new Size(1202, 85);
             panel1.TabIndex = 3;
             // 
             // linkLabel2
@@ -78,7 +78,7 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(706, 30);
+            linkLabel2.Location = new Point(858, 30);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(125, 31);
             linkLabel2.TabIndex = 3;
@@ -90,7 +90,7 @@
             // 
             pictureBox1.BackgroundImage = Properties.Resources.man_4140037;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(892, 10);
+            pictureBox1.Location = new Point(1105, 13);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(77, 67);
             pictureBox1.TabIndex = 1;
@@ -100,11 +100,11 @@
             // 
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(11, 13);
+            label2.Location = new Point(31, 22);
             label2.Name = "label2";
             label2.Size = new Size(598, 48);
             label2.TabIndex = 0;
-            label2.Text = "Microsoft Teams";
+            label2.Text = "TeamLearnHub";
             label2.Click += label2_Click;
             // 
             // panel2
@@ -119,7 +119,7 @@
             panel2.Controls.Add(button2);
             panel2.Location = new Point(-7, 82);
             panel2.Name = "panel2";
-            panel2.Size = new Size(149, 537);
+            panel2.Size = new Size(149, 754);
             panel2.TabIndex = 4;
             // 
             // button5
@@ -129,7 +129,7 @@
             button5.ForeColor = Color.White;
             button5.Image = Properties.Resources.download_icon_message_messenger_network_plane_social_media_telegram_icon_1320137113135966803_32;
             button5.ImageAlign = ContentAlignment.MiddleLeft;
-            button5.Location = new Point(-2, 377);
+            button5.Location = new Point(0, 388);
             button5.Name = "button5";
             button5.Size = new Size(161, 74);
             button5.TabIndex = 9;
@@ -221,7 +221,7 @@
             panel3.Controls.Add(label1);
             panel3.Location = new Point(143, 84);
             panel3.Name = "panel3";
-            panel3.Size = new Size(929, 535);
+            panel3.Size = new Size(1049, 752);
             panel3.TabIndex = 5;
             panel3.Paint += panel3_Paint;
             // 
@@ -229,9 +229,9 @@
             // 
             pictureBox2.BackgroundImage = Properties.Resources._10088;
             pictureBox2.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox2.Location = new Point(20, 95);
+            pictureBox2.Location = new Point(78, 97);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(741, 413);
+            pictureBox2.Size = new Size(741, 479);
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
             pictureBox2.Click += pictureBox2_Click;
@@ -241,7 +241,7 @@
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Indigo;
-            label1.Location = new Point(5, 35);
+            label1.Location = new Point(66, 17);
             label1.Name = "label1";
             label1.Size = new Size(832, 77);
             label1.TabIndex = 0;
@@ -252,7 +252,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(982, 617);
+            ClientSize = new Size(1196, 838);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);

@@ -38,9 +38,9 @@ namespace DangKi_DangNhap
             }
             try
             {
-               
+
                 FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{taikhoan}");
-              
+
                 if (userResponse.Body == "null")
                 {
                     MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,6 +89,11 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi gửi email: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void QuenMK_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

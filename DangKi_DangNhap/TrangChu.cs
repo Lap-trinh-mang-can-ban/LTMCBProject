@@ -67,7 +67,7 @@ namespace DangKi_DangNhap
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            button.BackColor = Color.Gray; // Chuyển màu nền của button sang màu xám
+            button.BackColor = Color.Indigo; // Chuyển màu nền của button sang màu xám
         }
 
         private void Button_MouseLeave(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace DangKi_DangNhap
 
         private void button4_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new LapLich());
+            OpenChildForm(new LapLich(currentUser.Username));
         }
 
         private void button5_Click(object sender, EventArgs e)
