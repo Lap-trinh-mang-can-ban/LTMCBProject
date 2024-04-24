@@ -33,7 +33,7 @@ namespace DangKi_DangNhap
             // Tải dữ liệu button nhóm từ Firebase khi đăng nhập
             LoadNhomData();
         }
-       
+
         private async void LoadNhomData()
         {
             try
@@ -42,13 +42,13 @@ namespace DangKi_DangNhap
                 FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{userName}");
                 if (response.Body == "null")
                 {
-                   
+
                     return;
                 }
 
                 // Parse dữ liệu trả về thành một danh sách các nhóm
                 Dictionary<string, object> nhomData = response.ResultAs<Dictionary<string, object>>();
-               
+
                 // Duyệt qua danh sách nhóm và tạo các button nhóm tương ứng
                 foreach (var pair in nhomData)
                 {
@@ -65,7 +65,7 @@ namespace DangKi_DangNhap
 
         private void AddNhomButton(string tenNhom)
         {
-           
+
             soLuongNhom++;
             Button btnNhomMoi = new Button();
             btnNhomMoi.Text = tenNhom;
@@ -85,7 +85,7 @@ namespace DangKi_DangNhap
                 string nhomID = textBox2.Text;
 
                 // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
-                if (string.IsNullOrEmpty(tenNhom)|| string.IsNullOrEmpty(nhomID))
+                if (string.IsNullOrEmpty(tenNhom) || string.IsNullOrEmpty(nhomID))
                 {
                     MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -117,7 +117,7 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi tạo nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-       
+
         }
 
         private void BtnNhomMoi_Click(object sender, EventArgs e)
@@ -133,7 +133,7 @@ namespace DangKi_DangNhap
             LoadClick(tenNhom, newForm.richTextBox1);
         }
 
-     
+
         public async Task<Dictionary<string, object>> GetGroupData(string tenNhom)
         {
             try
@@ -253,7 +253,7 @@ namespace DangKi_DangNhap
 
         private async void button2_Click(object sender, EventArgs e)
         {
-           // MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            // MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             try
             {
                 // Khi Button tham gia nhóm được nhấp, thêm người dùng vào nhóm trong Firebase
@@ -265,12 +265,12 @@ namespace DangKi_DangNhap
                 {
                     MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                   
+
                 }
 
                 // Kiểm tra xem nhóm có tồn tại không
                 FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{us}/{tenNhom}/{nhomID}");
-              
+
                 if (response.Body == "null")
                 {
                     MessageBox.Show("Nhóm không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -293,7 +293,7 @@ namespace DangKi_DangNhap
 
                 // Thực hiện thêm dữ liệu vào Firebase
                 FirebaseResponse response2 = await firebaseClient.UpdateAsync($"group /{tenNhom}/", data2);
-                
+
             }
             catch (Exception ex)
             {
@@ -310,6 +310,9 @@ namespace DangKi_DangNhap
 
         }
 
-      
+        private void TaoNhom_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

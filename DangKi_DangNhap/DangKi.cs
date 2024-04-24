@@ -179,7 +179,10 @@ namespace DangKi_DangNhap
             }
         }
 
+        private void DangKi_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 
     public class User

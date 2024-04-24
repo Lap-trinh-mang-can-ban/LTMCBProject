@@ -92,5 +92,10 @@ namespace DangKi_DangNhap
             qmk.ShowDialog();
             this.Show();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
