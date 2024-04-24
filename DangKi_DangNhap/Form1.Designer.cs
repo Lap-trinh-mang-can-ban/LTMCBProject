@@ -161,6 +161,7 @@
             label4.Size = new Size(594, 60);
             label4.TabIndex = 9;
             label4.Text = "Ứng dụng quản lý học nhóm ";
+            label4.Click += label4_Click;
             // 
             // Form1
             // 

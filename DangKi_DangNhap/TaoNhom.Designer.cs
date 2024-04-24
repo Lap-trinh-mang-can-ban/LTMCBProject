@@ -150,6 +150,7 @@
             Controls.Add(label2);
             Name = "TaoNhom";
             Text = "TaoNhom";
+            Load += TaoNhom_Load;
             ResumeLayout(false);
             PerformLayout();
         }

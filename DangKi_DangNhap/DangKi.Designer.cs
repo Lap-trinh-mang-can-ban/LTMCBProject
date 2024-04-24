@@ -191,7 +191,6 @@
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
             comboBox1.TabIndex = 17;
-          //  comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // button2
             // 
@@ -230,6 +229,7 @@
             Controls.Add(pictureBox1);
             Name = "DangKi";
             Text = "Đăng ký ";
+            Load += DangKi_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
