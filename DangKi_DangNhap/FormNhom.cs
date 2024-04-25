@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Security.Cryptography;
 using System.Windows.Forms;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Firebase.Database.Query;
 namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
         public event EventHandler ButtonClickEvent;
         private string tenNhom;
-        private readonly IFirebaseClient firebaseClient;
-        public FormNhom(string tenNhom)
+        private string userName;
+        public IFirebaseClient firebaseClient;
+        public FormNhom(string tenNhom, string username)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
+            this.userName = username;
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
@@ -34,7 +39,7 @@ namespace DangKi_DangNhap
         private async void button1_Click(object sender, EventArgs e)
         {
 
-            string data = textBox1.Text; // Lấy dữ liệu từ textBox1
+            string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
             AddPostToRichTextBox(richTextBox1, data);
             // Gọi phương thức để đẩy dữ liệu lên Firebase
             await PushDataToFirebase(tenNhom, data);
@@ -183,10 +188,40 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn rời nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                try
+                {
 
+                    // Xóa nhoms
+                    FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
+                    
+                    if (res.StatusCode == System.Net.HttpStatusCode.OK)
+                    {
+                        MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Hiển thị form tạo nhóm
+                        var form = new TaoNhom(userName);
+
+                        // Đóng form hiện tại
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+
+
     }
 }
 
