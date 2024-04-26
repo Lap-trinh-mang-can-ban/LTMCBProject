@@ -39,6 +39,7 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+            
             link_load();
         }
 
@@ -49,8 +50,14 @@ namespace DangKi_DangNhap
         private async void link_load()
         {
             string pra = "";
-            FirebaseResponse response = await firebaseClient.GetAsync($"files/{tenNhom}");
 
+
+            FirebaseResponse response = await firebaseClient.GetAsync($"files/{tenNhom}");
+            if (response == null || response.Body == "null")
+            {
+                
+                return;
+            }
             // Kiểm tra xem yêu cầu có thành công hay không
             if (response.StatusCode == HttpStatusCode.OK)
             {
@@ -66,12 +73,12 @@ namespace DangKi_DangNhap
                     // Thêm giá trị vào linkLabel1.Text hoặc làm bất kỳ thao tác nào khác bạn muốn thực hiện
                     pra += value; // Ví dụ: thêm giá trị vào linkLabel1.Text với mỗi giá trị trên một dòng mới
                 }
+                
                 linkLabel1.Text = pra;
             }
             else
             {
-                // Xử lý trường hợp yêu cầu thất bại
-                Console.WriteLine("Yêu cầu không thành công: " + response.StatusCode);
+                
             }
         }
         private async void button1_Click(object sender, EventArgs e)
@@ -255,6 +262,8 @@ namespace DangKi_DangNhap
 
         private async Task DownloadFileFromStorage()
         {
+            if (linkLabel1.Text == "Upload File môn học.")
+                return;
             try
             {
                 string a = tenNhom;

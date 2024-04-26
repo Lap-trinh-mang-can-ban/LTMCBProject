@@ -104,7 +104,7 @@
             linkLabel1.Size = new Size(555, 59);
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
-            linkLabel1.Text = "File môn học";
+            linkLabel1.Text = "Upload File môn học.";
             linkLabel1.LinkClicked += linkLabel1_LinkClicked;
             // 
             // button3
