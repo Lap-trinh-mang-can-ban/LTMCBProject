@@ -14,6 +14,7 @@ namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
+
         public event EventHandler<string> TenNhomCreated;
         public event EventHandler ButtonClickEvent;
         string tenNhom;
@@ -47,6 +48,7 @@ namespace DangKi_DangNhap
         }
         private async void link_load()
         {
+            string pra = "";
             FirebaseResponse response = await firebaseClient.GetAsync($"files/{tenNhom}");
 
             // Kiểm tra xem yêu cầu có thành công hay không
@@ -188,7 +190,7 @@ namespace DangKi_DangNhap
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            pra = "";
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -313,6 +315,11 @@ namespace DangKi_DangNhap
         }
 
         private void FormNhom_Load(object sender, EventArgs e)
+        {
+            link_load();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
