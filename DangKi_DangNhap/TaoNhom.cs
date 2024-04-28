@@ -100,7 +100,7 @@ namespace DangKi_DangNhap
             newForm.Show();
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới
             LoadMembersOfGroup(tenNhom, newForm.listView1);
-            LoadClick(tenNhom, newForm.richTextBox1);
+            
         }
 
 

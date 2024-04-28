@@ -139,6 +139,7 @@
             Controls.Add(listView1);
             Name = "FormNhom";
             Text = "FormNhom";
+            FormClosing += FormNhom_FormClosing;
             Load += FormNhom_Load;
             ResumeLayout(false);
             PerformLayout();

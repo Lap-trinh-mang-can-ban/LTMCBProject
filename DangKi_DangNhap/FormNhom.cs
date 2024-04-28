@@ -22,12 +22,13 @@ namespace DangKi_DangNhap
         private string filePath;
         string fileName;
         string pra;
+        static int i = 0;
         public IFirebaseClient firebaseClient;
         private const string Bucket = "databeseaccess.appspot.com";
         public FormNhom(string tenNhom, string username)
         {
             InitializeComponent();
-
+            richTextBox1.Text = string.Empty;
             this.tenNhom = tenNhom;
             this.userName = username;
             // Khởi tạo cấu hình Firebase
@@ -39,15 +40,19 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
-            SubscribeToFirebase();
-            link_load();
+            // Liên kết sự kiện Form_Load với hàm xử lý FormNhom_Load
+            this.Load += FormNhom_Load;
+
+
         }
+
+        
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-        private async void link_load()
+        private async Task link_load()
         {
             string pra = "";
 
@@ -55,7 +60,7 @@ namespace DangKi_DangNhap
             FirebaseResponse response = await firebaseClient.GetAsync($"files/{tenNhom}");
             if (response == null || response.Body == "null")
             {
-                
+
                 return;
             }
             // Kiểm tra xem yêu cầu có thành công hay không
@@ -73,28 +78,36 @@ namespace DangKi_DangNhap
                     // Thêm giá trị vào linkLabel1.Text hoặc làm bất kỳ thao tác nào khác bạn muốn thực hiện
                     pra += value; // Ví dụ: thêm giá trị vào linkLabel1.Text với mỗi giá trị trên một dòng mới
                 }
-                
+
                 linkLabel1.Text = pra;
             }
             else
             {
-                
+
             }
         }
 
-        private void SubscribeToFirebase()
+        private async Task SubscribeToFirebase()
         {
             // Subscribe to changes in the "files" node of the Firebase database
-            firebaseClient.OnAsync($"files/{tenNhom}", async (sender, args, context) =>
+            await firebaseClient.OnAsync($"files/{tenNhom}", async (sender, args, context) =>
             {
                 // Reload data whenever there's a change in the database
-                link_load();
+                await link_load();
             });
 
-            firebaseClient.OnAsync($"group /{tenNhom}/ports", async (sender, args, context) =>
+            
+        }
+        private async Task SubscribeToFirebase1()
+        {
+            // Subscribe to changes in the "files" node of the Firebase database
+            
+
+
+            await firebaseClient.OnAsync($"group /{tenNhom}/ports", async (sender, args, context) =>
             {
                 // Reload data whenever there's a change in the database
-                LoadClick(tenNhom, richTextBox1);
+                await LoadClick(tenNhom, richTextBox1);
             });
         }
 
@@ -108,31 +121,31 @@ namespace DangKi_DangNhap
             await PushDataToFirebase(tenNhom, data);
 
         }
-       /* private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
-        {
-            // Lấy ngày và giờ hiện tại
-            string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+        /* private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
+         {
+             // Lấy ngày và giờ hiện tại
+             string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
 
-            // Tạo chuỗi văn bản với ngày và giờ đăng bài
-            string postWithDateTime = $"[{dateTime}] {post}";
+             // Tạo chuỗi văn bản với ngày và giờ đăng bài
+             string postWithDateTime = $"[{dateTime}] {post}";
 
-            // Đặt văn bản của bài đăng
-            richTextBox.Text = postWithDateTime;
+             // Đặt văn bản của bài đăng
+             richTextBox.Text = postWithDateTime;
 
-            // Định dạng văn bản
-            richTextBox.Font = new Font("Arial", 12); // Font chữ
-            richTextBox.ForeColor = Color.Black; // Màu chữ
+             // Định dạng văn bản
+             richTextBox.Font = new Font("Arial", 12); // Font chữ
+             richTextBox.ForeColor = Color.Black; // Màu chữ
 
-            // Đặt viền cho RichTextBox
-            richTextBox.BorderStyle = BorderStyle.FixedSingle; // Loại viền
-
-
-
-            // Đặt màu chữ cho RichTextBox
-            richTextBox.ForeColor = Color.Black; // Màu chữ
+             // Đặt viền cho RichTextBox
+             richTextBox.BorderStyle = BorderStyle.FixedSingle; // Loại viền
 
 
-        }*/
+
+             // Đặt màu chữ cho RichTextBox
+             richTextBox.ForeColor = Color.Black; // Màu chữ
+
+
+         }*/
 
 
 
@@ -140,12 +153,12 @@ namespace DangKi_DangNhap
         {
             try
             {
-                // Lấy số lượng bài đăng hiện tại
-                int currentPostsCount = await GetCurrentPostsCount(tenNhom);
+                
 
                 // Tạo key cho bài đăng mới
-                string newPostKey = $"baidang{currentPostsCount + 1}";
-
+                string newPostKey = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+                string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                data = date + " " + data;
                 // Tạo một đối tượng chứa dữ liệu cần đẩy lên Firebase
                 var postData = new Dictionary<string, object>
         {
@@ -172,21 +185,6 @@ namespace DangKi_DangNhap
             }
         }
 
-        private async Task<int> GetCurrentPostsCount(string tenNhom)
-        {
-            // Truy vấn dữ liệu từ Firebase để lấy số lượng bài đăng hiện tại
-            FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports");
-            if (response.Body == "null")
-            {
-                return 0; // Nếu không có bài đăng nào thì trả về 0
-            }
-            else
-            {
-                // Parse dữ liệu và trả về số lượng bài đăng
-                Dictionary<string, object> postData = response.ResultAs<Dictionary<string, object>>();
-                return postData.Count;
-            }
-        }
 
         private void listView2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -201,7 +199,7 @@ namespace DangKi_DangNhap
             {
                 filePath = openFileDialog.FileName;
                 fileName = Path.GetFileName(filePath);
-                UploadFileAsync(filePath);
+                await UploadFileAsync(filePath);
                 // Gán đường dẫn của file vào LinkLabel1
 
                 //linkLabel1.Tag = filePath; // Lưu đường dẫn của file vào Tag của LinkLabel1
@@ -219,7 +217,7 @@ namespace DangKi_DangNhap
                 {
                     MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                link_load();
+                await link_load();
             }
         }
 
@@ -321,9 +319,10 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void FormNhom_Load(object sender, EventArgs e)
+        private async void FormNhom_Load(object sender, EventArgs e)
         {
-            link_load();
+            await SubscribeToFirebase1();
+            await SubscribeToFirebase();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -349,12 +348,12 @@ namespace DangKi_DangNhap
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi GetGroupData: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return null;
             }
         }
 
-        public async void LoadClick(string tenNhom, RichTextBox richTextBox)
+        public async Task LoadClick(string tenNhom, RichTextBox richTextBox)
         {
             try
             {
@@ -370,24 +369,30 @@ namespace DangKi_DangNhap
                     // Thêm các bài đăng vào RichTextBox và định dạng chúng
                     foreach (var post in groupData.Values)
                     {
-                        AddPostToRichTextBox(richTextBox, post.ToString());
+                        await AddPostToRichTextBox(richTextBox, post.ToString());
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi LoadClick: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
+        private async Task AddPostToRichTextBox(RichTextBox richTextBox, string post)
         {
             // Thêm bài đăng vào RichTextBox
             richTextBox.AppendText(post + Environment.NewLine);
 
-            // Định dạng văn bản cho bài đăng mới
-            richTextBox.SelectionFont = new Font(richTextBox.Font, FontStyle.Regular);
-            richTextBox.SelectionColor = Color.Black;
+            
+        }
+
+        private void FormNhom_FormClosing(object sender, FormClosingEventArgs e)
+        {
+           
+
+            // Giải phóng tài nguyên của richTextBox1
+            richTextBox1.Dispose();
         }
     }
 }
