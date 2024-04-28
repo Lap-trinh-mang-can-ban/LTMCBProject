@@ -80,13 +80,13 @@ namespace DangKi_DangNhap
 
         private async void button1_Click(object sender, EventArgs e)
         {
-            var newForm = new TrangTaoNhom(userName,firebaseClient);
+            var newForm = new TrangTaoNhom(userName, firebaseClient);
             newForm.Show();
             newForm.TenNhomCreated += (sender, tenNhom) =>
             {
                 AddNhomButton(tenNhom);
             };
-           
+
 
         }
 
@@ -95,7 +95,7 @@ namespace DangKi_DangNhap
             Button btn = (Button)sender;
             tenNhom = btn.Text;
             // Tạo một form mới để hiển thị danh sách thành viên của nhóm
-            FormNhom newForm = new FormNhom(tenNhom,userName);
+            FormNhom newForm = new FormNhom(tenNhom, userName);
             newForm.Text = "Danh sách thành viên của nhóm" + tenNhom; // Đặt tiêu đề cho form
             newForm.Show();
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới
@@ -223,52 +223,8 @@ namespace DangKi_DangNhap
 
         private async void button2_Click(object sender, EventArgs e)
         {
-            // MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            try
-            {
-                // Khi Button tham gia nhóm được nhấp, thêm người dùng vào nhóm trong Firebase
-                string tenNhom = textBox1.Text;
-                string nhomID = textBox2.Text;
-                string us = textBox3.Text;
-                // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
-                if (string.IsNullOrEmpty(tenNhom) || string.IsNullOrEmpty(nhomID) || string.IsNullOrEmpty(us))
-                {
-                    MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-
-                }
-
-                // Kiểm tra xem nhóm có tồn tại không
-                FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{us}/{tenNhom}/{nhomID}");
-
-                if (response.Body == "null")
-                {
-                    MessageBox.Show("Nhóm không tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Thêm người dùng vào nhóm
-                var data = new Dictionary<string, object>
-            {
-                { nhomID, true }
-            };
-
-                FirebaseResponse joinResponse = await firebaseClient.UpdateAsync($"nhoms/{userName}/{tenNhom}", data);
-                MessageBox.Show("Đã tham gia nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                AddNhomButton(tenNhom);
-                var data2 = new Dictionary<string, object>
-             {
-                { userName, true }
-             };
-
-                // Thực hiện thêm dữ liệu vào Firebase
-                FirebaseResponse response2 = await firebaseClient.UpdateAsync($"group /{tenNhom}/", data2);
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi tham gia nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            ThamGiaNhom jointeam = new ThamGiaNhom(userName);
+            jointeam.Show();
         }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -281,6 +237,11 @@ namespace DangKi_DangNhap
         }
 
         private void TaoNhom_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
