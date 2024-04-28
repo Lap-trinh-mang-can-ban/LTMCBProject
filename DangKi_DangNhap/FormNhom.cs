@@ -39,7 +39,7 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
-            
+            SubscribeToFirebase();
             link_load();
         }
 
@@ -81,16 +81,34 @@ namespace DangKi_DangNhap
                 
             }
         }
+
+        private void SubscribeToFirebase()
+        {
+            // Subscribe to changes in the "files" node of the Firebase database
+            firebaseClient.OnAsync($"files/{tenNhom}", async (sender, args, context) =>
+            {
+                // Reload data whenever there's a change in the database
+                link_load();
+            });
+
+            firebaseClient.OnAsync($"group /{tenNhom}/ports", async (sender, args, context) =>
+            {
+                // Reload data whenever there's a change in the database
+                LoadClick(tenNhom, richTextBox1);
+            });
+        }
+
+
         private async void button1_Click(object sender, EventArgs e)
         {
 
             string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
-            AddPostToRichTextBox(richTextBox1, data);
+            /*AddPostToRichTextBox(richTextBox1, data);*/
             // Gọi phương thức để đẩy dữ liệu lên Firebase
             await PushDataToFirebase(tenNhom, data);
 
         }
-        private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
+       /* private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
         {
             // Lấy ngày và giờ hiện tại
             string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
@@ -108,34 +126,13 @@ namespace DangKi_DangNhap
             // Đặt viền cho RichTextBox
             richTextBox.BorderStyle = BorderStyle.FixedSingle; // Loại viền
 
-            // Đặt màu nền cho RichTextBox
-            richTextBox.BackColor = Color.GreenYellow; // Màu nền
+
 
             // Đặt màu chữ cho RichTextBox
             richTextBox.ForeColor = Color.Black; // Màu chữ
 
-            // Đặt kích thước cho RichTextBox
-            richTextBox.Width = 500; // Độ rộng
-            richTextBox.Height = 200; // Độ cao
 
-            // Tạo Panel để chứa Button thích
-            Panel panel = new Panel();
-            panel.Dock = DockStyle.Bottom; // Đặt Panel ở dưới cùng của RichTextBox
-
-            // Thêm Button thích vào Panel
-            Button likeButton = new Button();
-            likeButton.Text = "Thích";
-            likeButton.Dock = DockStyle.Right; // Đặt Button ở bên phải của Panel
-            likeButton.Click += (sender, e) =>
-            {
-                // Xử lý sự kiện thích bài đăng
-                // Ví dụ: tăng số lượt thích và cập nhật trạng thái nút thích
-            };
-            panel.Controls.Add(likeButton);
-
-            // Thêm Panel vào RichTextBox
-            richTextBox.Controls.Add(panel);
-        }
+        }*/
 
 
 
@@ -162,6 +159,7 @@ namespace DangKi_DangNhap
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBox1.Text = string.Empty;
                 }
                 else
                 {
@@ -331,6 +329,65 @@ namespace DangKi_DangNhap
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        public async Task<Dictionary<string, object>> GetGroupData(string tenNhom)
+        {
+            try
+            {
+                // Truy vấn dữ liệu từ Firebase để lấy dữ liệu của nhóm
+                FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports");
+                if (response.Body == "null")
+                {
+                    MessageBox.Show("Không tìm thấy dữ liệu của nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return null;
+                }
+
+                // Parse dữ liệu trả về thành một Dictionary<string, object>
+                Dictionary<string, object> groupData = response.ResultAs<Dictionary<string, object>>();
+
+                return groupData;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+        }
+
+        public async void LoadClick(string tenNhom, RichTextBox richTextBox)
+        {
+            try
+            {
+                // Gọi phương thức để lấy dữ liệu của nhóm từ Firebase
+                Dictionary<string, object> groupData = await GetGroupData(tenNhom);
+
+                // Kiểm tra nếu dữ liệu không null
+                if (groupData != null)
+                {
+                    // Xóa nội dung cũ trong RichTextBox trước khi thêm mới
+                    richTextBox.Clear();
+
+                    // Thêm các bài đăng vào RichTextBox và định dạng chúng
+                    foreach (var post in groupData.Values)
+                    {
+                        AddPostToRichTextBox(richTextBox, post.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
+        {
+            // Thêm bài đăng vào RichTextBox
+            richTextBox.AppendText(post + Environment.NewLine);
+
+            // Định dạng văn bản cho bài đăng mới
+            richTextBox.SelectionFont = new Font(richTextBox.Font, FontStyle.Regular);
+            richTextBox.SelectionColor = Color.Black;
         }
     }
 }
