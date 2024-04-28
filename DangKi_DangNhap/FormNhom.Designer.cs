@@ -59,10 +59,10 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(506, 53);
+            richTextBox1.Location = new Point(508, 53);
             richTextBox1.Margin = new Padding(0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(573, 606);
+            richTextBox1.Size = new Size(571, 555);
             richTextBox1.TabIndex = 5;
             richTextBox1.Text = "";
             richTextBox1.TextChanged += richTextBox1_TextChanged;
@@ -82,7 +82,7 @@
             // 
             textBox1.Location = new Point(508, 673);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(573, 27);
+            textBox1.Size = new Size(571, 27);
             textBox1.TabIndex = 4;
             // 
             // button2
@@ -99,9 +99,9 @@
             // linkLabel1
             // 
             linkLabel1.BackColor = Color.White;
-            linkLabel1.Location = new Point(524, 567);
+            linkLabel1.Location = new Point(508, 611);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(555, 59);
+            linkLabel1.Size = new Size(571, 59);
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Upload File môn học.";
@@ -117,7 +117,7 @@
             button3.Location = new Point(976, 8);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
-            button3.Size = new Size(103, 35);
+            button3.Size = new Size(103, 40);
             button3.TabIndex = 8;
             button3.Text = "Rời nhóm";
             button3.UseVisualStyleBackColor = false;
@@ -128,9 +128,9 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Indigo;
-            ClientSize = new Size(1104, 765);
-            Controls.Add(button3);
+            ClientSize = new Size(1104, 770);
             Controls.Add(linkLabel1);
+            Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(richTextBox1);
             Controls.Add(textBox1);

@@ -112,61 +112,34 @@ namespace DangKi_DangNhap
         }
 
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
 
             string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
             /*AddPostToRichTextBox(richTextBox1, data);*/
             // Gọi phương thức để đẩy dữ liệu lên Firebase
-            await PushDataToFirebase(tenNhom, data);
+            PushDataToFirebase(tenNhom, data);
 
         }
-        /* private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
-         {
-             // Lấy ngày và giờ hiện tại
-             string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-
-             // Tạo chuỗi văn bản với ngày và giờ đăng bài
-             string postWithDateTime = $"[{dateTime}] {post}";
-
-             // Đặt văn bản của bài đăng
-             richTextBox.Text = postWithDateTime;
-
-             // Định dạng văn bản
-             richTextBox.Font = new Font("Arial", 12); // Font chữ
-             richTextBox.ForeColor = Color.Black; // Màu chữ
-
-             // Đặt viền cho RichTextBox
-             richTextBox.BorderStyle = BorderStyle.FixedSingle; // Loại viền
-
-
-
-             // Đặt màu chữ cho RichTextBox
-             richTextBox.ForeColor = Color.Black; // Màu chữ
-
-
-         }*/
-
-
 
         private async Task PushDataToFirebase(string tenNhom, string data)
         {
-            try
-            {
+            /*try
+            {*/
                 
 
                 // Tạo key cho bài đăng mới
-                string newPostKey = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");
+                /*string newPostKey = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss");*/
                 string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                data = date + " " + data;
+                /*data = date + " " + data;*/
                 // Tạo một đối tượng chứa dữ liệu cần đẩy lên Firebase
                 var postData = new Dictionary<string, object>
         {
-            { newPostKey, data }
+            { date, data }
         };
 
                 // Thực hiện đẩy dữ liệu lên Firebase
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"group /{tenNhom}/ports", postData);
+                FirebaseResponse response = await firebaseClient.UpdateAsync($"group /{tenNhom}/ports/{tenNhom}", postData);
 
                 // Kiểm tra xem dữ liệu đã được đẩy thành công hay không
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -178,11 +151,11 @@ namespace DangKi_DangNhap
                 {
                     MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
 
@@ -355,8 +328,8 @@ namespace DangKi_DangNhap
 
         public async Task LoadClick(string tenNhom, RichTextBox richTextBox)
         {
-            try
-            {
+           /* try
+            {*/
                 // Gọi phương thức để lấy dữ liệu của nhóm từ Firebase
                 Dictionary<string, object> groupData = await GetGroupData(tenNhom);
 
@@ -370,19 +343,21 @@ namespace DangKi_DangNhap
                     foreach (var post in groupData.Values)
                     {
                         await AddPostToRichTextBox(richTextBox, post.ToString());
+                        return;
                     }
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi LoadClick: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
         private async Task AddPostToRichTextBox(RichTextBox richTextBox, string post)
         {
             // Thêm bài đăng vào RichTextBox
             richTextBox.AppendText(post + Environment.NewLine);
+            
 
             
         }
