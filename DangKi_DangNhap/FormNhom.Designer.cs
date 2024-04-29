@@ -73,17 +73,17 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(504, 31);
+            richTextBox1.Location = new Point(506, 48);
             richTextBox1.Margin = new Padding(0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(573, 606);
+            richTextBox1.Size = new Size(571, 586);
             richTextBox1.TabIndex = 5;
             richTextBox1.Text = "";
             // 
             // button1
             // 
             button1.BackColor = Color.Silver;
-            button1.Location = new Point(742, 712);
+            button1.Location = new Point(742, 729);
             button1.Name = "button1";
             button1.Size = new Size(107, 29);
             button1.TabIndex = 3;
@@ -93,15 +93,15 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(506, 651);
+            textBox1.Location = new Point(506, 668);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(573, 27);
+            textBox1.Size = new Size(571, 27);
             textBox1.TabIndex = 4;
             // 
             // button2
             // 
             button2.BackColor = Color.Silver;
-            button2.Location = new Point(992, 690);
+            button2.Location = new Point(992, 707);
             button2.Name = "button2";
             button2.Size = new Size(86, 29);
             button2.TabIndex = 6;
@@ -112,9 +112,9 @@
             // linkLabel1
             // 
             linkLabel1.BackColor = Color.White;
-            linkLabel1.Location = new Point(522, 545);
+            linkLabel1.Location = new Point(506, 637);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(555, 59);
+            linkLabel1.Size = new Size(571, 28);
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "File môn học";
@@ -131,7 +131,7 @@
             button3.BackColor = Color.SlateBlue;
             button3.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button3.ForeColor = SystemColors.AppWorkspace;
-            button3.Location = new Point(494, 0);
+            button3.Location = new Point(976, 9);
             button3.Margin = new Padding(0);
             button3.Name = "button3";
             button3.Size = new Size(103, 35);
@@ -145,7 +145,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Indigo;
-            ClientSize = new Size(1104, 751);
+            ClientSize = new Size(1104, 768);
             Controls.Add(button3);
             Controls.Add(linkLabel1);
             Controls.Add(button2);

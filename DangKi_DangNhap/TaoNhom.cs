@@ -90,7 +90,7 @@ namespace DangKi_DangNhap
 
         }
 
-        private void BtnNhomMoi_Click(object sender, EventArgs e)
+        private async void BtnNhomMoi_Click(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             tenNhom = btn.Text;
@@ -100,8 +100,11 @@ namespace DangKi_DangNhap
             newForm.Show();
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới
             LoadMembersOfGroup(tenNhom, newForm.listView1);
+            
             LoadClick(tenNhom, newForm.richTextBox1);
+            
         }
+        
 
 
         public async Task<Dictionary<string, object>> GetGroupData(string tenNhom)
@@ -177,9 +180,7 @@ namespace DangKi_DangNhap
             // Thêm bài đăng vào RichTextBox
             richTextBox.AppendText(post + Environment.NewLine);
 
-            // Định dạng văn bản cho bài đăng mới
-            richTextBox.SelectionFont = new Font(richTextBox.Font, FontStyle.Regular);
-            richTextBox.SelectionColor = Color.Black;
+            
         }
         private async void LoadMembersOfGroup(string tenNhom, ListView listView)
         {
