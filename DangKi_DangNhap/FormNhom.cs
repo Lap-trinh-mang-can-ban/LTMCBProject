@@ -69,8 +69,8 @@ namespace DangKi_DangNhap
         
         private async Task LoadLatestDataToRichTextBox()
         {
-            try
-            {
+            /*try
+            {*/
                 // Truy vấn dữ liệu từ Firebase để lấy phần tử cuối cùng
                 FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports"); // Thay "your-node" bằng tên node bạn muốn truy vấn
 
@@ -97,11 +97,11 @@ namespace DangKi_DangNhap
                     });
                 }
 
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu từ Firebase: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
         private async Task SubscribeToFirebase()
@@ -136,8 +136,8 @@ namespace DangKi_DangNhap
 
         private async Task PushDataToFirebase(string tenNhom, string data)
         {
-            try
-            {
+            /*try
+            {*/
 
                 key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 // Tạo key cho bài đăng mới
@@ -166,11 +166,11 @@ namespace DangKi_DangNhap
                 {
                     MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
         }
 
         
@@ -243,8 +243,8 @@ namespace DangKi_DangNhap
         }
         private async Task UploadFileAsync(string filePath)
         {
-            try
-            {
+            /*try
+            {*/
                 using (var stream = File.Open(filePath, FileMode.Open)) // Open the file stream
                 {
                     var storage = new FirebaseStorage(Bucket);
@@ -269,11 +269,11 @@ namespace DangKi_DangNhap
 
                     stream.Close();
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 Console.WriteLine("Exception was thrown: {0}", ex.Message);
-            }
+            }*/
         }
 
         // btn_click_link open File on this page
@@ -286,8 +286,8 @@ namespace DangKi_DangNhap
         {
             if (linkLabel1.Text == "Upload File môn học.")
                 return;
-            try
-            {
+            /*try
+            {*/
                 string a = tenNhom;
                 string b = linkLabel1.Text;
 
@@ -298,11 +298,11 @@ namespace DangKi_DangNhap
 
                 // Start a new process to download the file
                 Process.Start("C:\\Program Files\\Internet Explorer\\iexplore.exe", downloadUrl);
-            }
+           /* }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
-            }
+            }*/
         }
 
 
@@ -311,8 +311,8 @@ namespace DangKi_DangNhap
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn rời nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                try
-                {
+               /* try
+                {*/
 
                     // Xóa nhoms
                     FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
@@ -331,12 +331,12 @@ namespace DangKi_DangNhap
                     {
                         MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
+            /*}
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
         }
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
