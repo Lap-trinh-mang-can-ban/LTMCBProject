@@ -65,7 +65,7 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void AddNhomButton(string tenNhom)
+        private async void AddNhomButton(string tenNhom)
         {
 
             soLuongNhom++;
@@ -76,6 +76,14 @@ namespace DangKi_DangNhap
             btnNhomMoi.Location = new System.Drawing.Point(60 + (soLuongNhom - 1) * 120, 100);
             btnNhomMoi.Click += BtnNhomMoi_Click;
             this.Controls.Add(btnNhomMoi);
+            string key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            // Tạo key cho bài đăng mới
+            var postData1 = new Dictionary<string, object>
+{
+    { key, key }
+};
+            FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
+
         }
 
         private async void button1_Click(object sender, EventArgs e)
