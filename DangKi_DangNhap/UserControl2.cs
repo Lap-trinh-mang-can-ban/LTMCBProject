@@ -126,6 +126,7 @@ namespace DangKi_DangNhap
                     this.BackColor = Color.Indigo;  // Đổi màu nền của UserControl2 thành màu Indigo
                     lbEvent.BackColor = Color.Indigo;
                     lbEvent.ForeColor = Color.White;
+                    lbDays.ForeColor = Color.White;
                 }
                 else
                 {

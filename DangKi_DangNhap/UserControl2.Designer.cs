@@ -43,6 +43,7 @@
             // 
             // lbEvent
             // 
+            lbEvent.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lbEvent.Location = new Point(51, 36);
             lbEvent.Name = "lbEvent";
             lbEvent.Size = new Size(96, 64);

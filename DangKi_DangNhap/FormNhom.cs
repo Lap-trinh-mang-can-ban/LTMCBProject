@@ -7,14 +7,27 @@ using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using Firebase.Database.Query;
+using Firebase.Storage;
+using System.Net;
+using System.Diagnostics;
+using static Google.Apis.Requests.BatchRequest;
+using FirebaseAdmin.Messaging;
 namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
+        public event EventHandler<string> TenNhomCreated;
         public event EventHandler ButtonClickEvent;
-        private string tenNhom;
-        private string userName;
+        string tenNhom;
+        string userName;
+        private string filePath;
+        string fileName;
+        string pra;
+        static int i = 0;
+        public bool isFirstLoad = true;
         public IFirebaseClient firebaseClient;
+        private const string Bucket = "databeseaccess.appspot.com";
+        public string key;
         public FormNhom(string tenNhom, string username)
         {
             InitializeComponent();
@@ -29,7 +42,80 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+
+            SubscribeToFirebase();
+            SubscribeToFirebase1();
         }
+
+        private async void SubscribeToFirebase1()
+        {
+            
+                
+                    string urls = "group /"+ tenNhom+ "/message";
+                    // Đăng ký sự kiện để theo dõi thay đổi trong node Firebase
+                    EventStreamResponse response = await firebaseClient.OnAsync(urls, (sender, args, context) =>
+                    {
+                        if (isFirstLoad) { 
+                            isFirstLoad = false;
+                        }
+                        else {
+                        LoadLatestDataToRichTextBox();
+                        }
+                    });
+                
+            
+        }
+
+        
+        private async Task LoadLatestDataToRichTextBox()
+        {
+            /*try
+            {*/
+                // Truy vấn dữ liệu từ Firebase để lấy phần tử cuối cùng
+                FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports"); // Thay "your-node" bằng tên node bạn muốn truy vấn
+
+                // Kiểm tra xem có dữ liệu trả về không
+
+                if (response.Body != "null")
+                {
+                    // Lấy dữ liệu từ Firebase
+                    var data = response.ResultAs<Dictionary<string, string>>();
+
+                    // Lấy phần tử cuối cùng từ dictionary
+                    KeyValuePair<string, string> latestItem = new KeyValuePair<string, string>();
+                    foreach (var item in data)
+                    {
+                        latestItem = item;
+                        
+                    }
+
+                    // Hiển thị dữ liệu mới nhất lên RichTextBox
+                    richTextBox1.Invoke((MethodInvoker)delegate
+                    {
+                        richTextBox1.AppendText(latestItem.Value + Environment.NewLine);
+                        
+                    });
+                }
+
+            /*}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu từ Firebase: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+
+        private async Task SubscribeToFirebase()
+        {
+            // Subscribe to changes in the "files" node of the Firebase database
+            await firebaseClient.OnAsync($"files/{tenNhom}", async (sender, args, context) =>
+            {
+                // Reload data whenever there's a change in the database
+                await link_load();
+            });
+
+
+        }
+
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -40,81 +126,77 @@ namespace DangKi_DangNhap
         {
 
             string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
-            AddPostToRichTextBox(richTextBox1, data);
-            // Gọi phương thức để đẩy dữ liệu lên Firebase
+            
             await PushDataToFirebase(tenNhom, data);
 
         }
-        private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
-        {
-            // Lấy ngày và giờ hiện tại
-            string dateTime = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
-
-            // Tạo chuỗi văn bản với ngày và giờ đăng bài
-            string postWithDateTime = $"[{dateTime}] {post}";
-
-            // Đặt văn bản của bài đăng
-            richTextBox.Text = postWithDateTime;
-
-            // Định dạng văn bản
-            richTextBox.Font = new Font("Arial", 12); // Font chữ
-            richTextBox.ForeColor = Color.Black; // Màu chữ
-
-            // Đặt viền cho RichTextBox
-            richTextBox.BorderStyle = BorderStyle.FixedSingle; // Loại viền
-
-            // Đặt màu nền cho RichTextBox
-            richTextBox.BackColor = Color.GreenYellow; // Màu nền
-
-            // Đặt màu chữ cho RichTextBox
-            richTextBox.ForeColor = Color.Black; // Màu chữ
-
-            // Đặt kích thước cho RichTextBox
-            richTextBox.Width = 500; // Độ rộng
-            richTextBox.Height = 200; // Độ cao
-
-            // Tạo Panel để chứa Button thích
-            Panel panel = new Panel();
-            panel.Dock = DockStyle.Bottom; // Đặt Panel ở dưới cùng của RichTextBox
-
-            // Thêm Button thích vào Panel
-            Button likeButton = new Button();
-            likeButton.Text = "Thích";
-            likeButton.Dock = DockStyle.Right; // Đặt Button ở bên phải của Panel
-            likeButton.Click += (sender, e) =>
-            {
-                // Xử lý sự kiện thích bài đăng
-                // Ví dụ: tăng số lượt thích và cập nhật trạng thái nút thích
-            };
-            panel.Controls.Add(likeButton);
-
-            // Thêm Panel vào RichTextBox
-            richTextBox.Controls.Add(panel);
-        }
+        
 
 
 
         private async Task PushDataToFirebase(string tenNhom, string data)
         {
-            try
-            {
-                // Lấy số lượng bài đăng hiện tại
-                int currentPostsCount = await GetCurrentPostsCount(tenNhom);
+            /*try
+            {*/
 
+                key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 // Tạo key cho bài đăng mới
-                string newPostKey = $"baidang{currentPostsCount + 1}";
+                
 
                 // Tạo một đối tượng chứa dữ liệu cần đẩy lên Firebase
                 var postData = new Dictionary<string, object>
         {
-            { newPostKey, data }
+            { key, data }
+        };
+                var postData1 = new Dictionary<string, object>
+        {
+            { key, key }
         };
 
                 // Thực hiện đẩy dữ liệu lên Firebase
                 FirebaseResponse response = await firebaseClient.UpdateAsync($"group /{tenNhom}/ports", postData);
-
+                FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
                 // Kiểm tra xem dữ liệu đã được đẩy thành công hay không
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBox1.Text = string.Empty;
+                }
+                else
+                {
+                    MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            /*}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
+
+        
+        private async void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void button2_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath = openFileDialog.FileName;
+                fileName = Path.GetFileName(filePath);
+                await UploadFileAsync(filePath);
+                // Gán đường dẫn của file vào LinkLabel1
+
+                //linkLabel1.Tag = filePath; // Lưu đường dẫn của file vào Tag của LinkLabel1
+                var data1 = new Dictionary<string, object>
+                {
+                    { userName , fileName }
+                };
+
+                FirebaseResponse response1 = await firebaseClient.SetAsync($"files/{tenNhom}", data1);
+                if (response1.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -122,84 +204,120 @@ namespace DangKi_DangNhap
                 {
                     MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                await link_load();
             }
+        }
+        private async Task link_load()
+        {
+            string pra = "";
+
+
+            FirebaseResponse response = await firebaseClient.GetAsync($"files/{tenNhom}");
+            if (response == null || response.Body == "null")
+            {
+
+                return;
+            }
+            // Kiểm tra xem yêu cầu có thành công hay không
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                // Trích xuất dữ liệu từ phản hồi
+                var responseData = response.ResultAs<Dictionary<string, object>>();
+
+                // Lặp qua từng cặp key-value trong responseData
+                foreach (var kvp in responseData)
+                {
+                    // Lấy giá trị từ mỗi cặp key-value
+                    string value = kvp.Value.ToString(); // Chỉ lấy giá trị, không quan tâm đến key
+
+                    // Thêm giá trị vào linkLabel1.Text hoặc làm bất kỳ thao tác nào khác bạn muốn thực hiện
+                    pra += value; // Ví dụ: thêm giá trị vào linkLabel1.Text với mỗi giá trị trên một dòng mới
+                }
+
+                linkLabel1.Text = pra;
+            }
+            else
+            {
+
+            }
+        }
+        private async Task UploadFileAsync(string filePath)
+        {
+            /*try
+            {*/
+                using (var stream = File.Open(filePath, FileMode.Open)) // Open the file stream
+                {
+                    var storage = new FirebaseStorage(Bucket);
+                    var uploadTask = storage
+                        .Child(tenNhom)
+
+                        .Child(Path.GetFileName(filePath))
+                        .PutAsync(stream); // bỏ qua CancellationToken
+
+                    uploadTask.Progress.ProgressChanged += (s, e) =>
+                    {
+                        Console.WriteLine($"Progress: {e.Percentage}%");
+                        // Update UI here if needed
+                    };
+
+                    // You can cancel the upload by calling cancellationTokenSource.Cancel()
+
+                    var downloadUrl = await uploadTask;
+                    Console.WriteLine("Download link:\n" + downloadUrl);
+                    // Close the file stream after upload
+
+
+                    stream.Close();
+                }
+            /*}
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                Console.WriteLine("Exception was thrown: {0}", ex.Message);
+            }*/
         }
 
-        private async Task<int> GetCurrentPostsCount(string tenNhom)
+        // btn_click_link open File on this page
+        private async void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Truy vấn dữ liệu từ Firebase để lấy số lượng bài đăng hiện tại
-            FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports");
-            if (response.Body == "null")
-            {
-                return 0; // Nếu không có bài đăng nào thì trả về 0
-            }
-            else
-            {
-                // Parse dữ liệu và trả về số lượng bài đăng
-                Dictionary<string, object> postData = response.ResultAs<Dictionary<string, object>>();
-                return postData.Count;
-            }
+            await DownloadFileFromStorage();
         }
 
-        private void listView2_SelectedIndexChanged(object sender, EventArgs e)
+        private async Task DownloadFileFromStorage()
         {
+            if (linkLabel1.Text == "Upload File môn học.")
+                return;
+            /*try
+            {*/
+                string a = tenNhom;
+                string b = linkLabel1.Text;
 
+                var storage = new FirebaseStorage(Bucket);
+                var downloadUrl = await storage
+                    .Child(a).Child(b)
+                    .GetDownloadUrlAsync();
+
+                // Start a new process to download the file
+                Process.Start("C:\\Program Files\\Internet Explorer\\iexplore.exe", downloadUrl);
+           /* }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }*/
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "All Files|*.*";
-            openFileDialog.Title = "Chọn file";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                string filePath = openFileDialog.FileName;
-                string fileName = Path.GetFileName(filePath);
-
-                // Gán đường dẫn của file vào LinkLabel1
-                linkLabel1.Text = fileName;
-                linkLabel1.Tag = filePath; // Lưu đường dẫn của file vào Tag của LinkLabel1
-            }
-        }
-
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // Kiểm tra xem đường dẫn của file có tồn tại không
-            if (linkLabel1.Tag != null && File.Exists(linkLabel1.Tag.ToString()))
-            {
-                try
-                {
-                    // Mở file PDF bằng Adobe Acrobat Reader
-                    System.Diagnostics.Process.Start("AcroRd32.exe", linkLabel1.Tag.ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Đã xảy ra lỗi khi mở file PDF: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("File không tồn tại hoặc đường dẫn không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private async void button3_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn rời nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                try
-                {
+               /* try
+                {*/
 
                     // Xóa nhoms
                     FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
-                    
-                    if (res.StatusCode == System.Net.HttpStatusCode.OK)
+                    FirebaseResponse res1 = firebaseClient.Delete("group /" + tenNhom + "/" + userName);
+                    if ((res.StatusCode == System.Net.HttpStatusCode.OK) && (res1.StatusCode == System.Net.HttpStatusCode.OK))
                     {
                         MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -213,15 +331,29 @@ namespace DangKi_DangNhap
                     {
                         MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
+            /*}
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
         }
 
+        private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            MoiVaoNhom invite = new MoiVaoNhom(tenNhom);
+            invite.Show();
+        }
     }
 }
 

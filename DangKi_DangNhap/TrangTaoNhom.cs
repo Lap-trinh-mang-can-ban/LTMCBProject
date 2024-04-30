@@ -13,7 +13,7 @@ namespace DangKi_DangNhap
         private string userName;
         private IFirebaseClient firebaseClient; // Thêm biến firebaseClient
 
-        public TrangTaoNhom(string userName,IFirebaseClient firebaseClient) // Thêm tham số firebaseClient vào constructor
+        public TrangTaoNhom(string userName, IFirebaseClient firebaseClient) // Thêm tham số firebaseClient vào constructor
         {
             this.userName = userName;
             this.firebaseClient = firebaseClient; // Gán giá trị cho biến firebaseClient
@@ -38,17 +38,17 @@ namespace DangKi_DangNhap
                 // Tạo dữ liệu để thêm vào Firebase
                 var data1 = new Dictionary<string, object>
                 {
-                    { nhomID, true }
+                    { tenNhom, nhomID }
                 };
 
                 // Thực hiện thêm dữ liệu vào Firebase
-                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"nhoms/{userName}/{tenNhom}", data1);
+                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"nhoms/{userName}", data1);
 
                 // Hiển thị thông báo tạo nhóm thành công
                 MessageBox.Show("Đã tạo nhóm mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Thêm button nhóm mới vào form
-             
+
 
                 var data = new Dictionary<string, object>
                 {
@@ -65,9 +65,12 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi tạo nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+
         }
 
+        private void TrangTaoNhom_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
