@@ -90,6 +90,11 @@ namespace Server
 
 
         }
+
+        private void ChatServer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

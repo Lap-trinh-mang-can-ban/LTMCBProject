@@ -354,6 +354,17 @@ namespace DangKi_DangNhap
             MoiVaoNhom invite = new MoiVaoNhom(tenNhom);
             invite.Show();
         }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            KhoTaiLieu tl = new KhoTaiLieu(tenNhom, userName);
+            tl.Show();
+        }
     }
 }
 
