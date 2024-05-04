@@ -33,8 +33,9 @@
             // 
             // label1
             // 
+            label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(293, 160);
+            label1.Location = new Point(417, 184);
             label1.Name = "label1";
             label1.Size = new Size(199, 136);
             label1.TabIndex = 0;
@@ -44,8 +45,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.LightBlue;
+            ClientSize = new Size(1080, 628);
             Controls.Add(label1);
             Name = "DanhGia";
             Text = "DanhGia";

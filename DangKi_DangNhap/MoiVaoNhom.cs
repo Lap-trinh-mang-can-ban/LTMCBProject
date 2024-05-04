@@ -33,7 +33,12 @@ namespace DangKi_DangNhap
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void MoiVaoNhom_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             int temp = 0;
             string ten = textBox1.Text;
@@ -51,14 +56,14 @@ namespace DangKi_DangNhap
             {
 
                 string username = pair.Key;
-             
 
-                if (ten==username)
+
+                if (ten == username)
                 {
                     temp++;
                 }
             }
-            if(temp ==0)
+            if (temp == 0)
             {
                 MessageBox.Show("Tên người dùng không tồn tại !!");
                 return;
@@ -80,10 +85,7 @@ namespace DangKi_DangNhap
             FirebaseResponse response1 = await firebaseClient.UpdateAsync($"group /{TenNhom}", data1);
             MessageBox.Show("Đã mời người dùng vào nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-       
-        private void MoiVaoNhom_Load(object sender, EventArgs e)
-        {
 
-        }
+        
     }
 }

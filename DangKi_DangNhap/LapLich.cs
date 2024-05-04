@@ -68,7 +68,38 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+   
+
+        private void bunifuButton22_Click(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+
+            month--;
+
+            static_month = month;
+            static_year = year;
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            lbDates.Text = monthname + " " + year;
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            int days = DateTime.DaysInMonth(year, month);
+            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d")) + 1;
+            for (int i = 1; i < dayoftheweek; i++)
+            {
+                UserControl1 uscontrol = new UserControl1();
+                flowLayoutPanel1.Controls.Add(uscontrol);
+
+            }
+            for (int i = 1; i <= days; i++)
+            {
+                UserControl2 uscontrol2 = new UserControl2(userName);
+                uscontrol2.Days(i);
+                uscontrol2.DisplayEvent(i);
+                uscontrol2.ColorBack(i, month);
+                flowLayoutPanel1.Controls.Add(uscontrol2);
+            }
+        }
+
+        private void bunifuButton21_Click(object sender, EventArgs e)
         {
             flowLayoutPanel1.Controls.Clear();
             month++;
@@ -93,40 +124,6 @@ namespace DangKi_DangNhap
                 uscontrol2.ColorBack(i, month);
                 flowLayoutPanel1.Controls.Add(uscontrol2);
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            flowLayoutPanel1.Controls.Clear();
-          
-            month--;
-          
-            static_month = month;
-            static_year = year;
-            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
-            lbDates.Text = monthname + " " + year;
-            DateTime startofthemonth = new DateTime(year, month, 1);
-            int days = DateTime.DaysInMonth(year, month);
-            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d")) + 1;
-            for (int i = 1; i < dayoftheweek; i++)
-            {
-                UserControl1 uscontrol = new UserControl1();
-                flowLayoutPanel1.Controls.Add(uscontrol);
-
-            }
-            for (int i = 1; i <= days; i++)
-            {
-                UserControl2 uscontrol2 = new UserControl2(userName);
-                uscontrol2.Days(i);
-                uscontrol2.DisplayEvent(i);
-                uscontrol2.ColorBack(i, month);
-                flowLayoutPanel1.Controls.Add(uscontrol2);
-            }
-        }
-
-        private void lbDates_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

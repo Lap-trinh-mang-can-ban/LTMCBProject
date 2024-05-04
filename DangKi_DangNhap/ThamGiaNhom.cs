@@ -25,7 +25,14 @@ namespace DangKi_DangNhap
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+
+        private void ThamGiaNhom_Load(object sender, EventArgs e)
+        {
+
+        }
+
+      
+        private async  void bunifuButton25_Click(object sender, EventArgs e)
         {
             try
             {
@@ -56,7 +63,7 @@ namespace DangKi_DangNhap
                 // Duyệt qua danh sách nhóm và thêm vào comboBox1
                 foreach (var pair in nhomData)
                 {
-                   
+
                     string tenNhom = pair.Key;
                     string giaTri = Convert.ToString(pair.Value); // Chuyển đổi giá trị thành chuỗi
 
@@ -72,13 +79,9 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void ThamGiaNhom_Load(object sender, EventArgs e)
+        private async void bunifuButton24_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private async void button2_Click(object sender, EventArgs e)
-        {
             try
             {
                 string tenUser = textBox1.Text;
@@ -126,13 +129,6 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi thêm người dùng vào nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }
-
-       
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

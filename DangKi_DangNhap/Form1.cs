@@ -27,8 +27,7 @@ namespace DangKi_DangNhap
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
-
-        private async void button1_Click(object sender, EventArgs e)
+        private async void bunifuButton23_Click(object sender, EventArgs e)
         {
             string taiKhoan = textBox1.Text;
             string matKhau = textBox2.Text;
@@ -76,6 +75,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -107,5 +107,7 @@ namespace DangKi_DangNhap
         {
 
         }
+
+        
     }
 }

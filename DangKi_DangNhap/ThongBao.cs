@@ -48,5 +48,10 @@ namespace DangKi_DangNhap
         {
 
         }
+
+        private void ThongBao_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

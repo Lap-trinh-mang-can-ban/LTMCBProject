@@ -49,53 +49,55 @@ namespace DangKi_DangNhap
 
         private async void SubscribeToFirebase1()
         {
-            
-                
-                    string urls = "group /"+ tenNhom+ "/message";
-                    // Đăng ký sự kiện để theo dõi thay đổi trong node Firebase
-                    EventStreamResponse response = await firebaseClient.OnAsync(urls, (sender, args, context) =>
-                    {
-                        if (isFirstLoad) { 
-                            isFirstLoad = false;
-                        }
-                        else {
-                        LoadLatestDataToRichTextBox();
-                        }
-                    });
-                
-            
+
+
+            string urls = "group /" + tenNhom + "/message";
+            // Đăng ký sự kiện để theo dõi thay đổi trong node Firebase
+            EventStreamResponse response = await firebaseClient.OnAsync(urls, (sender, args, context) =>
+            {
+                if (isFirstLoad)
+                {
+                    isFirstLoad = false;
+                }
+                else
+                {
+                    LoadLatestDataToRichTextBox();
+                }
+            });
+
+
         }
 
-        
+
         private async Task LoadLatestDataToRichTextBox()
         {
             /*try
             {*/
-                // Truy vấn dữ liệu từ Firebase để lấy phần tử cuối cùng
-                FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports"); // Thay "your-node" bằng tên node bạn muốn truy vấn
+            // Truy vấn dữ liệu từ Firebase để lấy phần tử cuối cùng
+            FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports"); // Thay "your-node" bằng tên node bạn muốn truy vấn
 
-                // Kiểm tra xem có dữ liệu trả về không
+            // Kiểm tra xem có dữ liệu trả về không
 
-                if (response.Body != "null")
+            if (response.Body != "null")
+            {
+                // Lấy dữ liệu từ Firebase
+                var data = response.ResultAs<Dictionary<string, string>>();
+
+                // Lấy phần tử cuối cùng từ dictionary
+                KeyValuePair<string, string> latestItem = new KeyValuePair<string, string>();
+                foreach (var item in data)
                 {
-                    // Lấy dữ liệu từ Firebase
-                    var data = response.ResultAs<Dictionary<string, string>>();
+                    latestItem = item;
 
-                    // Lấy phần tử cuối cùng từ dictionary
-                    KeyValuePair<string, string> latestItem = new KeyValuePair<string, string>();
-                    foreach (var item in data)
-                    {
-                        latestItem = item;
-                        
-                    }
-
-                    // Hiển thị dữ liệu mới nhất lên RichTextBox
-                    richTextBox1.Invoke((MethodInvoker)delegate
-                    {
-                        richTextBox1.AppendText(latestItem.Value + Environment.NewLine);
-                        
-                    });
                 }
+
+                // Hiển thị dữ liệu mới nhất lên RichTextBox
+                richTextBox1.Invoke((MethodInvoker)delegate
+                {
+                    richTextBox1.AppendText(latestItem.Value + Environment.NewLine);
+
+                });
+            }
 
             /*}
             catch (Exception ex)
@@ -117,20 +119,13 @@ namespace DangKi_DangNhap
         }
 
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+
+        private async void bunifuButton23_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-
             string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
-            
-            await PushDataToFirebase(tenNhom, data);
 
+            await PushDataToFirebase(tenNhom, data);
         }
-        
 
 
 
@@ -139,33 +134,33 @@ namespace DangKi_DangNhap
             /*try
             {*/
 
-                key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                // Tạo key cho bài đăng mới
-                
+            key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+            // Tạo key cho bài đăng mới
 
-                // Tạo một đối tượng chứa dữ liệu cần đẩy lên Firebase
-                var postData = new Dictionary<string, object>
+
+            // Tạo một đối tượng chứa dữ liệu cần đẩy lên Firebase
+            var postData = new Dictionary<string, object>
         {
             { key, data }
         };
-                var postData1 = new Dictionary<string, object>
+            var postData1 = new Dictionary<string, object>
         {
             { key, key }
         };
 
-                // Thực hiện đẩy dữ liệu lên Firebase
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"group /{tenNhom}/ports", postData);
-                FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
-                // Kiểm tra xem dữ liệu đã được đẩy thành công hay không
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textBox1.Text = string.Empty;
-                }
-                else
-                {
-                    MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            // Thực hiện đẩy dữ liệu lên Firebase
+            FirebaseResponse response = await firebaseClient.UpdateAsync($"group /{tenNhom}/ports", postData);
+            FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
+            // Kiểm tra xem dữ liệu đã được đẩy thành công hay không
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Text = string.Empty;
+            }
+            else
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             /*}
             catch (Exception ex)
             {
@@ -173,13 +168,9 @@ namespace DangKi_DangNhap
             }*/
         }
 
-        
-        private async void listView2_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
-        private async void button2_Click(object sender, EventArgs e)
+        private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -207,6 +198,7 @@ namespace DangKi_DangNhap
                 await link_load();
             }
         }
+
         private async Task link_load()
         {
             string pra = "";
@@ -245,30 +237,30 @@ namespace DangKi_DangNhap
         {
             /*try
             {*/
-                using (var stream = File.Open(filePath, FileMode.Open)) // Open the file stream
+            using (var stream = File.Open(filePath, FileMode.Open)) // Open the file stream
+            {
+                var storage = new FirebaseStorage(Bucket);
+                var uploadTask = storage
+                    .Child(tenNhom)
+
+                    .Child(Path.GetFileName(filePath))
+                    .PutAsync(stream); // bỏ qua CancellationToken
+
+                uploadTask.Progress.ProgressChanged += (s, e) =>
                 {
-                    var storage = new FirebaseStorage(Bucket);
-                    var uploadTask = storage
-                        .Child(tenNhom)
+                    Console.WriteLine($"Progress: {e.Percentage}%");
+                    // Update UI here if needed
+                };
 
-                        .Child(Path.GetFileName(filePath))
-                        .PutAsync(stream); // bỏ qua CancellationToken
+                // You can cancel the upload by calling cancellationTokenSource.Cancel()
 
-                    uploadTask.Progress.ProgressChanged += (s, e) =>
-                    {
-                        Console.WriteLine($"Progress: {e.Percentage}%");
-                        // Update UI here if needed
-                    };
-
-                    // You can cancel the upload by calling cancellationTokenSource.Cancel()
-
-                    var downloadUrl = await uploadTask;
-                    Console.WriteLine("Download link:\n" + downloadUrl);
-                    // Close the file stream after upload
+                var downloadUrl = await uploadTask;
+                Console.WriteLine("Download link:\n" + downloadUrl);
+                // Close the file stream after upload
 
 
-                    stream.Close();
-                }
+                stream.Close();
+            }
             /*}
             catch (Exception ex)
             {
@@ -277,10 +269,11 @@ namespace DangKi_DangNhap
         }
 
         // btn_click_link open File on this page
-        private async void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private async void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             await DownloadFileFromStorage();
         }
+
 
         private async Task DownloadFileFromStorage()
         {
@@ -288,79 +281,70 @@ namespace DangKi_DangNhap
                 return;
             /*try
             {*/
-                string a = tenNhom;
-                string b = linkLabel1.Text;
+            string a = tenNhom;
+            string b = linkLabel1.Text;
 
-                var storage = new FirebaseStorage(Bucket);
-                var downloadUrl = await storage
-                    .Child(a).Child(b)
-                    .GetDownloadUrlAsync();
+            var storage = new FirebaseStorage(Bucket);
+            var downloadUrl = await storage
+                .Child(a).Child(b)
+                .GetDownloadUrlAsync();
 
-                // Start a new process to download the file
-                Process.Start("C:\\Program Files\\Internet Explorer\\iexplore.exe", downloadUrl);
-           /* }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }*/
+            // Start a new process to download the file
+            Process.Start("C:\\Program Files\\Internet Explorer\\iexplore.exe", downloadUrl);
+            /* }
+             catch (Exception ex)
+             {
+                 MessageBox.Show("Error: " + ex.Message);
+             }*/
         }
 
-
-        private async void button3_Click(object sender, EventArgs e)
+        private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn rời nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-               /* try
-                {*/
+                /* try
+                 {*/
 
-                    // Xóa nhoms
-                    FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
-                    FirebaseResponse res1 = firebaseClient.Delete("group /" + tenNhom + "/" + userName);
-                    if ((res.StatusCode == System.Net.HttpStatusCode.OK) && (res1.StatusCode == System.Net.HttpStatusCode.OK))
-                    {
-                        MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Hiển thị form tạo nhóm
-                        var form = new TaoNhom(userName);
-
-                        // Đóng form hiện tại
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-            /*}
-                catch (Exception ex)
+                // Xóa nhoms
+                FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
+                FirebaseResponse res1 = firebaseClient.Delete("group /" + tenNhom + "/" + userName);
+                if ((res.StatusCode == System.Net.HttpStatusCode.OK) && (res1.StatusCode == System.Net.HttpStatusCode.OK))
                 {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+                    MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Hiển thị form tạo nhóm
+                    var form = new TaoNhom(userName);
+
+                    // Đóng form hiện tại
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                /*}
+                    catch (Exception ex)
+                    {
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }*/
+            }
         }
-        }
+
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
 
-        }
-
-        private void button4_Click(object sender, EventArgs e)
+        private void bunifuButton24_Click(object sender, EventArgs e)
         {
             MoiVaoNhom invite = new MoiVaoNhom(tenNhom);
             invite.Show();
         }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
+        private void bunifuButton25_Click(object sender, EventArgs e)
         {
             KhoTaiLieu tl = new KhoTaiLieu(tenNhom, userName);
             tl.Show();
