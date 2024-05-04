@@ -62,7 +62,7 @@
             // 
             label5.BackColor = Color.CornflowerBlue;
             label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(339, 66);
+            label5.Location = new Point(339, 48);
             label5.Name = "label5";
             label5.Size = new Size(206, 28);
             label5.TabIndex = 8;
@@ -73,7 +73,7 @@
             label2.BackColor = Color.CornflowerBlue;
             label2.Location = new Point(12, -7);
             label2.Name = "label2";
-            label2.Size = new Size(906, 115);
+            label2.Size = new Size(906, 96);
             label2.TabIndex = 1;
             label2.Click += label2_Click;
             // 

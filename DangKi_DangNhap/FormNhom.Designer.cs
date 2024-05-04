@@ -38,6 +38,7 @@
             linkLabel1 = new LinkLabel();
             saveFileDialog1 = new SaveFileDialog();
             button3 = new Button();
+            button5 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             // panel1
             // 
             panel1.BackColor = Color.RoyalBlue;
+            panel1.Controls.Add(button5);
             panel1.Controls.Add(button4);
             panel1.Location = new Point(-1, 166);
             panel1.Name = "panel1";
@@ -79,6 +81,7 @@
             richTextBox1.Size = new Size(573, 606);
             richTextBox1.TabIndex = 5;
             richTextBox1.Text = "";
+            richTextBox1.TextChanged += richTextBox1_TextChanged;
             // 
             // button1
             // 
@@ -140,6 +143,16 @@
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
+            // button5
+            // 
+            button5.Location = new Point(3, 75);
+            button5.Name = "button5";
+            button5.Size = new Size(118, 34);
+            button5.TabIndex = 10;
+            button5.Text = "Kho tài liệu";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
+            // 
             // FormNhom
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -173,5 +186,6 @@
         private SaveFileDialog saveFileDialog1;
         private Button button3;
         private Button button4;
+        private Button button5;
     }
 }

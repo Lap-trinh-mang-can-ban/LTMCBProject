@@ -67,6 +67,7 @@
             label2.Name = "label2";
             label2.Size = new Size(201, 25);
             label2.TabIndex = 2;
+            label2.Click += label2_Click;
             // 
             // label3
             // 
@@ -85,6 +86,7 @@
             label4.Name = "label4";
             label4.Size = new Size(287, 25);
             label4.TabIndex = 4;
+            label4.Click += label4_Click;
             // 
             // label6
             // 

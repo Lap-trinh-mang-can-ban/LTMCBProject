@@ -151,6 +151,7 @@
             pictureBox2.Size = new Size(605, 388);
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // label4
             // 
@@ -184,6 +185,7 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "Form1";
             Text = "Đăng nhập ";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
