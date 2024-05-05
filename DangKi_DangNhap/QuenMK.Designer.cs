@@ -208,7 +208,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(69, 342);
+            bunifuButton22.Location = new Point(27, 342);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 25;
@@ -296,7 +296,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(69, 275);
+            bunifuButton21.Location = new Point(27, 275);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 25;
@@ -359,20 +359,20 @@
             // 
             textBox2.BackColor = Color.WhiteSmoke;
             textBox2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(263, 271);
+            textBox2.Location = new Point(194, 271);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(265, 53);
+            textBox2.Size = new Size(348, 53);
             textBox2.TabIndex = 8;
             // 
             // textBox1
             // 
             textBox1.BackColor = Color.WhiteSmoke;
-            textBox1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(263, 338);
+            textBox1.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(194, 338);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(265, 53);
+            textBox1.Size = new Size(348, 53);
             textBox1.TabIndex = 2;
             // 
             // label1
