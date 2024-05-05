@@ -60,12 +60,13 @@ namespace DangKi_DangNhap
             {
                 using (var dialog = new SaveFileDialog())
                 {
-                    dialog.Filter = "PDF files (*.pdf)|*.pdf|Word documents (*.doc;*.docx)|*.doc;*.docx";
+                    dialog.Filter = "PDF files (*.pdf)|*.pdf|Word documents (*.doc;*.docx)|*.doc;*.docx|JPEG files (*.jpg)|*.jpg";
                     dialog.FileName = tenfile1; // Tên mặc định cho tệp tải xuống
 
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
                         string localFilePath = dialog.FileName; // Lấy đường dẫn được chọn bởi người dùng
+                        string extension = Path.GetExtension(localFilePath).ToLower();
 
                         // Tạo đường dẫn đến tệp trong Firebase Storage
                         string path = $"{tenNhom}/{tenfile1}";
@@ -109,8 +110,10 @@ namespace DangKi_DangNhap
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
             TTFile tf = new TTFile(currentailieu);
-            tf.Show();
+            tf.ShowDialog();
+            this.Show();
         }
     }
 }
