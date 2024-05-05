@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.UI.WinForms.BunifuButton;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
@@ -14,37 +15,37 @@ namespace DangKi_DangNhap
     public partial class TrangChu : Form
     {
         // Dictionary để lưu màu ban đầu của các button
-        Dictionary<Button, Color> originalButtonColors = new Dictionary<Button, Color>();
+        Dictionary<Bunifu.UI.WinForms.BunifuButton.BunifuButton2, Color> originalButtonColors = new Dictionary<Bunifu.UI.WinForms.BunifuButton.BunifuButton2, Color>();
         private Form currentChildForm;
         private User currentUser; // Thêm trường để lưu thông tin tài khoản
         public TrangChu(User user)
         {
             InitializeComponent();
             // Gắn sự kiện MouseEnter và MouseLeave cho các button
-            button1.MouseEnter += Button_MouseEnter;
-            button1.MouseLeave += Button_MouseLeave;
+            bunifuButton21.MouseEnter += Button_MouseEnter;
+            bunifuButton21.MouseLeave += Button_MouseLeave;
 
-            button2.MouseEnter += Button_MouseEnter;
-            button2.MouseLeave += Button_MouseLeave;
+            bunifuButton22.MouseEnter += Button_MouseEnter;
+            bunifuButton22.MouseLeave += Button_MouseLeave;
 
-            button3.MouseEnter += Button_MouseEnter;
-            button3.MouseLeave += Button_MouseLeave;
+            bunifuButton23.MouseEnter += Button_MouseEnter;
+            bunifuButton23.MouseLeave += Button_MouseLeave;
 
-            button4.MouseEnter += Button_MouseEnter;
-            button4.MouseLeave += Button_MouseLeave;
+            bunifuButton24.MouseEnter += Button_MouseEnter;
+            bunifuButton24.MouseLeave += Button_MouseLeave;
 
-            button5.MouseEnter += Button_MouseEnter;
-            button5.MouseLeave += Button_MouseLeave;
+            bunifuButton25.MouseEnter += Button_MouseEnter;
+            bunifuButton25.MouseLeave += Button_MouseLeave;
 
-            button6.MouseEnter += Button_MouseEnter;
-            button6.MouseLeave += Button_MouseLeave;
+            bunifuButton26.MouseEnter += Button_MouseEnter;
+            bunifuButton26.MouseLeave += Button_MouseLeave;
             // Lưu màu ban đầu của các button
-            originalButtonColors.Add(button1, button1.BackColor);
-            originalButtonColors.Add(button2, button2.BackColor);
-            originalButtonColors.Add(button3, button3.BackColor);
-            originalButtonColors.Add(button4, button4.BackColor);
-            originalButtonColors.Add(button5, button5.BackColor);
-            originalButtonColors.Add(button6, button5.BackColor);
+            originalButtonColors.Add(bunifuButton21, bunifuButton21.BackColor);
+            originalButtonColors.Add(bunifuButton22, bunifuButton22.BackColor);
+            originalButtonColors.Add(bunifuButton23, bunifuButton23.BackColor);
+            originalButtonColors.Add(bunifuButton24, bunifuButton24.BackColor);
+            originalButtonColors.Add(bunifuButton25, bunifuButton25.BackColor);
+            originalButtonColors.Add(bunifuButton26, bunifuButton25.BackColor);
             currentUser = user;
             linkLabel2.Text = currentUser.Username;
         }
@@ -66,13 +67,16 @@ namespace DangKi_DangNhap
         }
         private void Button_MouseEnter(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            button.BackColor = Color.Indigo; // Chuyển màu nền của button sang màu xám
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2 button = (Bunifu.UI.WinForms.BunifuButton.BunifuButton2)sender;
+            if (originalButtonColors.ContainsKey(button))
+            {
+                button.BackColor = Color.MediumTurquoise;
+            }
         }
 
         private void Button_MouseLeave(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2 button = (Bunifu.UI.WinForms.BunifuButton.BunifuButton2)sender;
             // Trở lại màu của button trước khi rê chuột vào
             if (originalButtonColors.ContainsKey(button))
             {
@@ -94,45 +98,6 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new TrangChuThatSu());
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new ThongBao());
-        }
-        private string user;
-        private void button3_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new TaoNhom(currentUser.Username)); // Truyền username của người dùng hiện tại
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new LapLich(currentUser.Username));
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            OpenChildForm(new DanhGia());
-        }
-
-        private void TrangChu_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -140,18 +105,34 @@ namespace DangKi_DangNhap
             infoForm.Show();
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void bunifuButton21_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new TrangChuThatSu());
+        }
+        private string user;
+        private void bunifuButton22_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new ThongBao());
         }
 
-        private void panel3_Paint(object sender, PaintEventArgs e)
+        private void bunifuButton23_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new TaoNhom(currentUser.Username)); // Truyền username của người dùng hiện tại
         }
 
+        private void bunifuButton24_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new LapLich(currentUser.Username));
+        }
 
+        private void bunifuButton25_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new TaoNhom(currentUser.Username)); 
+        }
 
-      
+        private void bunifuButton26_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new DanhGia());
+        }
     }
 }

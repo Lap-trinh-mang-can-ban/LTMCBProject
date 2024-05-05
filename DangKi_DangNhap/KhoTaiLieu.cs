@@ -48,8 +48,8 @@ namespace DangKi_DangNhap
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
-
-        private async void button1_Click(object sender, EventArgs e)
+ 
+        private async void bunifuButton24_Click(object sender, EventArgs e)
         {
             string link = textBox1.Text.Trim();
             string tenfile = textBox2.Text.Trim();
@@ -88,6 +88,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
             }
         }
+        
 
         public async Task LoadLinksFromFirebase()
         {
@@ -138,7 +139,7 @@ namespace DangKi_DangNhap
             string nameF = linkLabel0.Text;
             FirebaseResponse FileResponse = await firebaseClient.GetAsync($"TaiLieu/{tenNhom}/{nameF}");
             var TepTin = FileResponse.ResultAs<TaiLieu>();
-  
+
             this.Hide();
             ThongTinFile f = new ThongTinFile(linkLabel0, tenNhom, TepTin);
             f.FormClosing += ThongTinFile_FormClosing;
@@ -171,8 +172,9 @@ namespace DangKi_DangNhap
             return System.Text.Encoding.UTF8.GetString(bytes);
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void bunifuButton21_Click(object sender, EventArgs e)
         {
+
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog.FileName;
@@ -182,26 +184,20 @@ namespace DangKi_DangNhap
 
             }
         }
+      
         private string EncodePath(string path)
         {
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(path);
             return Convert.ToBase64String(bytes);
         }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void KhoTaiLieu_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void KhoTaiLieu_Load_1(object sender, EventArgs e)
         {
 
         }
+
+
+       
     }
     public class TaiLieu
     {

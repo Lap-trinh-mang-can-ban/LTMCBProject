@@ -86,7 +86,7 @@ namespace DangKi_DangNhap
 
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             var newForm = new TrangTaoNhom(userName, firebaseClient);
             newForm.Show();
@@ -94,9 +94,8 @@ namespace DangKi_DangNhap
             {
                 AddNhomButton(tenNhom);
             };
-
-
         }
+       
 
         private async void BtnNhomMoi_Click(object sender, EventArgs e)
         {
@@ -108,11 +107,11 @@ namespace DangKi_DangNhap
             newForm.Show();
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới
             LoadMembersOfGroup(tenNhom, newForm.listView1);
-            
+
             LoadClick(tenNhom, newForm.richTextBox1);
-            
+
         }
-        
+
 
 
         public async Task<Dictionary<string, object>> GetGroupData(string tenNhom)
@@ -188,7 +187,7 @@ namespace DangKi_DangNhap
             // Thêm bài đăng vào RichTextBox
             richTextBox.AppendText(post + Environment.NewLine);
 
-            
+
         }
         private async void LoadMembersOfGroup(string tenNhom, ListView listView)
         {
@@ -230,29 +229,17 @@ namespace DangKi_DangNhap
         }
 
 
-        private async void button2_Click(object sender, EventArgs e)
+       
+        private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             ThamGiaNhom jointeam = new ThamGiaNhom(userName);
             jointeam.Show();
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+    
         private void TaoNhom_Load(object sender, EventArgs e)
         {
 
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

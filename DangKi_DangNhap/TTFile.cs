@@ -48,5 +48,10 @@ namespace DangKi_DangNhap
         {
 
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

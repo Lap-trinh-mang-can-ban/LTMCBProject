@@ -30,7 +30,7 @@ namespace DangKi_DangNhap
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             string taiKhoan = textBox1.Text;
             string matKhau = textBox2.Text;
@@ -119,8 +119,8 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private async void button2_Click(object sender, EventArgs e)
+        
+        private void bunifuButton21_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg; *.jpeg; *.png";
@@ -133,10 +133,10 @@ namespace DangKi_DangNhap
                     string imagePath = openFileDialog.FileName;
 
                     // Hiển thị ảnh đã chọn trên PictureBox
-                    pictureBox1.Image = new Bitmap(imagePath);
+                    bunifuPictureBox1.Image = new Bitmap(imagePath);
 
                     // Upload ảnh đại diện lên Firebase Storage
-                    string avatarUrl = await UploadImageToFirebaseStorage(imagePath);
+                    // string avatarUrl = await UploadImageToFirebaseStorage(imagePath);
 
                     // Thêm đường dẫn ảnh đại diện vào dữ liệu người dùng
                     // Chưa biết làm gì với đường dẫn ảnh đại diện trong ví dụ này
@@ -148,6 +148,9 @@ namespace DangKi_DangNhap
                 }
             }
         }
+
+
+       
 
         private async Task<string> UploadImageToFirebaseStorage(string imagePath)
         {
@@ -183,6 +186,8 @@ namespace DangKi_DangNhap
         {
 
         }
+
+        
     }
 
     public class User

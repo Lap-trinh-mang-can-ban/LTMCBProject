@@ -39,7 +39,7 @@ namespace DangKi_DangNhap
             textBox1.Text = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             int eventCount = await GetCurrentEventCount();
             string eventName = textBox2.Text.Trim();
@@ -76,6 +76,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
+      
         private async Task<int> GetCurrentEventCount()
         {
             try
@@ -106,7 +107,8 @@ namespace DangKi_DangNhap
             }
         }
 
-        private async void button2_Click(object sender, EventArgs e)
+ 
+        private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             string eventDate = textBox1.Text.Trim();
 
@@ -129,6 +131,10 @@ namespace DangKi_DangNhap
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
+  
+    
 
+
+       
     }
 }

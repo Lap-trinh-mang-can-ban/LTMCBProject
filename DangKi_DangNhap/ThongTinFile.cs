@@ -21,7 +21,7 @@ namespace DangKi_DangNhap
         private string tenNhom;
         private string tenfile;
         private TaiLieu currentailieu;
-        public ThongTinFile(LinkLabel tenfile, string tenNhom, TaiLieu teptin )
+        public ThongTinFile(LinkLabel tenfile, string tenNhom, TaiLieu teptin)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
@@ -38,18 +38,15 @@ namespace DangKi_DangNhap
             currentailieu = teptin;
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private string DecodePath(string encodedPath)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa file không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
-            {
-                FirebaseResponse res = firebaseClient.Delete("TaiLieu/" + tenNhom + "/" + tenfile);
-                FirebaseResponse res1 = firebaseClient.Delete("TuyenTapTaiLieu/" + tenNhom + "/" + tenfile);
-                MessageBox.Show("Đã xóa file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            byte[] bytes = Convert.FromBase64String(encodedPath);
+            return System.Text.Encoding.UTF8.GetString(bytes);
         }
 
-        private async void button3_Click(object sender, EventArgs e)
+       
+
+        private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             if (tenfile != null)
             {
@@ -70,13 +67,19 @@ namespace DangKi_DangNhap
                 }
             }
         }
-        private string DecodePath(string encodedPath)
+
+        private async void bunifuButton22_Click(object sender, EventArgs e)
         {
-            byte[] bytes = Convert.FromBase64String(encodedPath);
-            return System.Text.Encoding.UTF8.GetString(bytes);
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa file không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                FirebaseResponse res = firebaseClient.Delete("TaiLieu/" + tenNhom + "/" + tenfile);
+                FirebaseResponse res1 = firebaseClient.Delete("TuyenTapTaiLieu/" + tenNhom + "/" + tenfile);
+                MessageBox.Show("Đã xóa file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void bunifuButton23_Click(object sender, EventArgs e)
         {
             TTFile tf = new TTFile(currentailieu);
             tf.Show();
