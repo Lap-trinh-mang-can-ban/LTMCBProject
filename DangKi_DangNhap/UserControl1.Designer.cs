@@ -33,6 +33,7 @@
             // 
             // lbText
             // 
+            lbText.ForeColor = Color.White;
             lbText.Location = new Point(0, 34);
             lbText.Name = "lbText";
             lbText.Size = new Size(147, 66);
@@ -43,9 +44,11 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(lbText);
             Name = "UserControl1";
             Size = new Size(147, 100);
+            Load += UserControl1_Load;
             ResumeLayout(false);
         }
 

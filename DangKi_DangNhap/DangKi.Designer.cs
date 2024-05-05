@@ -112,8 +112,8 @@
             bunifuButton22.DisabledFillColor = Color.FromArgb(204, 204, 204);
             bunifuButton22.DisabledForecolor = Color.FromArgb(168, 160, 168);
             bunifuButton22.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            bunifuButton22.Font = new Font("Segoe UI", 9F);
-            bunifuButton22.ForeColor = Color.Navy;
+            bunifuButton22.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bunifuButton22.ForeColor = Color.AliceBlue;
             bunifuButton22.IconLeftAlign = ContentAlignment.MiddleLeft;
             bunifuButton22.IconLeftCursor = Cursors.Default;
             bunifuButton22.IconLeftPadding = new Padding(11, 3, 3, 3);
@@ -153,7 +153,7 @@
             bunifuButton22.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton22.OnIdleState.BorderThickness = 1;
             bunifuButton22.OnIdleState.FillColor = Color.DeepSkyBlue;
-            bunifuButton22.OnIdleState.ForeColor = Color.Navy;
+            bunifuButton22.OnIdleState.ForeColor = Color.AliceBlue;
             bunifuButton22.OnIdleState.IconLeftImage = null;
             bunifuButton22.OnIdleState.IconRightImage = null;
             bunifuButton22.OnPressedState.BorderColor = Color.FromArgb(40, 96, 144);
@@ -278,8 +278,8 @@
             bunifuButton21.DisabledFillColor = Color.FromArgb(204, 204, 204);
             bunifuButton21.DisabledForecolor = Color.FromArgb(168, 160, 168);
             bunifuButton21.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            bunifuButton21.Font = new Font("Segoe UI", 9F);
-            bunifuButton21.ForeColor = Color.Navy;
+            bunifuButton21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bunifuButton21.ForeColor = Color.AliceBlue;
             bunifuButton21.IconLeftAlign = ContentAlignment.MiddleLeft;
             bunifuButton21.IconLeftCursor = Cursors.Default;
             bunifuButton21.IconLeftPadding = new Padding(11, 3, 3, 3);
@@ -319,7 +319,7 @@
             bunifuButton21.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton21.OnIdleState.BorderThickness = 1;
             bunifuButton21.OnIdleState.FillColor = Color.DeepSkyBlue;
-            bunifuButton21.OnIdleState.ForeColor = Color.Navy;
+            bunifuButton21.OnIdleState.ForeColor = Color.AliceBlue;
             bunifuButton21.OnIdleState.IconLeftImage = null;
             bunifuButton21.OnIdleState.IconRightImage = null;
             bunifuButton21.OnPressedState.BorderColor = Color.FromArgb(40, 96, 144);

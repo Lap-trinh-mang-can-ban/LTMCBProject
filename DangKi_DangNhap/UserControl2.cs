@@ -123,15 +123,24 @@ namespace DangKi_DangNhap
             {
                 if (ngay == day)
                 {
-                    this.BackColor = Color.Indigo;  // Đổi màu nền của UserControl2 thành màu Indigo
-                    lbEvent.BackColor = Color.Indigo;
-                    lbEvent.ForeColor = Color.White;
-                    lbDays.ForeColor = Color.White;
+                    this.BackColor = Color.SteelBlue;  // Đổi màu nền của UserControl2 thành màu SteelBlue
+                    lbEvent.BackColor = Color.SteelBlue;
+                    lbEvent.ForeColor = Color.OldLace;
+                    lbDays.ForeColor = Color.OldLace;
                 }
                 else
                 {
-                    this.BackColor = Color.White;
+                    this.BackColor = Color.OldLace; 
+                    lbEvent.ForeColor = Color.Navy;
+                    lbDays.ForeColor = Color.Navy;
                 }
+            }
+            else
+            {
+                this.BackColor = Color.OldLace;  // Đổi màu nền của UserControl2 thành màu SteelBlue
+                lbEvent.BackColor = Color.OldLace;
+                lbEvent.ForeColor = Color.Navy;
+                lbDays.ForeColor = Color.Navy;
             }
            
         }

@@ -50,6 +50,7 @@
             Controls.Add(label1);
             Name = "DanhGia";
             Text = "DanhGia";
+            Load += DanhGia_Load;
             ResumeLayout(false);
         }
 

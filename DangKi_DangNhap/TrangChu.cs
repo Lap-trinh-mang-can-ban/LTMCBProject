@@ -127,7 +127,7 @@ namespace DangKi_DangNhap
 
         private void bunifuButton25_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom(currentUser.Username)); // Truyền username của người dùng hiện tại
+            OpenChildForm(new TaoNhom(currentUser.Username)); 
         }
 
         private void bunifuButton26_Click(object sender, EventArgs e)

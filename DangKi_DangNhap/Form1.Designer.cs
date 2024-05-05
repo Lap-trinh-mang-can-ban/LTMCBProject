@@ -80,7 +80,7 @@
             linkLabel1.BackColor = Color.DeepSkyBlue;
             linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.WhiteSmoke;
-            linkLabel1.Location = new Point(218, 656);
+            linkLabel1.Location = new Point(221, 656);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(85, 28);
             linkLabel1.TabIndex = 5;
@@ -486,7 +486,7 @@
             bunifuButton26.onHoverState.BorderRadius = 50;
             bunifuButton26.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton26.onHoverState.BorderThickness = 1;
-            bunifuButton26.onHoverState.FillColor = Color.Cyan;
+            bunifuButton26.onHoverState.FillColor = Color.DeepSkyBlue;
             bunifuButton26.onHoverState.ForeColor = Color.White;
             bunifuButton26.onHoverState.IconLeftImage = null;
             bunifuButton26.onHoverState.IconRightImage = null;
@@ -498,11 +498,11 @@
             bunifuButton26.OnIdleState.ForeColor = Color.WhiteSmoke;
             bunifuButton26.OnIdleState.IconLeftImage = null;
             bunifuButton26.OnIdleState.IconRightImage = null;
-            bunifuButton26.OnPressedState.BorderColor = Color.FromArgb(40, 96, 144);
+            bunifuButton26.OnPressedState.BorderColor = Color.SteelBlue;
             bunifuButton26.OnPressedState.BorderRadius = 50;
             bunifuButton26.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton26.OnPressedState.BorderThickness = 1;
-            bunifuButton26.OnPressedState.FillColor = Color.FromArgb(40, 96, 144);
+            bunifuButton26.OnPressedState.FillColor = Color.DeepSkyBlue;
             bunifuButton26.OnPressedState.ForeColor = Color.White;
             bunifuButton26.OnPressedState.IconLeftImage = null;
             bunifuButton26.OnPressedState.IconRightImage = null;
@@ -574,7 +574,7 @@
             bunifuButton27.onHoverState.BorderRadius = 50;
             bunifuButton27.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton27.onHoverState.BorderThickness = 1;
-            bunifuButton27.onHoverState.FillColor = Color.Cyan;
+            bunifuButton27.onHoverState.FillColor = Color.DeepSkyBlue;
             bunifuButton27.onHoverState.ForeColor = Color.White;
             bunifuButton27.onHoverState.IconLeftImage = null;
             bunifuButton27.onHoverState.IconRightImage = null;
@@ -586,11 +586,11 @@
             bunifuButton27.OnIdleState.ForeColor = Color.WhiteSmoke;
             bunifuButton27.OnIdleState.IconLeftImage = null;
             bunifuButton27.OnIdleState.IconRightImage = null;
-            bunifuButton27.OnPressedState.BorderColor = Color.FromArgb(40, 96, 144);
+            bunifuButton27.OnPressedState.BorderColor = Color.SteelBlue;
             bunifuButton27.OnPressedState.BorderRadius = 50;
             bunifuButton27.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton27.OnPressedState.BorderThickness = 1;
-            bunifuButton27.OnPressedState.FillColor = Color.FromArgb(40, 96, 144);
+            bunifuButton27.OnPressedState.FillColor = Color.DeepSkyBlue;
             bunifuButton27.OnPressedState.ForeColor = Color.White;
             bunifuButton27.OnPressedState.IconLeftImage = null;
             bunifuButton27.OnPressedState.IconRightImage = null;
