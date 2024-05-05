@@ -28,11 +28,10 @@ namespace DangKi_DangNhap
         private void SetTenTaiLieuToLabel3()
         {
 
-            label3.Text = tenfile.fileName;
+                label3.Text = tenfile.fileName;
             label5.Text = tenfile.UserUp;
             label7.Text = tenfile.Date;
-            string path = Encoding.UTF8.GetString(Convert.FromBase64String(tenfile.PathFile));
-            label9.Text = path;
+            label9.Text = tenfile.PathFile;
         }
         private void TTFile_Load(object sender, EventArgs e)
         {

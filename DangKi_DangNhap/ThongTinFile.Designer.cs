@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(134, 103);
+            button1.Location = new Point(65, 103);
             button1.Name = "button1";
             button1.Size = new Size(119, 29);
             button1.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(134, 159);
+            button2.Location = new Point(65, 166);
             button2.Name = "button2";
             button2.Size = new Size(119, 29);
             button2.TabIndex = 1;
@@ -55,11 +55,11 @@
             // 
             // button3
             // 
-            button3.Location = new Point(134, 34);
+            button3.Location = new Point(65, 45);
             button3.Name = "button3";
             button3.Size = new Size(119, 29);
             button3.TabIndex = 2;
-            button3.Text = "Mở file";
+            button3.Text = "Tải file";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -68,7 +68,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Indigo;
-            ClientSize = new Size(416, 252);
+            ClientSize = new Size(249, 220);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);

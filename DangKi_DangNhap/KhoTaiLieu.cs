@@ -15,7 +15,7 @@ using static System.Windows.Forms.LinkLabel;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Formats.Tar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
-
+using Firebase.Storage;
 namespace DangKi_DangNhap
 {
     public partial class KhoTaiLieu : Form
@@ -25,6 +25,7 @@ namespace DangKi_DangNhap
         private string tenNhom;
         private string user;
         private OpenFileDialog openFileDialog = new OpenFileDialog();
+        private const string Bucket = "databeseaccess.appspot.com";
         // Di chuyển khai báo của hộp thoại mở tệp ra khỏi sự kiện
 
         public KhoTaiLieu(string tenNhom, string userName)
@@ -58,30 +59,61 @@ namespace DangKi_DangNhap
             string Date = currentTime.ToString("yyyy-MM-dd"); // Định dạng ngày tháng năm theo yyyy-MM-dd
             if (!string.IsNullOrEmpty(link))
             {
-
-                string encodedPath = EncodePath(link);
-
-                var newTL = new TaiLieu
+                // Kiểm tra xem tệp có tồn tại không
+                if (!File.Exists(link))
                 {
-                    UserUp = user,
-                    PathFile = encodedPath,
-                    Date = Date,
-                    fileName = tenfile,
-                };
-                var data = new Dictionary<string, object>
-        {
-            { tempNameFile, true }
-        };
+                    MessageBox.Show("File không tồn tại!");
+                    return;
+                }
 
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"TaiLieu/{tenNhom}/{tenfile}", newTL);
+                // Đọc nội dung của tệp
+                byte[] fileBytes = File.ReadAllBytes(link);
 
-                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"TuyenTapTaiLieu/{tenNhom}", data);
-                textBox1.Clear();
-                textBox2.Clear();
-                richTextBox1.Controls.Clear();
-                currentTopPosition = 0;
-                await LoadLinksFromFirebase();
+                // Tạo một đường dẫn duy nhất trên Firebase Storage để lưu trữ tệp
+              //  string fileName = Path.GetFileName(link);
+                string uniquePath = $"{tenNhom}/{tenfile}";
 
+                // Tải lên nội dung của tệp lên Firebase Storage
+                try
+                {
+                    // Khởi tạo Firebase Storage
+                    var firebaseStorage = new FirebaseStorage(Bucket);
+
+                    // Lưu trữ tệp lên Firebase Storage
+                    await firebaseStorage.Child(uniquePath).PutAsync(new MemoryStream(fileBytes));
+
+                    // Tạo đường dẫn tới tệp trên Firebase Storage
+                    string firebaseStoragePath = await firebaseStorage.Child(uniquePath).GetDownloadUrlAsync();
+
+                    // Lưu thông tin về tệp vào Firebase Realtime Database
+                    var newTL = new TaiLieu
+                    {
+                        UserUp = user,
+                        PathFile = firebaseStoragePath, // Lưu đường dẫn tới tệp trên Firebase Storage
+                        Date = Date,
+                        fileName = tenfile,
+                    };
+                    var data = new Dictionary<string, object>
+            {
+                { tempNameFile, true }
+            };
+
+                    FirebaseResponse response = await firebaseClient.UpdateAsync($"TaiLieu/{tenNhom}/{tenfile}", newTL);
+                    FirebaseResponse response1 = await firebaseClient.UpdateAsync($"TuyenTapTaiLieu/{tenNhom}", data);
+
+                    // Xóa trường nhập và làm mới danh sách tệp
+                    textBox1.Clear();
+                    textBox2.Clear();
+                    richTextBox1.Controls.Clear();
+                    currentTopPosition = 0;
+                    await LoadLinksFromFirebase();
+
+                    MessageBox.Show("Tải tệp lên Firebase thành công!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi khi tải tệp lên Firebase: " + ex.Message);
+                }
             }
             else
             {

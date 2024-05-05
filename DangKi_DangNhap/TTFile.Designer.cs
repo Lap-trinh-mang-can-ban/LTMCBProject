@@ -43,7 +43,7 @@
             // 
             label1.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Cyan;
-            label1.Location = new Point(53, 9);
+            label1.Location = new Point(75, 9);
             label1.Name = "label1";
             label1.Size = new Size(267, 48);
             label1.TabIndex = 0;
@@ -65,7 +65,7 @@
             label3.ForeColor = Color.White;
             label3.Location = new Point(81, 96);
             label3.Name = "label3";
-            label3.Size = new Size(205, 30);
+            label3.Size = new Size(333, 30);
             label3.TabIndex = 2;
             label3.Click += label3_Click;
             // 
@@ -84,7 +84,7 @@
             label5.ForeColor = Color.White;
             label5.Location = new Point(128, 162);
             label5.Name = "label5";
-            label5.Size = new Size(205, 30);
+            label5.Size = new Size(277, 30);
             label5.TabIndex = 4;
             // 
             // label6
@@ -102,7 +102,7 @@
             label7.ForeColor = Color.White;
             label7.Location = new Point(107, 226);
             label7.Name = "label7";
-            label7.Size = new Size(205, 30);
+            label7.Size = new Size(235, 30);
             label7.TabIndex = 6;
             // 
             // label8
@@ -120,7 +120,7 @@
             label9.ForeColor = Color.White;
             label9.Location = new Point(141, 288);
             label9.Name = "label9";
-            label9.Size = new Size(273, 30);
+            label9.Size = new Size(273, 139);
             label9.TabIndex = 8;
             label9.Click += label9_Click;
             // 
