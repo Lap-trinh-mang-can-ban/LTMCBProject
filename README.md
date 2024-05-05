@@ -1,3 +1,3 @@
-# Lap trinh mang can ban 
-# Đồ án
+# Lap trinh mang can ban
+# Nhóm 16
 
