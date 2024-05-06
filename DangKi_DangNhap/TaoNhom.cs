@@ -122,7 +122,7 @@ namespace DangKi_DangNhap
                 FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}/ports");
                 if (response.Body == "null")
                 {
-                    MessageBox.Show("Không tìm thấy dữ liệu của nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  //  MessageBox.Show("Không tìm thấy dữ liệu của nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return null;
                 }
 

@@ -122,9 +122,16 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
-            string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
-
-            await PushDataToFirebase(tenNhom, data);
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tin nhắn!");
+                return;
+            }
+            else {
+                string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
+                await PushDataToFirebase(tenNhom, data);
+            }
+            
         }
 
 
@@ -154,7 +161,7 @@ namespace DangKi_DangNhap
             // Kiểm tra xem dữ liệu đã được đẩy thành công hay không
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = string.Empty;
             }
             else
@@ -308,7 +315,7 @@ namespace DangKi_DangNhap
 
                 // Xóa nhoms
                 FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
-                FirebaseResponse res1 = firebaseClient.Delete("group /" + tenNhom + "/" + userName);
+                FirebaseResponse res1 = firebaseClient.Delete($"group /{tenNhom}");
                 if ((res.StatusCode == System.Net.HttpStatusCode.OK) && (res1.StatusCode == System.Net.HttpStatusCode.OK))
                 {
                     MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);

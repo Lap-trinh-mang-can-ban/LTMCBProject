@@ -137,10 +137,10 @@
             bunifuPanel1.BorderThickness = 2;
             bunifuPanel1.Controls.Add(bunifuButton22);
             bunifuPanel1.Controls.Add(bunifuButton21);
-            bunifuPanel1.Location = new Point(781, 25);
+            bunifuPanel1.Location = new Point(394, 12);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(287, 271);
+            bunifuPanel1.Size = new Size(403, 80);
             bunifuPanel1.TabIndex = 16;
             // 
             // bunifuButton22
@@ -189,7 +189,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(69, 151);
+            bunifuButton22.Location = new Point(223, 11);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 1;
@@ -278,7 +278,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(69, 61);
+            bunifuButton21.Location = new Point(16, 11);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 1;
