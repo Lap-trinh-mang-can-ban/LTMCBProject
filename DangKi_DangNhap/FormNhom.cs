@@ -122,9 +122,16 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
-            string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
-
-            await PushDataToFirebase(tenNhom, data);
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tin nhắn!");
+                return;
+            }
+            else {
+                string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
+                await PushDataToFirebase(tenNhom, data);
+            }
+            
         }
 
 
