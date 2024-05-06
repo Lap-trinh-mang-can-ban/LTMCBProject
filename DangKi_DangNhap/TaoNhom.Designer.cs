@@ -137,7 +137,7 @@
             bunifuPanel1.BorderThickness = 2;
             bunifuPanel1.Controls.Add(bunifuButton22);
             bunifuPanel1.Controls.Add(bunifuButton21);
-            bunifuPanel1.Location = new Point(781, 25);
+            bunifuPanel1.Location = new Point(371, 279);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(287, 271);

@@ -308,7 +308,7 @@ namespace DangKi_DangNhap
 
                 // Xóa nhoms
                 FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
-                FirebaseResponse res1 = firebaseClient.Delete("group /" + tenNhom + "/" + userName);
+                FirebaseResponse res1 = firebaseClient.Delete($"group /{tenNhom}");
                 if ((res.StatusCode == System.Net.HttpStatusCode.OK) && (res1.StatusCode == System.Net.HttpStatusCode.OK))
                 {
                     MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
