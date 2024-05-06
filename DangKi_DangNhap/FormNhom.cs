@@ -154,7 +154,7 @@ namespace DangKi_DangNhap
             // Kiểm tra xem dữ liệu đã được đẩy thành công hay không
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
-                MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = string.Empty;
             }
             else

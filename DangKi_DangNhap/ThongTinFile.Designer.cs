@@ -53,7 +53,7 @@
             bunifuButton21.BackColor1 = Color.SteelBlue;
             bunifuButton21.BackgroundImage = (Image)resources.GetObject("bunifuButton21.BackgroundImage");
             bunifuButton21.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            bunifuButton21.ButtonText = "Mở file";
+            bunifuButton21.ButtonText = "Tải file";
             bunifuButton21.ButtonTextMarginLeft = 0;
             bunifuButton21.ColorContrastOnClick = 45;
             bunifuButton21.ColorContrastOnHover = 45;

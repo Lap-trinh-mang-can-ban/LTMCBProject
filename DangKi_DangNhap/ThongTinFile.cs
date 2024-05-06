@@ -1,4 +1,5 @@
-﻿using FireSharp.Config;
+﻿using Firebase.Storage;
+using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using System;
@@ -19,13 +20,13 @@ namespace DangKi_DangNhap
     {
         public IFirebaseClient firebaseClient;
         private string tenNhom;
-        private string tenfile;
+        private string tenfile1;
         private TaiLieu currentailieu;
         public ThongTinFile(LinkLabel tenfile, string tenNhom, TaiLieu teptin)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
-            this.tenfile = tenfile.Text;
+            this.tenfile1 = tenfile.Text;
 
             IFirebaseConfig config = new FirebaseConfig
             {
@@ -48,22 +49,53 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
-            if (tenfile != null)
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn tải xuống file không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
             {
-                string fileName = tenfile; // Lấy tên tệp từ linkLabel
-                FirebaseResponse response = await firebaseClient.GetAsync($"TaiLieu/{tenNhom}/{fileName}/PathFile");
-                if (response.Body != "null")
+                using (var dialog = new SaveFileDialog())
                 {
-                    string encodedPath = response.ResultAs<string>(); // Lấy đường dẫn được mã hóa từ Firebase
-                    string edgeDirectory = @"C:\Program Files\Google\Chrome\Application\chrome.exe";
-                    string decodedPath = DecodePath(encodedPath); // Giải mã đường dẫn
-                                                                  //MessageBox.Show(decodedPath);
+                    dialog.Filter = "PDF files (*.pdf)|*.pdf|Word documents (*.doc;*.docx)|*.doc;*.docx|Image files (*.jpg;*.jpeg;*.png)|*.jpg;*.jpeg;*.png";
+                    dialog.FileName = tenfile1; // Tên mặc định cho tệp tải xuống
 
-                    Process.Start(edgeDirectory, $"\"{decodedPath}\"");
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy đường dẫn cho tệp này trong cơ sở dữ liệu.");
+                    if (dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        string localFilePath = dialog.FileName; // Lấy đường dẫn được chọn bởi người dùng
+
+                        // Tạo đường dẫn đến tệp trong Firebase Storage
+                        string path = $"{tenNhom}/{tenfile1}";
+
+                        // Tạo đối tượng FirebaseStorage
+                        var firebaseStorage = new FirebaseStorage("databeseaccess.appspot.com");
+
+                        try
+                        {
+                            // Lấy URL tải xuống cho tệp từ Firebase Storage
+                            string downloadUrl = await firebaseStorage.Child(path).GetDownloadUrlAsync();
+
+                            // Tạo đối tượng HttpClient
+                            using (var httpClient = new HttpClient())
+                            {
+                                // Tải xuống file và lưu vào đường dẫn địa phương
+                                var response = await httpClient.GetAsync(downloadUrl);
+                                if (response.IsSuccessStatusCode)
+                                {
+                                    using (var fileStream = File.Create(localFilePath))
+                                    {
+                                        await response.Content.CopyToAsync(fileStream);
+                                    }
+                                    MessageBox.Show("Tải xuống file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Không thể tải xuống file từ Firebase Storage.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
                 }
             }
         }
@@ -73,8 +105,8 @@ namespace DangKi_DangNhap
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa file không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                FirebaseResponse res = firebaseClient.Delete("TaiLieu/" + tenNhom + "/" + tenfile);
-                FirebaseResponse res1 = firebaseClient.Delete("TuyenTapTaiLieu/" + tenNhom + "/" + tenfile);
+                FirebaseResponse res = firebaseClient.Delete("TaiLieu/" + tenNhom + "/" + tenfile1);
+                FirebaseResponse res1 = firebaseClient.Delete("TuyenTapTaiLieu/" + tenNhom + "/" + tenfile1);
                 MessageBox.Show("Đã xóa file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
