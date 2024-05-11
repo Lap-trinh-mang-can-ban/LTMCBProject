@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Microsoft.VisualBasic.ApplicationServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
@@ -16,12 +17,13 @@ namespace DangKi_DangNhap
         private readonly IFirebaseClient firebaseClient;
         private int soLuongNhom = 0;
         private string tenNhom;
+        public string usern;
         public TaoNhom(String user)
         {
             InitializeComponent();
 
             userName = user;
-
+            usern = user;
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
@@ -185,7 +187,25 @@ namespace DangKi_DangNhap
         private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
         {
             // Thêm bài đăng vào RichTextBox
-            richTextBox.AppendText(post + Environment.NewLine);
+            string postWithEmoji = post.Replace(":)", "😊")
+                                       .Replace("<3", "❤️")
+                                       .Replace(":))", "🤣")
+                                       .Replace("=)", "😊")
+            .Replace(":(", "🙁");
+
+
+
+            bool isCurrentUser = post.Contains(usern);
+            if (isCurrentUser)
+            {
+                richTextBox.SelectionAlignment = HorizontalAlignment.Right;
+                richTextBox.AppendText(postWithEmoji + Environment.NewLine);
+            }
+            else
+            {
+                richTextBox.SelectionAlignment = HorizontalAlignment.Left;
+                richTextBox.AppendText(postWithEmoji + Environment.NewLine);
+            }
 
 
         }

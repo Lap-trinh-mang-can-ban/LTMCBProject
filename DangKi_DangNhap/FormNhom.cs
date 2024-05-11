@@ -12,6 +12,7 @@ using System.Net;
 using System.Diagnostics;
 using static Google.Apis.Requests.BatchRequest;
 using FirebaseAdmin.Messaging;
+using Microsoft.VisualBasic.ApplicationServices;
 namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
@@ -28,10 +29,12 @@ namespace DangKi_DangNhap
         public IFirebaseClient firebaseClient;
         private const string Bucket = "databeseaccess.appspot.com";
         public string key;
+        public string usern;
         public FormNhom(string tenNhom, string username)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
+            usern = username;
             this.userName = username;
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
@@ -90,11 +93,31 @@ namespace DangKi_DangNhap
                     latestItem = item;
 
                 }
-
+                string post = latestItem.Value.ToString();
                 // Hiển thị dữ liệu mới nhất lên RichTextBox
                 richTextBox1.Invoke((MethodInvoker)delegate
                 {
-                    richTextBox1.AppendText(latestItem.Value + Environment.NewLine);
+                    // Thêm bài đăng vào RichTextBox
+                    string postWithEmoji = post.Replace(":)", "😊")
+                                               .Replace("<3", "❤️")
+                                               .Replace(":))", "🤣")
+                                               .Replace("=)", "😊")
+                    .Replace(":(", "🙁");
+
+
+
+                    bool isCurrentUser = post.Contains(usern);
+                    if (isCurrentUser)
+                    {
+                        richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+                        richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
+                    }
+                    else
+                    {
+                        richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+                        richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
+                    }
+                    
 
                 });
             }

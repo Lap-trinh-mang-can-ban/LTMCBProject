@@ -452,7 +452,7 @@
             // linkLabel1
             // 
             linkLabel1.BackColor = Color.OldLace;
-            linkLabel1.Location = new Point(42, 494);
+            linkLabel1.Location = new Point(19, 504);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(555, 42);
             linkLabel1.TabIndex = 15;
@@ -476,7 +476,7 @@
             richTextBox1.Location = new Point(19, 18);
             richTextBox1.Margin = new Padding(0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(642, 518);
+            richTextBox1.Size = new Size(642, 483);
             richTextBox1.TabIndex = 14;
             richTextBox1.Text = "";
             // 
@@ -527,7 +527,7 @@
             bunifuButton25.IdleIconLeftImage = null;
             bunifuButton25.IdleIconRightImage = null;
             bunifuButton25.IndicateFocus = false;
-            bunifuButton25.Location = new Point(523, 474);
+            bunifuButton25.Location = new Point(523, 504);
             bunifuButton25.Name = "bunifuButton25";
             bunifuButton25.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton25.OnDisabledState.BorderRadius = 45;
@@ -561,7 +561,7 @@
             bunifuButton25.OnPressedState.ForeColor = Color.White;
             bunifuButton25.OnPressedState.IconLeftImage = null;
             bunifuButton25.OnPressedState.IconRightImage = null;
-            bunifuButton25.Size = new Size(138, 62);
+            bunifuButton25.Size = new Size(138, 42);
             bunifuButton25.TabIndex = 19;
             bunifuButton25.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton25.TextAlignment = HorizontalAlignment.Center;
