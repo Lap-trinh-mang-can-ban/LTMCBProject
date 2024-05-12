@@ -17,6 +17,7 @@ namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
+        public string SelectedEmoticon { get; private set; }
         public event EventHandler<string> TenNhomCreated;
         public event EventHandler ButtonClickEvent;
         string tenNhom;
@@ -117,7 +118,7 @@ namespace DangKi_DangNhap
                         richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
                         richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
                     }
-                    
+
 
                 });
             }
@@ -150,11 +151,12 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Vui lòng nhập tin nhắn!");
                 return;
             }
-            else {
+            else
+            {
                 string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
                 await PushDataToFirebase(tenNhom, data);
             }
-            
+
         }
 
 
@@ -379,6 +381,69 @@ namespace DangKi_DangNhap
             KhoTaiLieu tl = new KhoTaiLieu(tenNhom, userName);
             tl.Show();
         }
+
+        private void bunifuButton26_Click(object sender, EventArgs e)
+        {
+            ShowIconSuggestionPopup();
+        }
+        private void ShowIconSuggestionPopup()
+        {
+            Form iconSuggestionForm = new Form();
+            iconSuggestionForm.FormBorderStyle = FormBorderStyle.None; // Remove border
+            iconSuggestionForm.StartPosition = FormStartPosition.Manual;
+            iconSuggestionForm.BackColor = Color.LightGreen; // Set background color
+            iconSuggestionForm.TransparencyKey = Color.LightGreen; // Make the background color transparent
+            iconSuggestionForm.Location = new Point(this.Location.X + bunifuButton26.Location.X,
+                                                    this.Location.Y + bunifuButton26.Location.Y + bunifuButton26.Height + 40);
+            iconSuggestionForm.Width = 550; // Increase width to fit 5 icons per row
+            iconSuggestionForm.Height = 300;
+
+            List<string> iconSuggestions = new List<string> { "😊","😎" , "👍", "❤️", "🎉", "👋", "😀", "🎈", "❄️", "🍔", "🚀", "📷",
+                                                  "🌞", "🌻", "🌈", "🐱", "🐶", "🍕", "🎵", "🎮", "⚽", "📚",
+                                                  "🚗", "🚲", "🎨", "🎭", "🔥", "💡", "🛒", "💻", "📱", "✈️" ,"🎶", "🤷‍", "🤦‍"}; // Add more icons for demonstration
+
+            int xPos = 10;
+            int yPos = 10;
+            int iconsPerRow = 7;
+            int iconSpacing = 5;
+            int iconSize = 40; // Adjust icon size as needed
+
+            foreach (string icon in iconSuggestions)
+            {
+                Button iconButton = new Button();
+                iconButton.Text = icon;
+                iconButton.Font = new Font("Segoe UI Emoji", 12);
+                iconButton.AutoSize = true;
+                iconButton.FlatStyle = FlatStyle.Flat; // Remove button border
+                iconButton.FlatAppearance.BorderSize = 0; // Remove button border
+                iconButton.BackColor = Color.LightGray; // Set button background color to match form's background
+                iconButton.Size = new Size(iconSize, iconSize); // Set icon size
+                iconButton.Location = new Point(xPos, yPos);
+                iconButton.Click += (sender, e) =>
+                {
+                    textBox1.Text += icon;
+                    iconSuggestionForm.Close();
+                };
+                iconSuggestionForm.Controls.Add(iconButton);
+
+                // Move to the next row if the maximum number of icons per row is reached
+                if ((iconSuggestions.IndexOf(icon) + 1) % iconsPerRow == 0)
+                {
+                    xPos = 10;
+                    yPos += iconSize + iconSpacing;
+                }
+                else
+                {
+                    xPos += iconSize + iconSpacing;
+                }
+            }
+
+            iconSuggestionForm.ShowInTaskbar = false; // Don't show in taskbar
+            iconSuggestionForm.ShowIcon = false; // Hide icon
+            iconSuggestionForm.TopMost = true; // Ensure it stays on top
+            iconSuggestionForm.Show(); // Show the form
+        }
+
     }
 }
 
