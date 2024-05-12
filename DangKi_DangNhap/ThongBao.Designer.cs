@@ -31,6 +31,8 @@
             label1 = new Label();
             flowLayoutPanel1 = new FlowLayoutPanel();
             richTextBox2 = new RichTextBox();
+            richTextBox5 = new RichTextBox();
+            richTextBox6 = new RichTextBox();
             label6 = new Label();
             label3 = new Label();
             label2 = new Label();
@@ -39,20 +41,19 @@
             label7 = new Label();
             label8 = new Label();
             richTextBox1 = new RichTextBox();
-            vScrollBar1 = new VScrollBar();
-            label9 = new Label();
             richTextBox3 = new RichTextBox();
             richTextBox4 = new RichTextBox();
-            richTextBox5 = new RichTextBox();
+            vScrollBar1 = new VScrollBar();
+            label9 = new Label();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(87, 0);
+            label1.Location = new Point(48, 0);
             label1.Name = "label1";
-            label1.Size = new Size(333, 53);
+            label1.Size = new Size(316, 53);
             label1.TabIndex = 0;
             label1.Text = "Thông báo lập lịch";
             // 
@@ -60,6 +61,7 @@
             // 
             flowLayoutPanel1.Controls.Add(richTextBox2);
             flowLayoutPanel1.Controls.Add(richTextBox5);
+            flowLayoutPanel1.Controls.Add(richTextBox6);
             flowLayoutPanel1.Controls.Add(label6);
             flowLayoutPanel1.Controls.Add(label3);
             flowLayoutPanel1.Controls.Add(label2);
@@ -72,16 +74,32 @@
             flowLayoutPanel1.Controls.Add(richTextBox4);
             flowLayoutPanel1.Location = new Point(42, 56);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(958, 531);
+            flowLayoutPanel1.Size = new Size(973, 531);
             flowLayoutPanel1.TabIndex = 1;
             // 
             // richTextBox2
             // 
             richTextBox2.Location = new Point(3, 3);
             richTextBox2.Name = "richTextBox2";
-            richTextBox2.Size = new Size(465, 528);
+            richTextBox2.Size = new Size(322, 528);
             richTextBox2.TabIndex = 8;
             richTextBox2.Text = "";
+            // 
+            // richTextBox5
+            // 
+            richTextBox5.Location = new Point(331, 3);
+            richTextBox5.Name = "richTextBox5";
+            richTextBox5.Size = new Size(308, 550);
+            richTextBox5.TabIndex = 11;
+            richTextBox5.Text = "";
+            // 
+            // richTextBox6
+            // 
+            richTextBox6.Location = new Point(645, 3);
+            richTextBox6.Name = "richTextBox6";
+            richTextBox6.Size = new Size(319, 528);
+            richTextBox6.TabIndex = 9;
+            richTextBox6.Text = "";
             // 
             // label6
             // 
@@ -147,23 +165,6 @@
             richTextBox1.TabIndex = 7;
             richTextBox1.Text = "";
             // 
-            // vScrollBar1
-            // 
-            vScrollBar1.Location = new Point(1045, 24);
-            vScrollBar1.Name = "vScrollBar1";
-            vScrollBar1.Size = new Size(26, 595);
-            vScrollBar1.TabIndex = 7;
-            vScrollBar1.Scroll += vScrollBar1_Scroll_1;
-            // 
-            // label9
-            // 
-            label9.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(553, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(415, 53);
-            label9.TabIndex = 8;
-            label9.Text = "Thông báo Trong nhóm";
-            // 
             // richTextBox3
             // 
             richTextBox3.Location = new Point(134, 1250);
@@ -180,13 +181,22 @@
             richTextBox4.TabIndex = 10;
             richTextBox4.Text = "";
             // 
-            // richTextBox5
+            // vScrollBar1
             // 
-            richTextBox5.Location = new Point(474, 3);
-            richTextBox5.Name = "richTextBox5";
-            richTextBox5.Size = new Size(479, 550);
-            richTextBox5.TabIndex = 11;
-            richTextBox5.Text = "";
+            vScrollBar1.Location = new Point(1045, 24);
+            vScrollBar1.Name = "vScrollBar1";
+            vScrollBar1.Size = new Size(26, 595);
+            vScrollBar1.TabIndex = 7;
+            vScrollBar1.Scroll += vScrollBar1_Scroll_1;
+            // 
+            // label9
+            // 
+            label9.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(473, 0);
+            label9.Name = "label9";
+            label9.Size = new Size(415, 53);
+            label9.TabIndex = 8;
+            label9.Text = "Thông báo Trong nhóm";
             // 
             // ThongBao
             // 
@@ -223,5 +233,6 @@
         private RichTextBox richTextBox5;
         private RichTextBox richTextBox3;
         private RichTextBox richTextBox4;
+        private RichTextBox richTextBox6;
     }
 }

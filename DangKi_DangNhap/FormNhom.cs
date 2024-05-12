@@ -180,7 +180,7 @@ namespace DangKi_DangNhap
         };
             var postData1 = new Dictionary<string, object>
         {
-            { key, key }
+            { key, tenNhom }
         };
 
             // Thực hiện đẩy dữ liệu lên Firebase

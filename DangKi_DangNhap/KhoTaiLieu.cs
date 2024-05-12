@@ -100,7 +100,7 @@ namespace DangKi_DangNhap
                     
                     var data_notify = new Dictionary<string, object>
                     {
-                        {currentTime.ToString("dd-MM-yyyy HH:mm:ss"), $"{tenNhom}" }
+                        {currentTime.ToString("yyyy-MM-dd HH:mm:ss"), $"{tenNhom}" }
                     };
                     FirebaseResponse response = await firebaseClient.UpdateAsync($"TaiLieu/{tenNhom}/{tenfile}", newTL);
                     FirebaseResponse response1 = await firebaseClient.UpdateAsync($"TuyenTapTaiLieu/{tenNhom}", data);

@@ -38,6 +38,7 @@ namespace DangKi_DangNhap
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
             loadnotify_ll();
+            loadnotify_nhom1();
             loadnotify_nhom();
         }
         private async Task loadnotify_nhom()
@@ -78,6 +79,7 @@ namespace DangKi_DangNhap
             {
                 // Truy vấn dữ liệu từ Firebase
                 FirebaseResponse response = await firebaseClient.GetAsync($"Notify_TL/{nhom}");
+                
                 if (response.Body == "null")
                 {
                     continue; // Skip to next iteration
@@ -85,13 +87,14 @@ namespace DangKi_DangNhap
 
                 // Parse dữ liệu trả về thành một danh sách các nhóm
                 Dictionary<string, object> nhomData = response.ResultAs<Dictionary<string, object>>();
-
+                
                 foreach (var pair in nhomData)
                 {
                     string datetime = pair.Key.ToString();
                     string nhoms = pair.Value.ToString();
                     notifications.Add((datetime, nhoms)); // Add notification to list
                 }
+                
             }
 
             // Order notifications by timeDifference
@@ -107,22 +110,114 @@ namespace DangKi_DangNhap
         {
             DateTime datenow = DateTime.Now;
             DateTime dateTime_before;
-            DateTime.TryParseExact(datetime, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime_before);
+            DateTime.TryParseExact(datetime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime_before);
             return datenow - dateTime_before;
         }
 
         private async void AddPostToRichTextBox1(string datetime, string nhoms)
         {
             TimeSpan timeDifference = GetTimeDifference(datetime);
-            string result = nhoms + " mới có file mới được upload vào " +
+            
+                string result = nhoms + " mới có file mới được upload vào " +
                             timeDifference.Days.ToString() + " ngày " +
                             timeDifference.Hours.ToString() + " giờ " +
                             timeDifference.Minutes.ToString() + " phút " +
                             timeDifference.Seconds.ToString() + " giây trước";
-            richTextBox5.AppendText(result + Environment.NewLine);
+                            richTextBox5.AppendText(result + Environment.NewLine);
+            
+            
         }
 
+
+
         /// <summary>
+        /// 
+        private async Task loadnotify_nhom1()
+        {
+            try
+            {
+                // Truy vấn dữ liệu từ Firebase
+                FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{userName}");
+                if (response.Body == "null")
+                {
+                    return;
+                }
+
+                // Parse dữ liệu trả về thành một danh sách các nhóm
+                Dictionary<string, object> nhomData = response.ResultAs<Dictionary<string, object>>();
+
+                // Duyệt qua danh sách nhóm và tạo các button nhóm tương ứng
+                List<string> allNhom = new List<string>();
+                foreach (var pair in nhomData)
+                {
+                    string nhom = pair.Key;
+                    allNhom.Add(nhom);
+                }
+
+                await addNhom1(allNhom.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task addNhom1(string[] allNhom)
+        {
+            List<(string, string)> notifications = new List<(string, string)>(); // Tuple to store notifications
+
+            foreach (string nhom in allNhom)
+            {
+                // Truy vấn dữ liệu từ Firebase
+               
+                FirebaseResponse response1 = await firebaseClient.GetAsync($"group /{nhom}/message");
+                if (response1.Body == "null")
+                {
+                    continue; // Skip to next iteration
+                }
+
+                // Parse dữ liệu trả về thành một danh sách các nhóm
+                
+                Dictionary<string, object> nhomData1 = response1.ResultAs<Dictionary<string, object>>();
+                
+                foreach (var pair in nhomData1)
+                {
+                    string datetime = pair.Key.ToString();
+                    string nhoms = pair.Value.ToString();
+                    notifications.Add((datetime, datetime)); // Add notification to list
+                }
+            }
+
+            // Order notifications by timeDifference
+            var sortedNotifications = notifications.OrderBy(notification => GetTimeDifference1(notification.Item1));
+
+            foreach (var notification in sortedNotifications)
+            {
+                AddPostToRichTextBox11(notification.Item1, notification.Item2);
+            }
+        }
+
+        private TimeSpan GetTimeDifference1(string datetime)
+        {
+            DateTime datenow = DateTime.Now;
+            DateTime dateTime_before;
+            DateTime.TryParseExact(datetime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime_before);
+            return datenow - dateTime_before;
+        }
+
+        private async void AddPostToRichTextBox11(string datetime, string nhoms)
+        {
+            TimeSpan timeDifference = GetTimeDifference(datetime);
+            
+                string result = nhoms + " mới có 1 bài đăng mới vào " +
+                            timeDifference.Days.ToString() + " ngày " +
+                            timeDifference.Hours.ToString() + " giờ " +
+                            timeDifference.Minutes.ToString() + " phút " +
+                            timeDifference.Seconds.ToString() + " giây trước";
+                richTextBox6.AppendText(result + Environment.NewLine);
+            
+
+        }
         /// ///////////////////////////////////////
         /// </summary>
         private async void loadnotify_ll() {
