@@ -36,7 +36,8 @@ namespace DangKi_DangNhap
 
         private void EventForm_Load(object sender, EventArgs e)
         {
-            textBox1.Text = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
+                string date = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
+                textBox1.Text = date;   
         }
 
         private async void bunifuButton22_Click(object sender, EventArgs e)

@@ -37,7 +37,9 @@
             label5 = new Label();
             label7 = new Label();
             label8 = new Label();
+            richTextBox1 = new RichTextBox();
             vScrollBar1 = new VScrollBar();
+            richTextBox2 = new RichTextBox();
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -52,6 +54,7 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.Controls.Add(richTextBox2);
             flowLayoutPanel1.Controls.Add(label6);
             flowLayoutPanel1.Controls.Add(label3);
             flowLayoutPanel1.Controls.Add(label2);
@@ -59,6 +62,7 @@
             flowLayoutPanel1.Controls.Add(label5);
             flowLayoutPanel1.Controls.Add(label7);
             flowLayoutPanel1.Controls.Add(label8);
+            flowLayoutPanel1.Controls.Add(richTextBox1);
             flowLayoutPanel1.Location = new Point(42, 56);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(958, 531);
@@ -67,7 +71,7 @@
             // label6
             // 
             label6.BackColor = Color.OldLace;
-            label6.Location = new Point(3, 0);
+            label6.Location = new Point(3, 534);
             label6.Name = "label6";
             label6.Size = new Size(955, 111);
             label6.TabIndex = 4;
@@ -75,7 +79,7 @@
             // label3
             // 
             label3.BackColor = Color.OldLace;
-            label3.Location = new Point(3, 111);
+            label3.Location = new Point(3, 645);
             label3.Name = "label3";
             label3.Size = new Size(955, 99);
             label3.TabIndex = 1;
@@ -83,7 +87,7 @@
             // label2
             // 
             label2.BackColor = Color.OldLace;
-            label2.Location = new Point(3, 210);
+            label2.Location = new Point(3, 744);
             label2.Name = "label2";
             label2.Size = new Size(955, 103);
             label2.TabIndex = 0;
@@ -91,7 +95,7 @@
             // label4
             // 
             label4.BackColor = Color.OldLace;
-            label4.Location = new Point(3, 313);
+            label4.Location = new Point(3, 847);
             label4.Name = "label4";
             label4.Size = new Size(955, 93);
             label4.TabIndex = 2;
@@ -99,7 +103,7 @@
             // label5
             // 
             label5.BackColor = Color.OldLace;
-            label5.Location = new Point(3, 406);
+            label5.Location = new Point(3, 940);
             label5.Name = "label5";
             label5.Size = new Size(955, 95);
             label5.TabIndex = 3;
@@ -107,7 +111,7 @@
             // label7
             // 
             label7.BackColor = Color.OldLace;
-            label7.Location = new Point(3, 501);
+            label7.Location = new Point(3, 1035);
             label7.Name = "label7";
             label7.Size = new Size(955, 95);
             label7.TabIndex = 5;
@@ -115,10 +119,18 @@
             // label8
             // 
             label8.BackColor = Color.OldLace;
-            label8.Location = new Point(3, 596);
+            label8.Location = new Point(3, 1130);
             label8.Name = "label8";
             label8.Size = new Size(955, 95);
             label8.TabIndex = 6;
+            // 
+            // richTextBox1
+            // 
+            richTextBox1.Location = new Point(3, 1228);
+            richTextBox1.Name = "richTextBox1";
+            richTextBox1.Size = new Size(125, 120);
+            richTextBox1.TabIndex = 7;
+            richTextBox1.Text = "";
             // 
             // vScrollBar1
             // 
@@ -127,6 +139,14 @@
             vScrollBar1.Size = new Size(26, 595);
             vScrollBar1.TabIndex = 7;
             vScrollBar1.Scroll += vScrollBar1_Scroll_1;
+            // 
+            // richTextBox2
+            // 
+            richTextBox2.Location = new Point(3, 3);
+            richTextBox2.Name = "richTextBox2";
+            richTextBox2.Size = new Size(955, 528);
+            richTextBox2.TabIndex = 8;
+            richTextBox2.Text = "";
             // 
             // ThongBao
             // 
@@ -156,5 +176,7 @@
         private Label label7;
         private Label label8;
         private VScrollBar vScrollBar1;
+        private RichTextBox richTextBox1;
+        private RichTextBox richTextBox2;
     }
 }

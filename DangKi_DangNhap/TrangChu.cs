@@ -112,7 +112,7 @@ namespace DangKi_DangNhap
         private string user;
         private void bunifuButton22_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ThongBao());
+            OpenChildForm(new ThongBao(currentUser.Username));
         }
 
         private void bunifuButton23_Click(object sender, EventArgs e)
