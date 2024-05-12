@@ -200,11 +200,13 @@ namespace DangKi_DangNhap
             {
                 richTextBox.SelectionAlignment = HorizontalAlignment.Right;
                 richTextBox.AppendText(postWithEmoji + Environment.NewLine);
+                richTextBox.ScrollToCaret();
             }
             else
             {
                 richTextBox.SelectionAlignment = HorizontalAlignment.Left;
                 richTextBox.AppendText(postWithEmoji + Environment.NewLine);
+                richTextBox.ScrollToCaret();
             }
 
 

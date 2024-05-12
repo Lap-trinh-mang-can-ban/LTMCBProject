@@ -101,7 +101,7 @@
             bunifuButton23.IdleIconLeftImage = null;
             bunifuButton23.IdleIconRightImage = null;
             bunifuButton23.IndicateFocus = false;
-            bunifuButton23.Location = new Point(560, 549);
+            bunifuButton23.Location = new Point(570, 549);
             bunifuButton23.Name = "bunifuButton23";
             bunifuButton23.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.OnDisabledState.BorderRadius = 45;
@@ -466,10 +466,10 @@
             // 
             textBox1.BackColor = Color.OldLace;
             textBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(115, 549);
+            textBox1.Location = new Point(112, 549);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(442, 62);
+            textBox1.Size = new Size(413, 62);
             textBox1.TabIndex = 13;
             // 
             // richTextBox1
@@ -618,7 +618,7 @@
             bunifuButton26.IdleIconLeftImage = null;
             bunifuButton26.IdleIconRightImage = null;
             bunifuButton26.IndicateFocus = false;
-            bunifuButton26.Location = new Point(506, 557);
+            bunifuButton26.Location = new Point(523, 560);
             bunifuButton26.Name = "bunifuButton26";
             bunifuButton26.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton26.OnDisabledState.BorderRadius = 45;

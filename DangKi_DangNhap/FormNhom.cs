@@ -112,11 +112,13 @@ namespace DangKi_DangNhap
                     {
                         richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
                         richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
+                        richTextBox1.ScrollToCaret();
                     }
                     else
                     {
                         richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
                         richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
+                        richTextBox1.ScrollToCaret();
                     }
 
 
@@ -156,6 +158,7 @@ namespace DangKi_DangNhap
                 string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
                 await PushDataToFirebase(tenNhom, data);
             }
+            
 
         }
 

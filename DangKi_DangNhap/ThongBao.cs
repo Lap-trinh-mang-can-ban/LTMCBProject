@@ -34,10 +34,14 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
-            loadnotify();
+            loadnotify_ll();
+            loadnotify_nhom();
         }
+        private async void loadnotify_nhom()
+        {
 
-        private async void loadnotify() {
+        }
+            private async void loadnotify_ll() {
             try
             {
                 // Truy vấn dữ liệu từ Firebase
