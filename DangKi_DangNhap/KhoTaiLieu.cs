@@ -97,10 +97,14 @@ namespace DangKi_DangNhap
             {
                 { tempNameFile, true }
             };
-
+                    
+                    var data_notify = new Dictionary<string, object>
+                    {
+                        {currentTime.ToString("dd-MM-yyyy HH:mm:ss"), $"{tenNhom}" }
+                    };
                     FirebaseResponse response = await firebaseClient.UpdateAsync($"TaiLieu/{tenNhom}/{tenfile}", newTL);
                     FirebaseResponse response1 = await firebaseClient.UpdateAsync($"TuyenTapTaiLieu/{tenNhom}", data);
-
+                    FirebaseResponse response2 = await firebaseClient.SetAsync($"Notify_TL/{tenNhom}", data_notify);
                     // Xóa trường nhập và làm mới danh sách tệp
                     textBox1.Clear();
                     textBox2.Clear();

@@ -14,6 +14,8 @@ using static Google.Apis.Requests.BatchRequest;
 using FirebaseAdmin.Messaging;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Globalization;
+using MigraDoc.DocumentObjectModel.Internals;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DangKi_DangNhap
 {
@@ -21,7 +23,8 @@ namespace DangKi_DangNhap
     {
         public IFirebaseClient firebaseClient;
         private readonly string userName;
-        public ThongBao(String user)
+        private string[] all_nhom;
+        public ThongBao(string user)
         {
             InitializeComponent();
             userName = user;
@@ -37,11 +40,92 @@ namespace DangKi_DangNhap
             loadnotify_ll();
             loadnotify_nhom();
         }
-        private async void loadnotify_nhom()
+        private async Task loadnotify_nhom()
         {
+            try
+            {
+                // Truy vấn dữ liệu từ Firebase
+                FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{userName}");
+                if (response.Body == "null")
+                {
+                    return;
+                }
 
+                // Parse dữ liệu trả về thành một danh sách các nhóm
+                Dictionary<string, object> nhomData = response.ResultAs<Dictionary<string, object>>();
+
+                // Duyệt qua danh sách nhóm và tạo các button nhóm tương ứng
+                List<string> allNhom = new List<string>();
+                foreach (var pair in nhomData)
+                {
+                    string nhom = pair.Key;
+                    allNhom.Add(nhom);
+                }
+
+                await addNhom(allNhom.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-            private async void loadnotify_ll() {
+
+        private async Task addNhom(string[] allNhom)
+        {
+            List<(string, string)> notifications = new List<(string, string)>(); // Tuple to store notifications
+
+            foreach (string nhom in allNhom)
+            {
+                // Truy vấn dữ liệu từ Firebase
+                FirebaseResponse response = await firebaseClient.GetAsync($"Notify_TL/{nhom}");
+                if (response.Body == "null")
+                {
+                    continue; // Skip to next iteration
+                }
+
+                // Parse dữ liệu trả về thành một danh sách các nhóm
+                Dictionary<string, object> nhomData = response.ResultAs<Dictionary<string, object>>();
+
+                foreach (var pair in nhomData)
+                {
+                    string datetime = pair.Key.ToString();
+                    string nhoms = pair.Value.ToString();
+                    notifications.Add((datetime, nhoms)); // Add notification to list
+                }
+            }
+
+            // Order notifications by timeDifference
+            var sortedNotifications = notifications.OrderBy(notification => GetTimeDifference(notification.Item1));
+
+            foreach (var notification in sortedNotifications)
+            {
+                AddPostToRichTextBox1(notification.Item1, notification.Item2);
+            }
+        }
+
+        private TimeSpan GetTimeDifference(string datetime)
+        {
+            DateTime datenow = DateTime.Now;
+            DateTime dateTime_before;
+            DateTime.TryParseExact(datetime, "dd-MM-yyyy HH:mm:ss", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime_before);
+            return datenow - dateTime_before;
+        }
+
+        private async void AddPostToRichTextBox1(string datetime, string nhoms)
+        {
+            TimeSpan timeDifference = GetTimeDifference(datetime);
+            string result = nhoms + " mới có file mới được upload vào " +
+                            timeDifference.Days.ToString() + " ngày " +
+                            timeDifference.Hours.ToString() + " giờ " +
+                            timeDifference.Minutes.ToString() + " phút " +
+                            timeDifference.Seconds.ToString() + " giây trước";
+            richTextBox5.AppendText(result + Environment.NewLine);
+        }
+
+        /// <summary>
+        /// ///////////////////////////////////////
+        /// </summary>
+        private async void loadnotify_ll() {
             try
             {
                 // Truy vấn dữ liệu từ Firebase
