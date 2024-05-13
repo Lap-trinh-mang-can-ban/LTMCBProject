@@ -80,15 +80,16 @@ namespace DangKi_DangNhap
             this.Controls.Add(btnNhomMoi);
             string key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // Tạo key cho bài đăng mới
-            FirebaseResponse checkResponse = await firebaseClient.GetAsync($"group/{tenNhom}/message");
-            if (checkResponse.Body == "null")
+            FirebaseResponse checkResponse = await firebaseClient.GetAsync($"group /{tenNhom}/message");
+            string responseBody = checkResponse.Body.ToString();
+            if (string.IsNullOrEmpty(responseBody) || responseBody == "null")
             {
                 // Đường dẫn không tồn tại, thực hiện ghi dữ liệu vào Firebase
                 var postData1 = new Dictionary<string, object>
-                {
-                    { key, tenNhom }
-                };
-                FirebaseResponse response1 = await firebaseClient.SetAsync($"group/{tenNhom}/message", postData1);
+    {
+        { key, tenNhom }
+    };
+                FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
             }
 
         }
@@ -199,16 +200,19 @@ namespace DangKi_DangNhap
             .Replace(":(", "🙁");
 
 
-
+            richTextBox.SelectionIndent = 10; // Đặt độ lề trái là 20 (đơn vị là pixel)
+            richTextBox.SelectionRightIndent = 10; // Đặt độ lề phải là 20 (đơn vị là pixel)
             bool isCurrentUser = post.Contains(usern);
             if (isCurrentUser)
             {
+                postWithEmoji = postWithEmoji;
                 richTextBox.SelectionAlignment = HorizontalAlignment.Right;
                 richTextBox.AppendText(postWithEmoji + Environment.NewLine);
                 richTextBox.ScrollToCaret();
             }
             else
             {
+                postWithEmoji = postWithEmoji ;
                 richTextBox.SelectionAlignment = HorizontalAlignment.Left;
                 richTextBox.AppendText(postWithEmoji + Environment.NewLine);
                 richTextBox.ScrollToCaret();

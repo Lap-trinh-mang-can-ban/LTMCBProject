@@ -79,7 +79,7 @@ namespace DangKi_DangNhap
             {
                 // Truy vấn dữ liệu từ Firebase
                 FirebaseResponse response = await firebaseClient.GetAsync($"Notify_TL/{nhom}");
-                
+
                 if (response.Body == "null")
                 {
                     continue; // Skip to next iteration
@@ -87,14 +87,14 @@ namespace DangKi_DangNhap
 
                 // Parse dữ liệu trả về thành một danh sách các nhóm
                 Dictionary<string, object> nhomData = response.ResultAs<Dictionary<string, object>>();
-                
+
                 foreach (var pair in nhomData)
                 {
                     string datetime = pair.Key.ToString();
                     string nhoms = pair.Value.ToString();
                     notifications.Add((datetime, nhoms)); // Add notification to list
                 }
-                
+
             }
 
             // Order notifications by timeDifference
@@ -117,15 +117,15 @@ namespace DangKi_DangNhap
         private async void AddPostToRichTextBox1(string datetime, string nhoms)
         {
             TimeSpan timeDifference = GetTimeDifference(datetime);
-            
-                string result = nhoms + " mới có file mới được upload vào " +
-                            timeDifference.Days.ToString() + " ngày " +
-                            timeDifference.Hours.ToString() + " giờ " +
-                            timeDifference.Minutes.ToString() + " phút " +
-                            timeDifference.Seconds.ToString() + " giây trước";
-                            richTextBox5.AppendText(result + Environment.NewLine);
-            
-            
+
+            string result = "   " + nhoms + " mới có file mới được upload vào " +
+                        timeDifference.Days.ToString() + " ngày " +
+                        timeDifference.Hours.ToString() + " giờ " +
+                        timeDifference.Minutes.ToString() + " phút " +
+                        timeDifference.Seconds.ToString() + " giây trước";
+            richTextBox5.AppendText(result + Environment.NewLine);
+
+
         }
 
 
@@ -169,7 +169,7 @@ namespace DangKi_DangNhap
             foreach (string nhom in allNhom)
             {
                 // Truy vấn dữ liệu từ Firebase
-               
+
                 FirebaseResponse response1 = await firebaseClient.GetAsync($"group /{nhom}/message");
                 if (response1.Body == "null")
                 {
@@ -177,9 +177,9 @@ namespace DangKi_DangNhap
                 }
 
                 // Parse dữ liệu trả về thành một danh sách các nhóm
-                
+
                 Dictionary<string, object> nhomData1 = response1.ResultAs<Dictionary<string, object>>();
-                
+
                 foreach (var pair in nhomData1)
                 {
                     string datetime = pair.Key.ToString();
@@ -208,19 +208,20 @@ namespace DangKi_DangNhap
         private async void AddPostToRichTextBox11(string datetime, string nhoms)
         {
             TimeSpan timeDifference = GetTimeDifference(datetime);
-            
-                string result = nhoms + " mới có 1 bài đăng mới vào " +
-                            timeDifference.Days.ToString() + " ngày " +
-                            timeDifference.Hours.ToString() + " giờ " +
-                            timeDifference.Minutes.ToString() + " phút " +
-                            timeDifference.Seconds.ToString() + " giây trước";
-                richTextBox6.AppendText(result + Environment.NewLine);
-            
+
+            string result = "   " + nhoms + " mới có 1 bài đăng mới vào " +
+                        timeDifference.Days.ToString() + " ngày " +
+                        timeDifference.Hours.ToString() + " giờ " +
+                        timeDifference.Minutes.ToString() + " phút " +
+                        timeDifference.Seconds.ToString() + " giây trước";
+            richTextBox6.AppendText(result + Environment.NewLine);
+
 
         }
         /// ///////////////////////////////////////
         /// </summary>
-        private async void loadnotify_ll() {
+        private async void loadnotify_ll()
+        {
             try
             {
                 // Truy vấn dữ liệu từ Firebase
@@ -246,8 +247,8 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            
+
+
         }
         private void AddPostToRichTextBox(string date, string value)
         {
@@ -259,22 +260,23 @@ namespace DangKi_DangNhap
             if (totalDays == 0)
             {
                 string values = $"hôm nay là đến: {value}";
-                richTextBox2.AppendText(values + Environment.NewLine);
+                richTextBox2.AppendText("   "+values + Environment.NewLine);
             }
-            else if(totalDays == 1)
+            else if (totalDays == 1)
             {
                 string values = $"còn 1 ngày nữa là đến: {value}";
-                richTextBox2.AppendText(values + Environment.NewLine);
+                richTextBox2.AppendText("   " + values + Environment.NewLine);
             }
-            else if (totalDays == 2) {
+            else if (totalDays == 2)
+            {
                 string values = $"còn 2 ngày nữa là đến: {value}";
-                richTextBox2.AppendText(values + Environment.NewLine);
+                richTextBox2.AppendText("   " + values + Environment.NewLine);
             }
 
             else if (totalDays == 3)
             {
                 string values = $"còn 3 ngày nữa là đến: {value}";
-                richTextBox2.AppendText(values + Environment.NewLine);
+                richTextBox2.AppendText("   " + values + Environment.NewLine);
             }
 
             // Append the notification to the RichTextBox with a new line
@@ -287,6 +289,11 @@ namespace DangKi_DangNhap
         }
 
         private void ThongBao_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
         {
 
         }

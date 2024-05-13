@@ -475,9 +475,11 @@
             // richTextBox1
             // 
             richTextBox1.BackColor = Color.OldLace;
+            richTextBox1.Font = new Font("Segoe UI Emoji", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             richTextBox1.Location = new Point(19, 18);
             richTextBox1.Margin = new Padding(0);
             richTextBox1.Name = "richTextBox1";
+            richTextBox1.ReadOnly = true;
             richTextBox1.Size = new Size(642, 483);
             richTextBox1.TabIndex = 14;
             richTextBox1.Text = "";
@@ -696,5 +698,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton24;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton25;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton26;
+
     }
 }

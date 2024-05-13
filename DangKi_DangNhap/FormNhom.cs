@@ -17,6 +17,8 @@ namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
+        // Cài đặt lề cho RichTextBox
+        
         public string SelectedEmoticon { get; private set; }
         public event EventHandler<string> TenNhomCreated;
         public event EventHandler ButtonClickEvent;
@@ -49,6 +51,7 @@ namespace DangKi_DangNhap
 
             SubscribeToFirebase();
             SubscribeToFirebase1();
+            richTextBox1.Padding = new Padding(10);
         }
 
         private async void SubscribeToFirebase1()
@@ -106,7 +109,8 @@ namespace DangKi_DangNhap
                                                .Replace(":(", "🙁");
 
 
-
+                    richTextBox1.SelectionIndent = 10; // Đặt độ lề trái là 20 (đơn vị là pixel)
+                    richTextBox1.SelectionRightIndent = 10; // Đặt độ lề phải là 20 (đơn vị là pixel)
                     bool isCurrentUser = post.Contains(usern);
                     if (isCurrentUser)
                     {
@@ -148,6 +152,7 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
+           
             if (textBox1.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập tin nhắn!");
@@ -401,13 +406,12 @@ namespace DangKi_DangNhap
             iconSuggestionForm.Width = 550; // Increase width to fit 5 icons per row
             iconSuggestionForm.Height = 300;
 
-            List<string> iconSuggestions = new List<string> { "😊","😎" , "👍", "❤️", "🎉", "👋", "😀", "🎈", "❄️", "🍔", "🚀", "📷",
-                                                  "🌞", "🌻", "🌈", "🐱", "🐶", "🍕", "🎵", "🎮", "⚽", "📚",
-                                                  "🚗", "🚲", "🎨", "🎭", "🔥", "💡", "🛒", "💻", "📱", "✈️" ,"🎶", "🤷‍", "🤦‍"}; // Add more icons for demonstration
+            List<string> iconSuggestions = new List<string> { "❤️", "😎", "👍", "😁", "😢", "😊", "😀", "👌", "😍", "😌",
+                                                              "🥰", "😇", "😅", "😂", "🤩", "📚", "🎓", "🖊️", "📝", "🧠" };
 
             int xPos = 10;
             int yPos = 10;
-            int iconsPerRow = 7;
+            int iconsPerRow = 10;
             int iconSpacing = 5;
             int iconSize = 40; // Adjust icon size as needed
 
