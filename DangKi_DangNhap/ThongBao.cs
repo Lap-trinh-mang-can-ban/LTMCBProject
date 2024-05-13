@@ -184,7 +184,7 @@ namespace DangKi_DangNhap
                 {
                     string datetime = pair.Key.ToString();
                     string nhoms = pair.Value.ToString();
-                    notifications.Add((datetime, datetime)); // Add notification to list
+                    notifications.Add((datetime, nhoms)); // Add notification to list
                 }
             }
 

@@ -80,11 +80,16 @@ namespace DangKi_DangNhap
             this.Controls.Add(btnNhomMoi);
             string key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // Tạo key cho bài đăng mới
-            var postData1 = new Dictionary<string, object>
-{
-    { key, key }
-};
-            FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
+            FirebaseResponse checkResponse = await firebaseClient.GetAsync($"group/{tenNhom}/message");
+            if (checkResponse.Body == "null")
+            {
+                // Đường dẫn không tồn tại, thực hiện ghi dữ liệu vào Firebase
+                var postData1 = new Dictionary<string, object>
+                {
+                    { key, tenNhom }
+                };
+                FirebaseResponse response1 = await firebaseClient.SetAsync($"group/{tenNhom}/message", postData1);
+            }
 
         }
 
