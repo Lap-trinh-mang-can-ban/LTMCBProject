@@ -116,13 +116,14 @@ namespace DangKi_DangNhap
 
         private async void AddPostToRichTextBox1(string datetime, string nhoms)
         {
-            TimeSpan timeDifference = GetTimeDifference(datetime);
+            /*TimeSpan timeDifference = GetTimeDifference(datetime);*/
 
-            string result = "   " + nhoms + " mới có file mới được upload vào " +
+            /*string result = "   " + nhoms + " mới có file mới được upload vào " +
                         timeDifference.Days.ToString() + " ngày " +
                         timeDifference.Hours.ToString() + " giờ " +
                         timeDifference.Minutes.ToString() + " phút " +
-                        timeDifference.Seconds.ToString() + " giây trước";
+                        timeDifference.Seconds.ToString() + " giây trước";*/
+            string result = datetime + " " + nhoms + " có file mới.";
             richTextBox5.AppendText(result + Environment.NewLine);
 
 
@@ -207,13 +208,14 @@ namespace DangKi_DangNhap
 
         private async void AddPostToRichTextBox11(string datetime, string nhoms)
         {
-            TimeSpan timeDifference = GetTimeDifference(datetime);
+            /*TimeSpan timeDifference = GetTimeDifference(datetime);
 
             string result = "   " + nhoms + " mới có 1 bài đăng mới vào " +
                         timeDifference.Days.ToString() + " ngày " +
                         timeDifference.Hours.ToString() + " giờ " +
                         timeDifference.Minutes.ToString() + " phút " +
-                        timeDifference.Seconds.ToString() + " giây trước";
+                        timeDifference.Seconds.ToString() + " giây trước";*/
+            string result  = datetime + " " + nhoms + " có bài đăng mới.";
             richTextBox6.AppendText(result + Environment.NewLine);
 
 
