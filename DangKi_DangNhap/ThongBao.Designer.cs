@@ -85,6 +85,7 @@
             richTextBox2.Location = new Point(4, 3);
             richTextBox2.Margin = new Padding(4, 3, 4, 3);
             richTextBox2.Name = "richTextBox2";
+            richTextBox2.ReadOnly = true;
             richTextBox2.Size = new Size(311, 528);
             richTextBox2.TabIndex = 8;
             richTextBox2.Text = "";
@@ -94,6 +95,7 @@
             richTextBox5.Location = new Point(323, 3);
             richTextBox5.Margin = new Padding(4, 3, 4, 3);
             richTextBox5.Name = "richTextBox5";
+            richTextBox5.ReadOnly = true;
             richTextBox5.Size = new Size(318, 528);
             richTextBox5.TabIndex = 11;
             richTextBox5.Text = "";
@@ -103,6 +105,7 @@
             richTextBox6.Location = new Point(649, 3);
             richTextBox6.Margin = new Padding(4, 3, 4, 3);
             richTextBox6.Name = "richTextBox6";
+            richTextBox6.ReadOnly = true;
             richTextBox6.Size = new Size(317, 528);
             richTextBox6.TabIndex = 9;
             richTextBox6.Text = "";
