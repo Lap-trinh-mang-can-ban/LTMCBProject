@@ -12,10 +12,14 @@ using System.Net;
 using System.Diagnostics;
 using static Google.Apis.Requests.BatchRequest;
 using FirebaseAdmin.Messaging;
+using Microsoft.VisualBasic.ApplicationServices;
 namespace DangKi_DangNhap
 {
     public partial class FormNhom : Form
     {
+        // Cài đặt lề cho RichTextBox
+        
+        public string SelectedEmoticon { get; private set; }
         public event EventHandler<string> TenNhomCreated;
         public event EventHandler ButtonClickEvent;
         string tenNhom;
@@ -28,10 +32,12 @@ namespace DangKi_DangNhap
         public IFirebaseClient firebaseClient;
         private const string Bucket = "databeseaccess.appspot.com";
         public string key;
+        public string usern;
         public FormNhom(string tenNhom, string username)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
+            usern = username;
             this.userName = username;
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
@@ -45,6 +51,7 @@ namespace DangKi_DangNhap
 
             SubscribeToFirebase();
             SubscribeToFirebase1();
+            richTextBox1.Padding = new Padding(10);
         }
 
         private async void SubscribeToFirebase1()
@@ -90,11 +97,34 @@ namespace DangKi_DangNhap
                     latestItem = item;
 
                 }
-
+                string post = latestItem.Value.ToString();
                 // Hiển thị dữ liệu mới nhất lên RichTextBox
                 richTextBox1.Invoke((MethodInvoker)delegate
                 {
-                    richTextBox1.AppendText(latestItem.Value + Environment.NewLine);
+                    // Thêm bài đăng vào RichTextBox
+                    string postWithEmoji = post.Replace(":)", "😊")
+                                               .Replace("<3", "❤️")
+                                               .Replace(":))", "🤣")
+                                               .Replace("=)", "😊")
+                                               .Replace(":(", "🙁");
+
+
+                    richTextBox1.SelectionIndent = 10; // Đặt độ lề trái là 20 (đơn vị là pixel)
+                    richTextBox1.SelectionRightIndent = 10; // Đặt độ lề phải là 20 (đơn vị là pixel)
+                    bool isCurrentUser = post.Contains(usern);
+                    if (isCurrentUser)
+                    {
+                        richTextBox1.SelectionAlignment = HorizontalAlignment.Right;
+                        richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
+                        richTextBox1.ScrollToCaret();
+                    }
+                    else
+                    {
+                        richTextBox1.SelectionAlignment = HorizontalAlignment.Left;
+                        richTextBox1.AppendText(postWithEmoji + Environment.NewLine);
+                        richTextBox1.ScrollToCaret();
+                    }
+
 
                 });
             }
@@ -122,16 +152,19 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
+           
             if (textBox1.Text == "")
             {
                 MessageBox.Show("Vui lòng nhập tin nhắn!");
                 return;
             }
-            else {
+            else
+            {
                 string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
                 await PushDataToFirebase(tenNhom, data);
             }
             
+
         }
 
 
@@ -152,7 +185,7 @@ namespace DangKi_DangNhap
         };
             var postData1 = new Dictionary<string, object>
         {
-            { key, key }
+            { key, tenNhom }
         };
 
             // Thực hiện đẩy dữ liệu lên Firebase
@@ -356,6 +389,68 @@ namespace DangKi_DangNhap
             KhoTaiLieu tl = new KhoTaiLieu(tenNhom, userName);
             tl.Show();
         }
+
+        private void bunifuButton26_Click(object sender, EventArgs e)
+        {
+            ShowIconSuggestionPopup();
+        }
+        private void ShowIconSuggestionPopup()
+        {
+            Form iconSuggestionForm = new Form();
+            iconSuggestionForm.FormBorderStyle = FormBorderStyle.None; // Remove border
+            iconSuggestionForm.StartPosition = FormStartPosition.Manual;
+            iconSuggestionForm.BackColor = Color.LightGreen; // Set background color
+            iconSuggestionForm.TransparencyKey = Color.LightGreen; // Make the background color transparent
+            iconSuggestionForm.Location = new Point(this.Location.X + bunifuButton26.Location.X,
+                                                    this.Location.Y + bunifuButton26.Location.Y + bunifuButton26.Height + 40);
+            iconSuggestionForm.Width = 550; // Increase width to fit 5 icons per row
+            iconSuggestionForm.Height = 300;
+
+            List<string> iconSuggestions = new List<string> { "❤️", "😎", "👍", "😁", "😢", "😊", "😀", "👌", "😍", "😌",
+                                                              "🥰", "😇", "😅", "😂", "🤩", "📚", "🎓", "🖊️", "📝", "🧠" };
+
+            int xPos = 10;
+            int yPos = 10;
+            int iconsPerRow = 10;
+            int iconSpacing = 5;
+            int iconSize = 40; // Adjust icon size as needed
+
+            foreach (string icon in iconSuggestions)
+            {
+                Button iconButton = new Button();
+                iconButton.Text = icon;
+                iconButton.Font = new Font("Segoe UI Emoji", 12);
+                iconButton.AutoSize = true;
+                iconButton.FlatStyle = FlatStyle.Flat; // Remove button border
+                iconButton.FlatAppearance.BorderSize = 0; // Remove button border
+                iconButton.BackColor = Color.LightGray; // Set button background color to match form's background
+                iconButton.Size = new Size(iconSize, iconSize); // Set icon size
+                iconButton.Location = new Point(xPos, yPos);
+                iconButton.Click += (sender, e) =>
+                {
+                    textBox1.Text += icon;
+                    iconSuggestionForm.Close();
+                };
+                iconSuggestionForm.Controls.Add(iconButton);
+
+                // Move to the next row if the maximum number of icons per row is reached
+                if ((iconSuggestions.IndexOf(icon) + 1) % iconsPerRow == 0)
+                {
+                    xPos = 10;
+                    yPos += iconSize + iconSpacing;
+                }
+                else
+                {
+                    xPos += iconSize + iconSpacing;
+                }
+            }
+
+            iconSuggestionForm.ShowInTaskbar = false; // Don't show in taskbar
+            iconSuggestionForm.ShowIcon = false; // Hide icon
+            iconSuggestionForm.TopMost = true; // Ensure it stays on top
+            iconSuggestionForm.Show(); // Show the form
+        }
+
     }
 }
 

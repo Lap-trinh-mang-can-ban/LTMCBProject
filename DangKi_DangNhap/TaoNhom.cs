@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Microsoft.VisualBasic.ApplicationServices;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
@@ -16,12 +17,13 @@ namespace DangKi_DangNhap
         private readonly IFirebaseClient firebaseClient;
         private int soLuongNhom = 0;
         private string tenNhom;
+        public string usern;
         public TaoNhom(String user)
         {
             InitializeComponent();
 
             userName = user;
-
+            usern = user;
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
@@ -78,11 +80,17 @@ namespace DangKi_DangNhap
             this.Controls.Add(btnNhomMoi);
             string key = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             // Tạo key cho bài đăng mới
-            var postData1 = new Dictionary<string, object>
-{
-    { key, key }
-};
-            FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
+            FirebaseResponse checkResponse = await firebaseClient.GetAsync($"group /{tenNhom}/message");
+            string responseBody = checkResponse.Body.ToString();
+            if (string.IsNullOrEmpty(responseBody) || responseBody == "null")
+            {
+                // Đường dẫn không tồn tại, thực hiện ghi dữ liệu vào Firebase
+                var postData1 = new Dictionary<string, object>
+    {
+        { key, tenNhom }
+    };
+                FirebaseResponse response1 = await firebaseClient.SetAsync($"group /{tenNhom}/message", postData1);
+            }
 
         }
 
@@ -185,7 +193,30 @@ namespace DangKi_DangNhap
         private void AddPostToRichTextBox(RichTextBox richTextBox, string post)
         {
             // Thêm bài đăng vào RichTextBox
-            richTextBox.AppendText(post + Environment.NewLine);
+            string postWithEmoji = post.Replace(":)", "😊")
+                                       .Replace("<3", "❤️")
+                                       .Replace(":))", "🤣")
+                                       .Replace("=)", "😊")
+            .Replace(":(", "🙁");
+
+
+            richTextBox.SelectionIndent = 10; // Đặt độ lề trái là 20 (đơn vị là pixel)
+            richTextBox.SelectionRightIndent = 10; // Đặt độ lề phải là 20 (đơn vị là pixel)
+            bool isCurrentUser = post.Contains(usern);
+            if (isCurrentUser)
+            {
+                postWithEmoji = postWithEmoji;
+                richTextBox.SelectionAlignment = HorizontalAlignment.Right;
+                richTextBox.AppendText(postWithEmoji + Environment.NewLine);
+                richTextBox.ScrollToCaret();
+            }
+            else
+            {
+                postWithEmoji = postWithEmoji ;
+                richTextBox.SelectionAlignment = HorizontalAlignment.Left;
+                richTextBox.AppendText(postWithEmoji + Environment.NewLine);
+                richTextBox.ScrollToCaret();
+            }
 
 
         }
