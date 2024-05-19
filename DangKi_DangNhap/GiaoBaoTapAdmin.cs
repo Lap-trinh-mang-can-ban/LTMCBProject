@@ -1,4 +1,11 @@
-﻿using FireSharp.Config;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
 using System;
@@ -16,30 +23,20 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Formats.Tar;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Firebase.Storage;
+using Microsoft.VisualBasic.ApplicationServices;
 namespace DangKi_DangNhap
 {
-    public partial class KhoTaiLieu : Form
+    public partial class GiaoBaoTapAdmin : Form
     {
         private int currentTopPosition = 0;
-        private IFirebaseClient firebaseClient;
-        private string tenNhom;
-        private string user;
-        private OpenFileDialog openFileDialog = new OpenFileDialog();
         private const string Bucket = "databeseaccess.appspot.com";
-        // Di chuyển khai báo của hộp thoại mở tệp ra khỏi sự kiện
-
-        public KhoTaiLieu(string tenNhom, string userName)
+        private IFirebaseClient firebaseClient;
+        private OpenFileDialog openFileDialog = new OpenFileDialog();
+        string tenNhom;
+        public GiaoBaoTapAdmin(string tenNhom)
         {
             this.tenNhom = tenNhom;
-            this.user = userName;
             InitializeComponent();
-            InitializeFirebase();
-            LoadLinksFromFirebase();
-
-        }
-
-        private void InitializeFirebase()
-        {
             IFirebaseConfig config = new FirebaseConfig
             {
                 AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
@@ -48,21 +45,21 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+            LoadLinksFromFirebase();
+          
         }
- 
-        private async void bunifuButton24_Click(object sender, EventArgs e)
+
+        private void GiaoBaoTapAdmin_Load(object sender, EventArgs e)
         {
-            FirebaseResponse rsp = await firebaseClient.GetAsync($"group/{tenNhom}");
-            if (rsp.Body != "null")
-            {
-                
-            }
-            else
-            {
-                MessageBox.Show("Nhóm không còn hoạt động do đó không thể mở file!");
-            }
+
+        }
+
+        private async  void bunifuButton24_Click(object sender, EventArgs e)
+        {
+         
             string link = textBox1.Text.Trim();
             string tenfile = textBox2.Text.Trim();
+            string deadline = textBox3.Text;
             string tempNameFile = textBox2.Text;
             DateTime currentTime = DateTime.Now;
             string Date = currentTime.ToString("yyyy-MM-dd"); // Định dạng ngày tháng năm theo yyyy-MM-dd
@@ -74,12 +71,12 @@ namespace DangKi_DangNhap
                     MessageBox.Show("File không tồn tại!");
                     return;
                 }
-
+               
                 // Đọc nội dung của tệp
                 byte[] fileBytes = File.ReadAllBytes(link);
 
                 // Tạo một đường dẫn duy nhất trên Firebase Storage để lưu trữ tệp
-              //  string fileName = Path.GetFileName(link);
+                //  string fileName = Path.GetFileName(link);
                 string uniquePath = $"{tenNhom}/{tenfile}";
 
                 // Tải lên nội dung của tệp lên Firebase Storage
@@ -95,26 +92,26 @@ namespace DangKi_DangNhap
                     string firebaseStoragePath = await firebaseStorage.Child(uniquePath).GetDownloadUrlAsync();
 
                     // Lưu thông tin về tệp vào Firebase Realtime Database
-                    var newTL = new TaiLieu
-                    {
-                        UserUp = user,
-                        PathFile = firebaseStoragePath, // Lưu đường dẫn tới tệp trên Firebase Storage
-                        Date = Date,
-                        fileName = tenfile,
-                    };
+               
                     var data = new Dictionary<string, object>
             {
-                { tempNameFile, true }
+                { "BaiTap", tenfile }
             };
 
-                    FirebaseResponse response = await firebaseClient.UpdateAsync($"TaiLieu/{tenNhom}/{tenfile}", newTL);
-                    FirebaseResponse response1 = await firebaseClient.UpdateAsync($"TuyenTapTaiLieu/{tenNhom}", data);
+                    var data1 = new Dictionary<string, object>
+            {
+                {  deadline, true}
+            };
+                    FirebaseResponse response = await firebaseClient.UpdateAsync($"GiaoBaiTap/{tenNhom}", data);
+                    FirebaseResponse response1 = await firebaseClient.UpdateAsync($"GiaoBaiTap/{tenNhom}/ThoiHan", data1);
+                    // FirebaseResponse response1 = await firebaseClient.UpdateAsync($"TuyenTapTaiLieu/{tenNhom}", data);
 
                     // Xóa trường nhập và làm mới danh sách tệp
                     textBox1.Clear();
                     textBox2.Clear();
+                    textBox3.Clear();
                     richTextBox1.Controls.Clear();
-                    currentTopPosition = 0;
+                   
                     await LoadLinksFromFirebase();
 
                     MessageBox.Show("Tải tệp lên Firebase thành công!");
@@ -129,11 +126,9 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
             }
         }
-        
-
         public async Task LoadLinksFromFirebase()
         {
-            FirebaseResponse response = await firebaseClient.GetAsync($"TuyenTapTaiLieu/{tenNhom}");
+            FirebaseResponse response = await firebaseClient.GetAsync($"GiaoBaiTap/{tenNhom}");
             if (response.Body != "null")
             {
                 Dictionary<string, object> fileInfo = response.ResultAs<Dictionary<string, object>>();
@@ -141,12 +136,10 @@ namespace DangKi_DangNhap
                 foreach (var pair in fileInfo)
                 {
 
-                    AddLinkLabelToRichTextBox(pair.Key);
+                    AddLinkLabelToRichTextBox(pair.Value.ToString());
                 }
             }
         }
-
-
         private void AddLinkLabelToRichTextBox(string link)
         {
             LinkLabel linkLabel = new LinkLabel();
@@ -155,7 +148,7 @@ namespace DangKi_DangNhap
 
             // Thiết lập Font cho linkLabel
             linkLabel.Font = new Font(linkLabel.Font, FontStyle.Bold); // Đặt đậm
-            linkLabel.Font = new Font(linkLabel.Font.FontFamily, 12); // Đặt kích thước 12
+            linkLabel.Font = new Font(linkLabel.Font.FontFamily, 14); // Đặt kích thước 12
 
             linkLabel.Width = 2000; // Đặt độ rộng tùy ý
             linkLabel.Height = 30; // Đặt chiều cao tùy ý
@@ -166,56 +159,18 @@ namespace DangKi_DangNhap
             richTextBox1.Controls.Add(linkLabel);
 
             // Đặt vị trí của linkLabel bằng với vị trí hiện tại của RichTextBox
-            linkLabel.Location = new System.Drawing.Point(0, currentTopPosition);
+            linkLabel.Location = new System.Drawing.Point(0, 0);
 
             // Tăng giá trị currentTopPosition cho linkLabel tiếp theo
-            currentTopPosition += linkLabel.Height + 5; // Thêm một khoảng trống
+         
         }
-
-        private bool closeButtonClicked = false; // Biến để xác định xem nút "x" đã được nhấn hay không
         private async void LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
-            LinkLabel linkLabel0 = sender as LinkLabel;
-            string nameF = linkLabel0.Text;
-            FirebaseResponse FileResponse = await firebaseClient.GetAsync($"TaiLieu/{tenNhom}/{nameF}");
-            var TepTin = FileResponse.ResultAs<TaiLieu>();
-
-            this.Hide();
-            ThongTinFile f = new ThongTinFile(linkLabel0, tenNhom, TepTin);
-            f.FormClosing += ThongTinFile_FormClosing;
-            f.ShowDialog();
-
-            // Hiển thị form ThongTinFile và chờ đợi cho đến khi nó được đóng
-            if (closeButtonClicked)
-                return;
-
-            this.Show();
-            // Kiểm tra kết quả trả về từ form ThongTinFile
-
 
         }
-
-        private void ThongTinFile_FormClosing(object sender, FormClosingEventArgs e)
+        private void bunifuButton23_Click(object sender, EventArgs e)
         {
-            // Kiểm tra xem nguyên nhân của sự kiện FormClosing là do nút "x" được nhấn hay không
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                // Đặt biến closeButtonClicked thành true để biết rằng nút "x" đã được nhấn
-                closeButtonClicked = true;
-            }
-        }
-
-
-        private string DecodePath(string encodedPath)
-        {
-            byte[] bytes = Convert.FromBase64String(encodedPath);
-            return System.Text.Encoding.UTF8.GetString(bytes);
-        }
-
-        private void bunifuButton21_Click(object sender, EventArgs e)
-        {
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 string filePath = openFileDialog.FileName;
@@ -225,27 +180,5 @@ namespace DangKi_DangNhap
 
             }
         }
-      
-        private string EncodePath(string path)
-        {
-            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(path);
-            return Convert.ToBase64String(bytes);
-        }
-
-        private void KhoTaiLieu_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-
-       
-    }
-    public class TaiLieu
-    {
-        public string UserUp { get; set; }
-        public string PathFile { get; set; }
-        public string Date { get; set; }
-        public string fileName { get; set; }
-     
     }
 }

@@ -94,16 +94,19 @@ namespace DangKi_DangNhap
               
                   string eventDate = $"{LapLich.static_month}_{number}_{LapLich.static_year}";
                     FirebaseResponse response = await firebaseClient.GetAsync($"Calendar/{userName}/{eventDate}");
-                    if (response.Body == "null")
+                  
+                if (response.Body == "null")
                     {
-                       // MessageBox.Show("Không tìm thấy dữ liệu cho ngày này.");
-                        // Nếu không có dữ liệu, xóa nội dung của lbEvent
-                        lbEvent.Text = "";
-                        return;
-                    }
-
-                lbEvent.Text = response.Body;
-
+                    // MessageBox.Show("Không tìm thấy dữ liệu cho ngày này.");
+                    // Nếu không có dữ liệu, xóa nội dung của lbEvent
+                    lbEvent.Text = "";
+                }
+                else
+                {
+                    lbEvent.Text = response.Body;
+                }
+               
+               
 
                 // Hiển thị dữ liệu trong lbEvent
                 // lbEvent.Text = response.Body;
@@ -114,6 +117,7 @@ namespace DangKi_DangNhap
               //  MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu sự kiện: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+      
         public void ColorBack(int ngay, int thang)
         {
             DateTime now = DateTime.Now;

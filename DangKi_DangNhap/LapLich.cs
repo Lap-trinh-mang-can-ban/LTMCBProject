@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DangKi_DangNhap
 {
@@ -63,6 +64,7 @@ namespace DangKi_DangNhap
                 UserControl2 uscontrol2 = new UserControl2(userName);
                 uscontrol2.Days(i);
                 uscontrol2.DisplayEvent(i);
+             
                 uscontrol2.ColorBack(i, month);
                 flowLayoutPanel1.Controls.Add(uscontrol2);
             }
@@ -94,6 +96,7 @@ namespace DangKi_DangNhap
                 UserControl2 uscontrol2 = new UserControl2(userName);
                 uscontrol2.Days(i);
                 uscontrol2.DisplayEvent(i);
+             
                 uscontrol2.ColorBack(i, month);
                 flowLayoutPanel1.Controls.Add(uscontrol2);
             }
@@ -121,6 +124,7 @@ namespace DangKi_DangNhap
                 UserControl2 uscontrol2 = new UserControl2(userName);
                 uscontrol2.Days(i);
                 uscontrol2.DisplayEvent(i);
+             
                 uscontrol2.ColorBack(i, month);
                 flowLayoutPanel1.Controls.Add(uscontrol2);
             }

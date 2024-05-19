@@ -19,8 +19,7 @@ namespace DangKi_DangNhap
             // Hiển thị tên người dùng
             label2.Text = user.Username;
             // Hiển thị email người dùng
-            string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(user.Email));
-            label4.Text = email1;
+            label4.Text = user.Email;
             // Các thông tin khác có thể được hiển thị tương tự
             label6.Text = user.Ngaysinh;
             label8.Text = user.Gioitinh;
@@ -31,7 +30,14 @@ namespace DangKi_DangNhap
 
         }
 
- 
-      
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

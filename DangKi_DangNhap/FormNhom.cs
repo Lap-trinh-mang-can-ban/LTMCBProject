@@ -43,7 +43,6 @@ namespace DangKi_DangNhap
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
 
-            SubscribeToFirebase();
             SubscribeToFirebase1();
         }
 
@@ -96,7 +95,8 @@ namespace DangKi_DangNhap
                 {
                     richTextBox1.AppendText(latestItem.Value + Environment.NewLine);
 
-                });
+                }
+            );
             }
 
             /*}
@@ -106,18 +106,7 @@ namespace DangKi_DangNhap
             }*/
         }
 
-        private async Task SubscribeToFirebase()
-        {
-            // Subscribe to changes in the "files" node of the Firebase database
-            await firebaseClient.OnAsync($"files/{tenNhom}", async (sender, args, context) =>
-            {
-                // Reload data whenever there's a change in the database
-                await link_load();
-            });
-
-
-        }
-
+    
 
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
@@ -170,69 +159,8 @@ namespace DangKi_DangNhap
 
 
 
-        private async void bunifuButton22_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                filePath = openFileDialog.FileName;
-                fileName = Path.GetFileName(filePath);
-                await UploadFileAsync(filePath);
-                // Gán đường dẫn của file vào LinkLabel1
 
-                //linkLabel1.Tag = filePath; // Lưu đường dẫn của file vào Tag của LinkLabel1
-                var data1 = new Dictionary<string, object>
-                {
-                    { userName , fileName }
-                };
-
-                FirebaseResponse response1 = await firebaseClient.SetAsync($"files/{tenNhom}", data1);
-                if (response1.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    MessageBox.Show("Dữ liệu đã được đẩy lên Firebase thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Đã xảy ra lỗi khi đẩy dữ liệu lên Firebase!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                await link_load();
-            }
-        }
-
-        private async Task link_load()
-        {
-            string pra = "";
-
-
-            FirebaseResponse response = await firebaseClient.GetAsync($"files/{tenNhom}");
-            if (response == null || response.Body == "null")
-            {
-
-                return;
-            }
-            // Kiểm tra xem yêu cầu có thành công hay không
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                // Trích xuất dữ liệu từ phản hồi
-                var responseData = response.ResultAs<Dictionary<string, object>>();
-
-                // Lặp qua từng cặp key-value trong responseData
-                foreach (var kvp in responseData)
-                {
-                    // Lấy giá trị từ mỗi cặp key-value
-                    string value = kvp.Value.ToString(); // Chỉ lấy giá trị, không quan tâm đến key
-
-                    // Thêm giá trị vào linkLabel1.Text hoặc làm bất kỳ thao tác nào khác bạn muốn thực hiện
-                    pra += value; // Ví dụ: thêm giá trị vào linkLabel1.Text với mỗi giá trị trên một dòng mới
-                }
-
-                linkLabel1.Text = pra;
-            }
-            else
-            {
-
-            }
-        }
+     
         private async Task UploadFileAsync(string filePath)
         {
             /*try
@@ -269,68 +197,74 @@ namespace DangKi_DangNhap
         }
 
         // btn_click_link open File on this page
-        private async void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            await DownloadFileFromStorage();
-        }
+       
 
 
-        private async Task DownloadFileFromStorage()
-        {
-            if (linkLabel1.Text == "Upload File môn học.")
-                return;
-            /*try
-            {*/
-            string a = tenNhom;
-            string b = linkLabel1.Text;
-
-            var storage = new FirebaseStorage(Bucket);
-            var downloadUrl = await storage
-                .Child(a).Child(b)
-                .GetDownloadUrlAsync();
-
-            // Start a new process to download the file
-            Process.Start("C:\\Program Files\\Internet Explorer\\iexplore.exe", downloadUrl);
-            /* }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("Error: " + ex.Message);
-             }*/
-        }
-
+     
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
+
+            // Sau khi có giá trị, bạn có thể tiếp tục xử lý logic của bạn ở đây
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{userName}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+
+            // Kiểm tra nếu giá trị của "tenNhom" là "true"
+            if (tenNhomValue != "true")
+            {
+                MessageBox.Show("Người tạo nhóm không thể rời nhóm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+
+            }
+
+
             DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn rời nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult == DialogResult.Yes)
             {
-                /* try
-                 {*/
-
-                // Xóa nhoms
-                FirebaseResponse res = firebaseClient.Delete("nhoms/" + userName + "/" + tenNhom);
-                FirebaseResponse res1 = firebaseClient.Delete($"group /{tenNhom}");
-                if ((res.StatusCode == System.Net.HttpStatusCode.OK) && (res1.StatusCode == System.Net.HttpStatusCode.OK))
+                try
                 {
-                    MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Xóa userName khỏi nhóm
+                    FirebaseResponse res = await firebaseClient.DeleteAsync($"nhoms/{userName}/{tenNhom}");
+                    FirebaseResponse res1 = await firebaseClient.DeleteAsync($"group /{tenNhom}/{userName}");
 
-                    // Hiển thị form tạo nhóm
-                    var form = new TaoNhom(userName);
-
-                    // Đóng form hiện tại
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                /*}
-                    catch (Exception ex)
+                    if (res.StatusCode == System.Net.HttpStatusCode.OK && res1.StatusCode == System.Net.HttpStatusCode.OK)
                     {
+                        MessageBox.Show("Đã rời khỏi nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Kiểm tra xem còn thành viên nào trong nhóm không
+                        FirebaseResponse response = await firebaseClient.GetAsync($"group /{tenNhom}");
+                        if (response.Body == null || response.Body == "null")
+                        {
+                            // Nếu không còn thành viên nào trong nhóm, xóa nhóm
+                            FirebaseResponse res2 = await firebaseClient.DeleteAsync($"group /{tenNhom}");
+                            if (res2.StatusCode == System.Net.HttpStatusCode.OK)
+                            {
+                                MessageBox.Show("Nhóm đã bị xóa do không còn thành viên!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Không thể xóa nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+
+                        // Hiển thị form tạo nhóm
+                        var form = new TaoNhom(userName);
+
+                        // Đóng form hiện tại
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không thể rời khỏi nhóm!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
                     MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+                }
             }
         }
-
 
         private void saveFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -338,16 +272,79 @@ namespace DangKi_DangNhap
         }
 
 
-        private void bunifuButton24_Click(object sender, EventArgs e)
+        private async void bunifuButton24_Click(object sender, EventArgs e)
         {
-            MoiVaoNhom invite = new MoiVaoNhom(tenNhom);
-            invite.Show();
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{userName}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+
+            // Kiểm tra nếu giá trị của "tenNhom" là "true"
+            if (tenNhomValue != "true")
+            {
+                MoiVaoNhom invite = new MoiVaoNhom(tenNhom);
+                invite.Show();
+
+
+            }
+            else
+            {
+                MessageBox.Show("Chỉ người tạo nhóm mới có quyền mời người khác vào nhóm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
         }
 
         private void bunifuButton25_Click(object sender, EventArgs e)
         {
             KhoTaiLieu tl = new KhoTaiLieu(tenNhom, userName);
             tl.Show();
+        }
+
+        private async void bunifuButton26_Click(object sender, EventArgs e)
+        {
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{userName}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+
+            // Kiểm tra nếu giá trị của "tenNhom" là "true"
+            if (tenNhomValue != "true")
+            {
+                DialogResult dialogResult = MessageBox.Show("Toàn bộ dữ liệu nhóm sẽ bị xóa bạn có chắc chắn muốn xóa nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FirebaseResponse res = await firebaseClient.DeleteAsync($"nhoms/{userName}/{tenNhom}");
+                    FirebaseResponse res1 = await firebaseClient.DeleteAsync($"group /{tenNhom}");
+                    MessageBox.Show("Xóa nhóm thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Chỉ người tạo nhóm mới có quyền xóa nhóm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private async void bunifuButton27_Click(object sender, EventArgs e)
+        {
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{userName}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+
+            // Kiểm tra nếu giá trị của "tenNhom" là "true"
+            if (tenNhomValue != "true")
+            {
+                GiaoBaoTapAdmin admin = new GiaoBaoTapAdmin(tenNhom);
+                admin.Show();
+
+            }
+            else
+            {
+                GiaoBaiTap tv = new GiaoBaiTap(tenNhom);
+                tv.Show();
+            }
         }
     }
 }

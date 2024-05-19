@@ -28,7 +28,7 @@ namespace DangKi_DangNhap
         private void SetTenTaiLieuToLabel3()
         {
 
-                label3.Text = tenfile.fileName;
+            label3.Text = tenfile.fileName;
             label5.Text = tenfile.UserUp;
             label7.Text = tenfile.Date;
             label9.Text = tenfile.PathFile;
@@ -49,6 +49,11 @@ namespace DangKi_DangNhap
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

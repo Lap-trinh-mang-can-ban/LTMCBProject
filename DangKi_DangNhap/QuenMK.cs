@@ -30,8 +30,8 @@ namespace DangKi_DangNhap
         {
             string email = textBox1.Text.Trim();
             string taikhoan = textBox2.Text.Trim();
-            string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
-            if (encodedEmail == "")
+            
+            if (email == "")
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -48,13 +48,13 @@ namespace DangKi_DangNhap
                 }
 
                 var user = userResponse.ResultAs<User>();
-                if (user.Email != (encodedEmail))
+                if (user.Email != (email))
                 {
                     MessageBox.Show("Email không đúng vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 string password = user.MatKhau;
-                string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(encodedEmail));
+                string email1 = email;
                 // Gửi email chứa mật khẩu đến người dùng
                 GuiEmailMatKhau(email1, password);
 

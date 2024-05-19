@@ -127,12 +127,17 @@ namespace DangKi_DangNhap
 
         private void bunifuButton25_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom(currentUser.Username)); 
+            OpenChildForm(new CaiDat(currentUser.MatKhau, currentUser.TaiKhoan));
         }
 
         private void bunifuButton26_Click(object sender, EventArgs e)
         {
             OpenChildForm(new DanhGia());
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

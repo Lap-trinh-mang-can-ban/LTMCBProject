@@ -74,6 +74,7 @@
             label4.Name = "label4";
             label4.Size = new Size(231, 25);
             label4.TabIndex = 10;
+            label4.Click += label4_Click;
             // 
             // pictureBox1
             // 
@@ -85,6 +86,7 @@
             pictureBox1.Size = new Size(145, 145);
             pictureBox1.TabIndex = 9;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // label7
             // 

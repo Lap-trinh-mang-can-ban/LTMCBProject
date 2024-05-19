@@ -335,7 +335,7 @@
             bunifuButton25.BackColor1 = Color.White;
             bunifuButton25.BackgroundImage = (Image)resources.GetObject("bunifuButton25.BackgroundImage");
             bunifuButton25.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            bunifuButton25.ButtonText = "  Nhắn tin";
+            bunifuButton25.ButtonText = "Bảo mật";
             bunifuButton25.ButtonTextMarginLeft = 0;
             bunifuButton25.ColorContrastOnClick = 45;
             bunifuButton25.ColorContrastOnHover = 45;
@@ -792,6 +792,7 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(1098, 675);
             panel3.TabIndex = 5;
+            panel3.Paint += panel3_Paint;
             // 
             // pictureBox2
             // 

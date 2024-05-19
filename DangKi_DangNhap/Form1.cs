@@ -60,6 +60,7 @@ namespace DangKi_DangNhap
                     return;
                 }
                 string userName = user.Username;
+                string tk = user.TaiKhoan;
                 // Đăng nhập thành công
                 MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = "";
