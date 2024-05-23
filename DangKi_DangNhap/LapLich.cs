@@ -30,10 +30,7 @@ namespace DangKi_DangNhap
             EventForm eventForm = new EventForm(userName); // Truyền giá trị userName vào constructor của EventForm
             eventForm.Show();
         }
-        private void LapLich_Load(object sender, EventArgs e)
-        {
-            displayDays();
-        }
+     
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {

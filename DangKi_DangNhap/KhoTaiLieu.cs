@@ -227,10 +227,7 @@ namespace DangKi_DangNhap
             return Convert.ToBase64String(bytes);
         }
 
-        private void KhoTaiLieu_Load_1(object sender, EventArgs e)
-        {
-
-        }
+       
 
 
        

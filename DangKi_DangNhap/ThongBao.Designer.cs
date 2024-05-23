@@ -109,6 +109,7 @@
             richTextBox6.Size = new Size(317, 528);
             richTextBox6.TabIndex = 9;
             richTextBox6.Text = "";
+            richTextBox6.TextChanged += richTextBox6_TextChanged;
             // 
             // label6
             // 

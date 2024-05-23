@@ -215,7 +215,7 @@ namespace DangKi_DangNhap
                         timeDifference.Hours.ToString() + " giờ " +
                         timeDifference.Minutes.ToString() + " phút " +
                         timeDifference.Seconds.ToString() + " giây trước";*/
-            string result  = datetime + " " + nhoms + " có bài đăng mới.";
+            string result = datetime + " " + nhoms + " có bài đăng mới.";
             richTextBox6.AppendText(result + Environment.NewLine);
 
 
@@ -262,7 +262,7 @@ namespace DangKi_DangNhap
             if (totalDays == 0)
             {
                 string values = $"hôm nay là đến: {value}";
-                richTextBox2.AppendText("   "+values + Environment.NewLine);
+                richTextBox2.AppendText("   " + values + Environment.NewLine);
             }
             else if (totalDays == 1)
             {
@@ -296,6 +296,11 @@ namespace DangKi_DangNhap
         }
 
         private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void richTextBox6_TextChanged(object sender, EventArgs e)
         {
 
         }

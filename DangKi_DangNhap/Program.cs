@@ -12,7 +12,7 @@ namespace DangKi_DangNhap
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             //Application.Run(new TaoNhom());
-            Application.Run(new Form1());
+            Application.Run(new Dangnhap());
         }
     }
 } 

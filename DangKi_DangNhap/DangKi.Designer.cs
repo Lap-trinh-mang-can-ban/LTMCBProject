@@ -411,7 +411,6 @@
             Controls.Add(bunifuPanel1);
             Name = "DangKi";
             Text = "Đăng ký ";
-            Load += DangKi_Load;
             bunifuPanel1.ResumeLayout(false);
             bunifuPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox1).EndInit();

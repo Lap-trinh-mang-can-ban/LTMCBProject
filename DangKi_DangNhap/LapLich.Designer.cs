@@ -324,7 +324,6 @@
             Controls.Add(flowLayoutPanel1);
             Name = "LapLich";
             Text = "LapLich";
-            Load += LapLich_Load;
             ResumeLayout(false);
         }
 

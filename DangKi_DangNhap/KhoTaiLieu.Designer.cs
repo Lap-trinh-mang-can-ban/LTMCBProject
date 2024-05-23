@@ -438,7 +438,6 @@
             Controls.Add(textBox1);
             Name = "KhoTaiLieu";
             Text = "KhoTaiLieu";
-            Load += KhoTaiLieu_Load_1;
             ResumeLayout(false);
             PerformLayout();
         }

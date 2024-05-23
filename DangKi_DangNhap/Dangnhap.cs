@@ -9,11 +9,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
-    public partial class Form1 : Form
+    public partial class Dangnhap : Form
     {
         private IFirebaseClient firebaseClient;
 
-        public Form1()
+        public Dangnhap()
         {
             InitializeComponent();
 
