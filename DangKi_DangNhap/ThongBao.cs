@@ -37,9 +37,7 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
-            loadnotify_ll();
-            loadnotify_nhom1();
-            loadnotify_nhom();
+            
         }
         private async Task loadnotify_nhom()
         {
@@ -222,7 +220,7 @@ namespace DangKi_DangNhap
         }
         /// ///////////////////////////////////////
         /// </summary>
-        private async void loadnotify_ll()
+        private async Task loadnotify_ll()
         {
             try
             {
@@ -242,7 +240,7 @@ namespace DangKi_DangNhap
                 {
                     string date = pair.Key;
                     string value = pair.Value.ToString();
-                    AddPostToRichTextBox(date, value);
+                    await AddPostToRichTextBox(date, value);
                 }
             }
             catch (Exception ex)
@@ -252,7 +250,7 @@ namespace DangKi_DangNhap
 
 
         }
-        private void AddPostToRichTextBox(string date, string value)
+        private async Task AddPostToRichTextBox(string date, string value)
         {
             DateTime dateTime_now = DateTime.Now.Date;
             DateTime dateTime_before;
@@ -290,9 +288,13 @@ namespace DangKi_DangNhap
 
         }
 
-        private void ThongBao_Load_1(object sender, EventArgs e)
+        private async void ThongBao_Load_1(object sender, EventArgs e)
         {
-
+            loadnotify_ll();
+            loadnotify_nhom1();
+            loadnotify_nhom();
+            
+            
         }
 
         private void label10_Click(object sender, EventArgs e)
