@@ -35,6 +35,15 @@ namespace DangKi_DangNhap
                     return;
                 }
 
+                FirebaseResponse groupResponse = await firebaseClient.GetAsync($"group/{tenNhom}");
+                var existingGroup = groupResponse.ResultAs<Dictionary<string, object>>();
+
+                if (existingGroup != null)
+                {
+                    MessageBox.Show("nhóm đã tồn tại Vui lòng đặt tên nhóm khác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Tạo dữ liệu để thêm vào Firebase
                 var data1 = new Dictionary<string, object>
                 {
