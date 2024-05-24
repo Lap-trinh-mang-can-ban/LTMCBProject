@@ -56,16 +56,7 @@ namespace DangKi_DangNhap
                 {
                     Rating = ratingValue,
                     Feedback = feedbackText,
-                    Timestamp = DateTime.Now
-                };
-
-                // Đẩy dữ liệu lên Firebase
-                PushResponse response = await firebaseClient.PushAsync("feedbacks", feedbackData);
-
-                // Hiển thị thông báo khi lưu thành công
-                if (response.StatusCode == System.Net.HttpStatusCode.OK)
-                {
-                    MessageBox.Show("Đánh giá của bạn đã được lưu thành công!");
+               gửi thành công!");
 
                     // Xóa nội dung đã nhập sau khi lưu thành công
                     bunifuRating1.Value = 3; // assuming 0 is the default value
