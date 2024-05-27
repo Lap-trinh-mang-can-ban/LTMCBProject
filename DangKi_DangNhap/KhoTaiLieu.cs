@@ -53,8 +53,21 @@ namespace DangKi_DangNhap
         private async void bunifuButton24_Click(object sender, EventArgs e)
         {
             string link = textBox1.Text.Trim();
-            string tenfile = textBox2.Text.Trim();
-            string tempNameFile = textBox2.Text;
+            string filename = Path.GetFileNameWithoutExtension(link);
+
+            string extension = "";
+            int underscoreIndex = filename.LastIndexOf('_'); // Find the last underscore index
+            if (underscoreIndex != -1 && underscoreIndex < filename.Length - 1) // Check if underscore exists and it's not the last character
+            {
+                extension = filename.Substring(underscoreIndex + 1); // Get the substring after the underscore
+                int dotIndex = extension.LastIndexOf('.'); // Find the last dot index
+                if (dotIndex != -1) // Check if dot exists
+                {
+                    extension = extension.Substring(0, dotIndex); // Exclude the .hex part
+                }
+            }
+            string tenfile = $"{textBox2.Text.Trim()}_{extension}";
+            string tempNameFile = $"{textBox2.Text}_{extension}";
             DateTime currentTime = DateTime.Now;
             string Date = currentTime.ToString("yyyy-MM-dd"); // Định dạng ngày tháng năm theo yyyy-MM-dd
             if (!string.IsNullOrEmpty(link))
