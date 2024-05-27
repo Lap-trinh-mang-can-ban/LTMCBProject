@@ -49,7 +49,7 @@ namespace DangKi_DangNhap
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
- 
+
         private async void bunifuButton24_Click(object sender, EventArgs e)
         {
             string link = textBox1.Text.Trim();
@@ -70,7 +70,7 @@ namespace DangKi_DangNhap
                 byte[] fileBytes = File.ReadAllBytes(link);
 
                 // Tạo một đường dẫn duy nhất trên Firebase Storage để lưu trữ tệp
-              //  string fileName = Path.GetFileName(link);
+                //  string fileName = Path.GetFileName(link);
                 string uniquePath = $"{tenNhom}/{tenfile}";
 
                 // Tải lên nội dung của tệp lên Firebase Storage
@@ -97,7 +97,7 @@ namespace DangKi_DangNhap
             {
                 { tempNameFile, true }
             };
-                    
+
                     var data_notify = new Dictionary<string, object>
                     {
                         {currentTime.ToString("yyyy-MM-dd HH:mm:ss"), $"{tenNhom}" }
@@ -124,7 +124,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
             }
         }
-        
+
 
         public async Task LoadLinksFromFirebase()
         {
@@ -220,7 +220,7 @@ namespace DangKi_DangNhap
 
             }
         }
-      
+
         private string EncodePath(string path)
         {
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(path);
@@ -232,8 +232,11 @@ namespace DangKi_DangNhap
 
         }
 
-
-       
+        private void bunifuButton25_Click(object sender, EventArgs e)
+        {
+            MaHoaFile maHoaFile = new MaHoaFile();
+            maHoaFile.ShowDialog();
+        }
     }
     public class TaiLieu
     {
