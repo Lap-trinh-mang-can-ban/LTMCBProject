@@ -121,6 +121,14 @@ namespace DangKi_DangNhap
                     MessageBox.Show("ID nhóm không đúng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
+                bool userExists = await CheckUsernameExists(tenTeam);
+                if (userExists)
+                {
+                    MessageBox.Show("Tên người dùng đã tồn tại, vui lòng chọn tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 FirebaseResponse response = await firebaseClient.UpdateAsync($"nhoms/{userName}", data);
                 FirebaseResponse response1 = await firebaseClient.UpdateAsync($"group /{tenTeam}", data1);
                 MessageBox.Show("Đã thêm người dùng vào nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -129,6 +137,12 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi thêm người dùng vào nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private async Task<bool> CheckUsernameExists(string name)
+        {
+            FirebaseResponse response = await firebaseClient.GetAsync($"group /{name}");
+            return response.Body != "null";
         }
     }
 }

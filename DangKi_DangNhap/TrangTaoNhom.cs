@@ -34,6 +34,12 @@ namespace DangKi_DangNhap
                     MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                bool userExists = await CheckGroupNameExists(tenNhom);
+                if (userExists)
+                {
+                    MessageBox.Show("Tên nhóm đã tồn tại, vui lòng chọn tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 // Tạo dữ liệu để thêm vào Firebase
                 var data1 = new Dictionary<string, object>
@@ -73,7 +79,11 @@ namespace DangKi_DangNhap
 
         }
 
-      
+        private async Task<bool> CheckGroupNameExists(string name)
+        {
+            FirebaseResponse response = await firebaseClient.GetAsync($"group /{name}");
+            return response.Body != "null";
+        }
 
     }
 }
