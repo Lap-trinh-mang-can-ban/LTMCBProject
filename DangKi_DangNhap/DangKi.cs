@@ -8,6 +8,7 @@ using FireSharp.Interfaces;
 using FireSharp.Response;
 using System.Threading.Tasks;
 using Firebase.Storage;
+using BCrypt.Net;
 
 namespace DangKi_DangNhap
 {
@@ -86,11 +87,13 @@ namespace DangKi_DangNhap
                     return;
                 }
 
+                string hashedPassword = BCrypt.Net.BCrypt.HashPassword(matKhau);
+
                 // Tạo dữ liệu người dùng mới
                 var newUser = new User
                 {
                     TaiKhoan = taiKhoan,
-                    MatKhau = matKhau,
+                    MatKhau = hashedPassword,
                     Email = encodedEmail,
                     Username = username,
                     Ngaysinh = ngaysinh,
