@@ -34,6 +34,7 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             label3 = new Label();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            errorLabel = new Label();
             bunifuButton23 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton22 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -61,6 +62,7 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(errorLabel);
             bunifuPanel1.Controls.Add(bunifuButton23);
             bunifuPanel1.Controls.Add(bunifuButton22);
             bunifuPanel1.Controls.Add(bunifuButton21);
@@ -72,6 +74,18 @@
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(576, 560);
             bunifuPanel1.TabIndex = 11;
+            // 
+            // errorLabel
+            // 
+            errorLabel.BackColor = Color.Transparent;
+            errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(27, 403);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(515, 28);
+            errorLabel.TabIndex = 29;
+            errorLabel.Text = "errorLabel";
+            errorLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // bunifuButton23
             // 
@@ -119,7 +133,7 @@
             bunifuButton23.IdleIconLeftImage = null;
             bunifuButton23.IdleIconRightImage = null;
             bunifuButton23.IndicateFocus = false;
-            bunifuButton23.Location = new Point(193, 422);
+            bunifuButton23.Location = new Point(194, 448);
             bunifuButton23.Name = "bunifuButton23";
             bunifuButton23.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.OnDisabledState.BorderRadius = 50;
@@ -412,5 +426,6 @@
         private TextBox textBox2;
         private TextBox textBox1;
         private Label label1;
+        private Label errorLabel;
     }
 }

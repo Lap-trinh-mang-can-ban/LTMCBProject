@@ -23,6 +23,8 @@ namespace DangKi_DangNhap
                 BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
             };
             firebaseClient = new FireSharp.FirebaseClient(config);
+            //Làm rỗng label báo lỗi 
+            errorLabel.Text = "";
         }
 
 
@@ -41,16 +43,18 @@ namespace DangKi_DangNhap
                 // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
                 if (string.IsNullOrEmpty(tenUser))
                 {
-                    MessageBox.Show("Vui lòng nhập tên người dùng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Vui lòng nhập tên người dùng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorLabel.Text = "Bạn chưa nhập tên người dùng !";
                     return;
                 }
 
-                // Truy vấn Firebase để lấy danh sách các nhóm mà userName đã tham gia
+                // Truy vấn Firebase để lấy danh sách các nhóm mà userName đã tạo
                 FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{tenUser}");
 
                 if (response.Body == "null")
                 {
-                    MessageBox.Show("Không tìm thấy dữ liệu");
+                    //MessageBox.Show("Không tìm thấy dữ liệu");
+                    errorLabel.Text = "Không tìm thấy nhóm nào !";
                     return;
                 }
 
@@ -82,6 +86,7 @@ namespace DangKi_DangNhap
         private async void bunifuButton24_Click(object sender, EventArgs e)
         {
 
+
             try
             {
                 string tenUser = textBox1.Text;
@@ -91,26 +96,28 @@ namespace DangKi_DangNhap
                 // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
                 if (string.IsNullOrEmpty(tenTeam) || string.IsNullOrEmpty(tenUser) || string.IsNullOrEmpty(IDnhom))
                 {
-                    MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Vui lòng nhập đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorLabel.Text = "Vui lòng nhập đầy đủ thông tin !";
                     return;
                 }
 
                 // Thực hiện cập nhật dữ liệu trong Firebase để thêm người dùng vào nhóm
                 var data = new Dictionary<string, object>
-        {
-            { tenTeam, true }
-        };
+    {
+        { tenTeam, true }
+    };
                 var data1 = new Dictionary<string, object>
-        {
-            { userName, true }
-        };
+    {
+        { userName, true }
+    };
                 // Thực hiện cập nhật dữ liệu vào Firebase
 
                 FirebaseResponse response2 = await firebaseClient.GetAsync($"nhoms/{tenUser}/{tenTeam}");
 
                 if (response2.Body == "null")
                 {
-                    MessageBox.Show("Tên người dùng hoặc tên nhóm không đúng.");
+                    //MessageBox.Show("Tên người dùng hoặc tên nhóm không đúng.");
+                    errorLabel.Text = "Tên người dùng hoặc tên nhóm không đúng !";
                     return;
                 }
                 string actualID = response2.ResultAs<string>();
@@ -118,26 +125,23 @@ namespace DangKi_DangNhap
                 // So sánh ID nhập vào với ID thực tế từ Firebase
                 if (IDnhom != actualID)
                 {
-                    MessageBox.Show("ID nhóm không đúng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("ID nhóm không đúng.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorLabel.Text = "ID nhóm không đúng";
                     return;
                 }
-
-                bool userExists = await CheckUsernameExists(tenTeam);
-                if (userExists)
-                {
-                    MessageBox.Show("Tên người dùng đã tồn tại, vui lòng chọn tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
                 FirebaseResponse response = await firebaseClient.UpdateAsync($"nhoms/{userName}", data);
                 FirebaseResponse response1 = await firebaseClient.UpdateAsync($"group /{tenTeam}", data1);
-                MessageBox.Show("Đã thêm người dùng vào nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đã tham gia nhóm thành công ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                comboBox1.Text = "";
+                textBox2.Text = "";
+                errorLabel.Text = "";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi khi thêm người dùng vào nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi khi tham gia vào nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        
+    }
 
         private async Task<bool> CheckUsernameExists(string name)
         {

@@ -24,6 +24,7 @@ namespace DangKi_DangNhap
             };
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+            errorLabel.Text = "";
         }
         
         private async void bunifuButton23_Click(object sender, EventArgs e)
@@ -33,7 +34,8 @@ namespace DangKi_DangNhap
             string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
             if (encodedEmail == "")
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
                 return;
             }
             try
@@ -43,14 +45,16 @@ namespace DangKi_DangNhap
 
                 if (userResponse.Body == "null")
                 {
-                    MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorLabel.Text = "Tài khoản không tồn tại !";
                     return;
                 }
 
                 var user = userResponse.ResultAs<User>();
                 if (user.Email != (encodedEmail))
                 {
-                    MessageBox.Show("Email không đúng vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Email không đúng vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorLabel.Text = "Email không đúng hoặc không tồn tại email này !";
                     return;
                 }
                 string password = user.MatKhau;
@@ -59,6 +63,7 @@ namespace DangKi_DangNhap
                 GuiEmailMatKhau(email1, password);
 
                 MessageBox.Show("Mật khẩu đã được gửi đến email của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                errorLabel.Text = "";
             }
             catch (Exception ex)
             {
@@ -71,7 +76,7 @@ namespace DangKi_DangNhap
         {
             try
             {
-                string fromAddress = "22520358@gm.uit.edu.vn"; // Email của bạn
+                string fromAddress = "22520358@gm.uit.edu.vn"; // Email của chur host
                 string toAddress = email; // Email của người dùng
                 string subject = "Password Recovery"; // Tiêu đề email
                 string body = $"Mật khẩu của bạn: {password}"; // Nội dung email

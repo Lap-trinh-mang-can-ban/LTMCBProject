@@ -48,6 +48,9 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+
+            //Làm rông label báo lỗi 
+            errorLabel.Text = "";
         }
  
         private async void bunifuButton24_Click(object sender, EventArgs e)
@@ -113,6 +116,7 @@ namespace DangKi_DangNhap
                     await LoadLinksFromFirebase();
 
                     MessageBox.Show("Tải tệp lên Firebase thành công!");
+                    errorLabel.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -121,7 +125,8 @@ namespace DangKi_DangNhap
             }
             else
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
+                // MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
+                errorLabel.Text = "Vui lòng nhập đầy đủ thông tin !";
             }
         }
         

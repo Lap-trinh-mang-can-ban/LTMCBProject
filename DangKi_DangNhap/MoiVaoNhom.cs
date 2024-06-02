@@ -31,6 +31,8 @@ namespace DangKi_DangNhap
                 BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
             };
             firebaseClient = new FireSharp.FirebaseClient(config);
+            //làm rông lable báo lỗi 
+            errorLabel.Text = "";
         }
 
         private void MoiVaoNhom_Load(object sender, EventArgs e)
@@ -63,16 +65,19 @@ namespace DangKi_DangNhap
                     temp++;
                 }
             }
-            if (temp == 0)
-            {
-                MessageBox.Show("Tên người dùng không tồn tại !!");
-                return;
-            }
             if (string.IsNullOrEmpty(ten))
             {
-                MessageBox.Show("Vui lòng nhập tên người dùng cần mời!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //MessageBox.Show("Vui lòng nhập tên người dùng cần mời!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errorLabel.Text = "Vui lòng nhập tên người dùng cần mời !";
                 return;
             }
+            if (temp == 0)
+            {
+                //MessageBox.Show("Tên người dùng không tồn tại !!");
+                errorLabel.Text = "Tên người dùng không tồn tại !";
+                return;
+            }
+          
             var data = new Dictionary<string, object>
         {
             { TenNhom, true }
@@ -84,6 +89,7 @@ namespace DangKi_DangNhap
             FirebaseResponse response = await firebaseClient.UpdateAsync($"nhoms/{ten}", data);
             FirebaseResponse response1 = await firebaseClient.UpdateAsync($"group /{TenNhom}", data1);
             MessageBox.Show("Đã mời người dùng vào nhóm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            errorLabel.Text = "";
         }
 
         

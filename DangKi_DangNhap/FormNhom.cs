@@ -52,6 +52,9 @@ namespace DangKi_DangNhap
             SubscribeToFirebase();
             SubscribeToFirebase1();
             richTextBox1.Padding = new Padding(10);
+
+            //Làm rỗng label báo lỗi 
+            errorLabel.Text = "";
         }
 
         private async void SubscribeToFirebase1()
@@ -155,13 +158,15 @@ namespace DangKi_DangNhap
            
             if (textBox1.Text == "")
             {
-                MessageBox.Show("Vui lòng nhập tin nhắn!");
+                //MessageBox.Show("Vui lòng nhập tin nhắn!");
+                errorLabel.Text = "Bạn chưa nhập gì !";
                 return;
             }
             else
             {
                 string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
                 await PushDataToFirebase(tenNhom, data);
+                errorLabel.Text = "";
             }
             
 

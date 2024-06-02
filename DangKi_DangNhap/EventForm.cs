@@ -32,12 +32,13 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Không thể kết nối tới máy chủ Firebase");
             }
+            errorLabel.Text = "";
         }
 
         private void EventForm_Load(object sender, EventArgs e)
         {
-                string date = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
-                textBox1.Text = date;   
+            string date = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
+            textBox1.Text = date;
         }
 
         private async void bunifuButton22_Click(object sender, EventArgs e)
@@ -48,7 +49,8 @@ namespace DangKi_DangNhap
             // Kiểm tra dữ liệu hợp lệ
             if (string.IsNullOrEmpty(eventName))
             {
-                MessageBox.Show("Vui lòng nhập sự kiện.");
+                //MessageBox.Show("Vui lòng nhập sự kiện.");
+                errorLabel.Text = "Vui lòng nhập sự kiện !";
                 return;
             }
 
@@ -65,11 +67,13 @@ namespace DangKi_DangNhap
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Thêm sự kiện thành công.");
-
+                    textBox2.Text = "";
+                    errorLabel.Text = "";
                 }
                 else
                 {
-                    MessageBox.Show("Đã xảy ra lỗi khi thêm sự kiện.");
+                    //MessageBox.Show("Đã xảy ra lỗi khi thêm sự kiện.");
+                    errorLabel.Text = "Không thể thêm sự kiện ";
                 }
             }
             catch (Exception ex)
@@ -77,7 +81,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-      
+
         private async Task<int> GetCurrentEventCount()
         {
             try
@@ -108,7 +112,7 @@ namespace DangKi_DangNhap
             }
         }
 
- 
+
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             string eventDate = textBox1.Text.Trim();
@@ -121,10 +125,12 @@ namespace DangKi_DangNhap
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Đã xóa sự kiện.");
+                    errorLabel.Text = ""; 
                 }
                 else
                 {
-                    MessageBox.Show("Đã xảy ra lỗi khi xóa sự kiện.");
+                    //MessageBox.Show("Đã xảy ra lỗi khi xóa sự kiện.");
+                    errorLabel.Text = "Không thể xóa sự kiện !";
                 }
             }
             catch (Exception ex)
@@ -132,10 +138,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-  
-    
 
-
-       
+        
     }
 }

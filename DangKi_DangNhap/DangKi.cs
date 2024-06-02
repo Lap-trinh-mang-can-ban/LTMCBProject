@@ -9,12 +9,16 @@ using FireSharp.Response;
 using System.Threading.Tasks;
 using Firebase.Storage;
 using BCrypt.Net;
+using System.Net.Mail;
+using System.Net;
 
 namespace DangKi_DangNhap
 {
     public partial class DangKi : Form
     {
         IFirebaseClient firebaseClient;
+        private string verificationCode;
+        private bool isPasswordVisible = false;
 
         public DangKi()
         {
@@ -29,6 +33,9 @@ namespace DangKi_DangNhap
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+            //Làm rỗng label báo lỗi 
+            errorLabel.Text = "";
+            label9.Text = "";
         }
 
         private async void bunifuButton22_Click(object sender, EventArgs e)
@@ -41,15 +48,19 @@ namespace DangKi_DangNhap
             string username = textBox5.Text;
             string ngaysinh = textBox6.Text;
             string gioitinh = comboBox1.Text;
-            if (string.IsNullOrWhiteSpace(taiKhoan) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh))
+            string maXacThuc = textBox7.Text;
+
+            if (string.IsNullOrWhiteSpace(taiKhoan) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh) || string.IsNullOrWhiteSpace(maXacThuc))
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
                 return;
             }
 
             if (matKhau != xacNhanMatKhau)
             {
-                MessageBox.Show("Mật khẩu và xác nhận mật khẩu không khớp nhau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Mật khẩu và xác nhận mật khẩu không khớp nhau!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Xác nhận mật khẩu chưa đúng !";
                 return;
             }
 
@@ -59,23 +70,8 @@ namespace DangKi_DangNhap
                 FirebaseResponse userExistsResponse = firebaseClient.Get($"users/{taiKhoan}");
                 if (userExistsResponse.Body != "null")
                 {
-                    MessageBox.Show("Tên tài khoản đã tồn tại!! Vui lòng nhập tên tài khoản khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Kiểm tra xem email đã tồn tại chưa
-                FirebaseResponse emailExistsResponse = firebaseClient.Get($"emails/{encodedEmail}");
-                if (emailExistsResponse.Body != "null")
-                {
-                    MessageBox.Show("Email đã tồn tại!! Vui lòng nhập email khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Kiểm tra xem username đã tồn tại chưa
-                FirebaseResponse usernameExistsResponse = firebaseClient.Get($"Username/{username}");
-                if (usernameExistsResponse.Body != "null")
-                {
-                    MessageBox.Show("Username đã tồn tại!! Vui lòng nhập 1 Username khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Tên tài khoản đã tồn tại!! Vui lòng nhập tên tài khoản khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorLabel.Text = "Tên tài khoản đã tồn tại !";
                     return;
                 }
 
@@ -83,9 +79,30 @@ namespace DangKi_DangNhap
                 FirebaseResponse passwordExistsResponse = firebaseClient.Get($"Password/{matKhau}");
                 if (passwordExistsResponse.Body != "null")
                 {
-                    MessageBox.Show("Mật khẩu đã tồn tại!! Vui lòng nhập 1 mật khẩu khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Mật khẩu đã tồn tại!! Vui lòng nhập 1 mật khẩu khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorLabel.Text = "Mật khẩu đã tồn tại !";
                     return;
                 }
+
+                // Kiểm tra xem email đã tồn tại chưa
+                FirebaseResponse emailExistsResponse = firebaseClient.Get($"emails/{encodedEmail}");
+                if (emailExistsResponse.Body != "null")
+                {
+                    //MessageBox.Show("Email đã tồn tại!! Vui lòng nhập email khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorLabel.Text = "Email đã tồn tại !";
+                    return;
+                }
+
+                // Kiểm tra xem username đã tồn tại chưa
+                FirebaseResponse usernameExistsResponse = firebaseClient.Get($"Username/{username}");
+                if (usernameExistsResponse.Body != "null")
+                {
+                    //MessageBox.Show("Username đã tồn tại!! Vui lòng nhập 1 Username khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorLabel.Text = "Tên người dùng đã tồn tại !";
+                    return;
+                }
+
+
 
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(matKhau);
 
@@ -108,7 +125,7 @@ namespace DangKi_DangNhap
                 await firebaseClient.SetAsync($"Password/{matKhau}", true);
                 // Thêm username mới vào danh sách để kiểm tra tồn tại
                 await firebaseClient.SetAsync($"Username/{username}", true);
-                MessageBox.Show("Đăng kí thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Đăng kí thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = "";
                 textBox2.Text = "";
                 textBox3.Text = "";
@@ -116,13 +133,16 @@ namespace DangKi_DangNhap
                 textBox5.Text = "";
                 textBox6.Text = "";
                 comboBox1.Text = "";
+                textBox7.Text = "";
+                errorLabel.Text = "";
+                label9.Text = "";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Đã xảy ra lỗi gì gì đó : " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
+
         private void bunifuButton21_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -153,7 +173,7 @@ namespace DangKi_DangNhap
         }
 
 
-       
+
 
         private async Task<string> UploadImageToFirebaseStorage(string imagePath)
         {
@@ -189,8 +209,76 @@ namespace DangKi_DangNhap
         {
 
         }
+        // hiển thị và ẩn mật khẩu
+        private void ShowPasswordButton_Click(object sender, EventArgs e)
+        {     
+            isPasswordVisible = !isPasswordVisible;
+            textBox2.UseSystemPasswordChar = !isPasswordVisible;
+            textBox3.UseSystemPasswordChar = !isPasswordVisible;
+        }
+        private string GenerateVerificationCode()
+        {
+            Random random = new Random();
+            return random.Next(100000, 999999).ToString();
+        }
 
-        
+        private void GuiEmailXacThuc(string email, string code)
+        {
+            try
+            {
+                string fromAddress = "22520358@gm.uit.edu.vn";
+                string toAddress = email; 
+                string subject = "Verification Code"; // Tiêu đề email
+                string body = $"Mã xác thực của bạn là: {code}"; // Nội dung email
+
+                using (MailMessage mail = new MailMessage(fromAddress, toAddress, subject, body))
+                {
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.EnableSsl = true;
+                        smtp.Credentials = new NetworkCredential(fromAddress, "svlo zxtg dblm nycv"); 
+                        smtp.Send(mail);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi khi gửi email: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void btnLayma_Click(object sender, EventArgs e)
+        {
+            string email = textBox4.Text;
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                errorLabel.Text = "Vui lòng nhập email !";
+                return;
+            }
+
+            string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
+
+            try
+            {
+                // Kiểm tra xem email đã tồn tại chưa
+                FirebaseResponse emailExistsResponse = await firebaseClient.GetAsync($"emails/{encodedEmail}");
+                if (emailExistsResponse.Body != "null")
+                {
+                    errorLabel.Text = "Email đã tồn tại !";
+                    return;
+                }
+
+                verificationCode = GenerateVerificationCode();
+                GuiEmailXacThuc(email, verificationCode);
+                //MessageBox.Show("Mã xác thực đã được gửi đến email của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                errorLabel.Text = "";
+                label9.Text = "Mã xác thực đã được gửi đến mail của bạn";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 
     public class User

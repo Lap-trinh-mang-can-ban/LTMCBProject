@@ -38,11 +38,12 @@
             textBox2 = new TextBox();
             linkLabel1 = new LinkLabel();
             linkLabel2 = new LinkLabel();
-            label3 = new Label();
             pictureBox2 = new PictureBox();
             label4 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            ShowPasswordButton = new Button();
+            errorLabel = new Label();
             bunifuButton22 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton23 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -56,31 +57,31 @@
             // 
             textBox1.BackColor = Color.White;
             textBox1.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(218, 328);
+            textBox1.Location = new Point(185, 328);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(265, 53);
+            textBox1.Size = new Size(298, 53);
             textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             textBox2.BackColor = Color.White;
             textBox2.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(218, 408);
+            textBox2.Location = new Point(185, 400);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(265, 53);
+            textBox2.Size = new Size(298, 53);
             textBox2.TabIndex = 2;
             // 
             // linkLabel1
             // 
             linkLabel1.ActiveLinkColor = Color.SteelBlue;
             linkLabel1.AutoSize = true;
-            linkLabel1.BackColor = Color.DeepSkyBlue;
+            linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            linkLabel1.LinkColor = Color.WhiteSmoke;
-            linkLabel1.Location = new Point(221, 656);
+            linkLabel1.LinkColor = Color.DeepSkyBlue;
+            linkLabel1.Location = new Point(227, 651);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(85, 28);
             linkLabel1.TabIndex = 5;
@@ -92,24 +93,17 @@
             // 
             linkLabel2.ActiveLinkColor = Color.SteelBlue;
             linkLabel2.AutoSize = true;
-            linkLabel2.BackColor = Color.DeepSkyBlue;
+            linkLabel2.BackColor = Color.Transparent;
             linkLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             linkLabel2.ForeColor = Color.WhiteSmoke;
-            linkLabel2.LinkColor = Color.WhiteSmoke;
-            linkLabel2.Location = new Point(190, 587);
+            linkLabel2.LinkColor = Color.DeepSkyBlue;
+            linkLabel2.Location = new Point(190, 598);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(145, 28);
+            linkLabel2.Size = new Size(159, 28);
             linkLabel2.TabIndex = 6;
             linkLabel2.TabStop = true;
-            linkLabel2.Text = "Quên mật khẩu";
+            linkLabel2.Text = "Quên mật khẩu ?";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
-            // 
-            // label3
-            // 
-            label3.Location = new Point(0, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 23);
-            label3.TabIndex = 0;
             // 
             // pictureBox2
             // 
@@ -122,7 +116,6 @@
             pictureBox2.Size = new Size(316, 206);
             pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // label4
             // 
@@ -134,7 +127,6 @@
             label4.Size = new Size(445, 43);
             label4.TabIndex = 9;
             label4.Text = "Ứng dụng quản lý học nhóm ";
-            label4.Click += label4_Click;
             // 
             // bunifuPanel1
             // 
@@ -144,6 +136,8 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(ShowPasswordButton);
+            bunifuPanel1.Controls.Add(errorLabel);
             bunifuPanel1.Controls.Add(bunifuButton22);
             bunifuPanel1.Controls.Add(bunifuButton21);
             bunifuPanel1.Controls.Add(bunifuButton23);
@@ -153,13 +147,34 @@
             bunifuPanel1.Controls.Add(label4);
             bunifuPanel1.Controls.Add(textBox1);
             bunifuPanel1.Controls.Add(textBox2);
-            bunifuPanel1.Controls.Add(bunifuButton26);
-            bunifuPanel1.Controls.Add(bunifuButton27);
-            bunifuPanel1.Location = new Point(360, 9);
+            bunifuPanel1.Location = new Point(360, 10);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(526, 722);
             bunifuPanel1.TabIndex = 10;
+            // 
+            // ShowPasswordButton
+            // 
+            ShowPasswordButton.Image = (Image)resources.GetObject("ShowPasswordButton.Image");
+            ShowPasswordButton.ImageAlign = ContentAlignment.TopLeft;
+            ShowPasswordButton.Location = new Point(427, 405);
+            ShowPasswordButton.Name = "ShowPasswordButton";
+            ShowPasswordButton.Size = new Size(50, 44);
+            ShowPasswordButton.TabIndex = 20;
+            ShowPasswordButton.UseVisualStyleBackColor = true;
+            ShowPasswordButton.UseWaitCursor = true;
+            ShowPasswordButton.Click += ShowPasswordButton_Click;
+            // 
+            // errorLabel
+            // 
+            errorLabel.BackColor = Color.Transparent;
+            errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(185, 461);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(338, 41);
+            errorLabel.TabIndex = 19;
+            errorLabel.Text = "errorLabel";
             // 
             // bunifuButton22
             // 
@@ -207,7 +222,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(41, 412);
+            bunifuButton22.Location = new Point(27, 400);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 25;
@@ -241,7 +256,7 @@
             bunifuButton22.OnPressedState.ForeColor = Color.Black;
             bunifuButton22.OnPressedState.IconLeftImage = null;
             bunifuButton22.OnPressedState.IconRightImage = null;
-            bunifuButton22.Size = new Size(161, 49);
+            bunifuButton22.Size = new Size(139, 49);
             bunifuButton22.TabIndex = 18;
             bunifuButton22.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton22.TextAlignment = HorizontalAlignment.Center;
@@ -295,7 +310,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(41, 332);
+            bunifuButton21.Location = new Point(29, 332);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 25;
@@ -329,7 +344,7 @@
             bunifuButton21.OnPressedState.ForeColor = Color.Black;
             bunifuButton21.OnPressedState.IconLeftImage = null;
             bunifuButton21.OnPressedState.IconRightImage = null;
-            bunifuButton21.Size = new Size(161, 49);
+            bunifuButton21.Size = new Size(137, 49);
             bunifuButton21.TabIndex = 17;
             bunifuButton21.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton21.TextAlignment = HorizontalAlignment.Center;
@@ -365,7 +380,7 @@
             bunifuButton23.DisabledFillColor = Color.FromArgb(204, 204, 204);
             bunifuButton23.DisabledForecolor = Color.FromArgb(168, 160, 168);
             bunifuButton23.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
-            bunifuButton23.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bunifuButton23.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             bunifuButton23.ForeColor = Color.WhiteSmoke;
             bunifuButton23.IconLeftAlign = ContentAlignment.MiddleLeft;
             bunifuButton23.IconLeftCursor = Cursors.Default;
@@ -383,7 +398,7 @@
             bunifuButton23.IdleIconLeftImage = null;
             bunifuButton23.IdleIconRightImage = null;
             bunifuButton23.IndicateFocus = false;
-            bunifuButton23.Location = new Point(168, 505);
+            bunifuButton23.Location = new Point(166, 514);
             bunifuButton23.Name = "bunifuButton23";
             bunifuButton23.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.OnDisabledState.BorderRadius = 50;
@@ -417,7 +432,7 @@
             bunifuButton23.OnPressedState.ForeColor = Color.White;
             bunifuButton23.OnPressedState.IconLeftImage = null;
             bunifuButton23.OnPressedState.IconRightImage = null;
-            bunifuButton23.Size = new Size(188, 49);
+            bunifuButton23.Size = new Size(203, 61);
             bunifuButton23.TabIndex = 12;
             bunifuButton23.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton23.TextAlignment = HorizontalAlignment.Center;
@@ -472,7 +487,7 @@
             bunifuButton26.IdleIconLeftImage = null;
             bunifuButton26.IdleIconRightImage = null;
             bunifuButton26.IndicateFocus = false;
-            bunifuButton26.Location = new Point(135, 576);
+            bunifuButton26.Location = new Point(892, 671);
             bunifuButton26.Name = "bunifuButton26";
             bunifuButton26.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton26.OnDisabledState.BorderRadius = 50;
@@ -560,7 +575,7 @@
             bunifuButton27.IdleIconLeftImage = null;
             bunifuButton27.IdleIconRightImage = null;
             bunifuButton27.IndicateFocus = false;
-            bunifuButton27.Location = new Point(185, 645);
+            bunifuButton27.Location = new Point(999, 608);
             bunifuButton27.Name = "bunifuButton27";
             bunifuButton27.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton27.OnDisabledState.BorderRadius = 50;
@@ -610,11 +625,11 @@
             BackColor = Color.LightBlue;
             ClientSize = new Size(1219, 732);
             Controls.Add(bunifuPanel1);
-            Controls.Add(label3);
+            Controls.Add(bunifuButton26);
+            Controls.Add(bunifuButton27);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "Form1";
             Text = "Đăng nhập ";
-            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             bunifuPanel1.ResumeLayout(false);
             bunifuPanel1.PerformLayout();
@@ -626,7 +641,6 @@
         private TextBox textBox2;
         private LinkLabel linkLabel1;
         private LinkLabel linkLabel2;
-        private Label label3;
         private PictureBox pictureBox2;
         private Label label4;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
@@ -636,5 +650,8 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton26;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton22;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton21;
+        private Label errorLabel;
+        private CheckBox checkBox1;
+        private Button ShowPasswordButton;
     }
 }

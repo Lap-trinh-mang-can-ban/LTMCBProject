@@ -18,6 +18,7 @@ namespace DangKi_DangNhap
             this.userName = userName;
             this.firebaseClient = firebaseClient; // Gán giá trị cho biến firebaseClient
             InitializeComponent();
+            errorLabel.Text = "";
         }
 
         private async void bunifuButton21_Click(object sender, EventArgs e)
@@ -31,13 +32,16 @@ namespace DangKi_DangNhap
                 // Kiểm tra xem người dùng đã nhập đủ thông tin chưa
                 if (string.IsNullOrEmpty(tenNhom) || string.IsNullOrEmpty(nhomID))
                 {
-                    MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Vui lòng nhập tên nhóm và ID nhóm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorLabel.Text = "Vui long nhập đầy đủ thông tin !";
                     return;
                 }
+
                 bool userExists = await CheckGroupNameExists(tenNhom);
                 if (userExists)
                 {
-                    MessageBox.Show("Tên nhóm đã tồn tại, vui lòng chọn tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("Tên nhóm đã tồn tại, vui lòng chọn tên khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorLabel.Text = "Tên nhóm đã tồn tại !";
                     return;
                 }
 
@@ -46,7 +50,8 @@ namespace DangKi_DangNhap
 
                 if (existingGroup != null)
                 {
-                    MessageBox.Show("nhóm đã tồn tại Vui lòng đặt tên nhóm khác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //MessageBox.Show("nhóm đã tồn tại Vui lòng đặt tên nhóm khác!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    errorLabel.Text = "Nhóm đã tồn tại vui lòng đặt tên khác !";
                     return;
                 }
 
@@ -60,10 +65,10 @@ namespace DangKi_DangNhap
                 FirebaseResponse response1 = await firebaseClient.UpdateAsync($"nhoms/{userName}", data1);
 
                 // Hiển thị thông báo tạo nhóm thành công
-                MessageBox.Show("Đã tạo nhóm mới!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tạo nhóm mới thành công ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                errorLabel.Text = "";
 
                 // Thêm button nhóm mới vào form
-
 
                 var data = new Dictionary<string, object>
                 {
