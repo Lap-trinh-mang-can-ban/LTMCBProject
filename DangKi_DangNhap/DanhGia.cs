@@ -30,8 +30,8 @@ namespace DangKi_DangNhap
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
@@ -57,7 +57,7 @@ namespace DangKi_DangNhap
                     Timestamp = DateTime.Now
                 };
 
-                PushResponse response = await firebaseClient.PushAsync("feedbacks", feedbackData);
+                PushResponse response = await firebaseClient.PushAsync("Danhgia", feedbackData);
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -79,7 +79,7 @@ namespace DangKi_DangNhap
         {
             try
             {
-                FirebaseResponse response = await firebaseClient.GetAsync("feedbacks");
+                FirebaseResponse response = await firebaseClient.GetAsync("Danhgia");
                 var feedbacks = response.ResultAs<Dictionary<string, Feedback>>();
 
                 if (feedbacks != null)

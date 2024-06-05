@@ -33,6 +33,8 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            textBox2 = new TextBox();
+            label9 = new Label();
             btnLayma = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             textBox7 = new TextBox();
             label8 = new Label();
@@ -50,12 +52,10 @@
             textBox1 = new TextBox();
             label1 = new Label();
             comboBox1 = new ComboBox();
-            textBox2 = new TextBox();
             textBox3 = new TextBox();
             textBox6 = new TextBox();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
-            label9 = new Label();
             bunifuPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox1).BeginInit();
             SuspendLayout();
@@ -68,6 +68,7 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(textBox2);
             bunifuPanel1.Controls.Add(label9);
             bunifuPanel1.Controls.Add(btnLayma);
             bunifuPanel1.Controls.Add(textBox7);
@@ -86,7 +87,6 @@
             bunifuPanel1.Controls.Add(textBox1);
             bunifuPanel1.Controls.Add(label1);
             bunifuPanel1.Controls.Add(comboBox1);
-            bunifuPanel1.Controls.Add(textBox2);
             bunifuPanel1.Controls.Add(textBox3);
             bunifuPanel1.Controls.Add(textBox6);
             bunifuPanel1.Controls.Add(textBox4);
@@ -96,6 +96,29 @@
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(526, 722);
             bunifuPanel1.TabIndex = 24;
+            // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.White;
+            textBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(213, 367);
+            textBox2.Multiline = true;
+            textBox2.Name = "textBox2";
+            textBox2.PasswordChar = '*';
+            textBox2.Size = new Size(175, 27);
+            textBox2.TabIndex = 34;
+            // 
+            // label9
+            // 
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.ForeColor = Color.LimeGreen;
+            label9.Location = new Point(72, 557);
+            label9.Name = "label9";
+            label9.Size = new Size(378, 16);
+            label9.TabIndex = 33;
+            label9.Text = "Hãy đảm bảo bạn đã nhập đúng email";
+            label9.TextAlign = ContentAlignment.TopCenter;
             // 
             // btnLayma
             // 
@@ -143,7 +166,7 @@
             btnLayma.IdleIconLeftImage = null;
             btnLayma.IdleIconRightImage = null;
             btnLayma.IndicateFocus = false;
-            btnLayma.Location = new Point(361, 568);
+            btnLayma.Location = new Point(361, 577);
             btnLayma.Name = "btnLayma";
             btnLayma.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             btnLayma.OnDisabledState.BorderRadius = 30;
@@ -188,7 +211,7 @@
             // 
             // textBox7
             // 
-            textBox7.Location = new Point(216, 572);
+            textBox7.Location = new Point(216, 582);
             textBox7.Name = "textBox7";
             textBox7.Size = new Size(135, 27);
             textBox7.TabIndex = 31;
@@ -197,7 +220,7 @@
             // 
             label8.BackColor = Color.OldLace;
             label8.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(88, 575);
+            label8.Location = new Point(86, 582);
             label8.Name = "label8";
             label8.Size = new Size(122, 27);
             label8.TabIndex = 30;
@@ -207,7 +230,7 @@
             // 
             ShowPasswordButton.Image = (Image)resources.GetObject("ShowPasswordButton.Image");
             ShowPasswordButton.ImageAlign = ContentAlignment.TopLeft;
-            ShowPasswordButton.Location = new Point(389, 325);
+            ShowPasswordButton.Location = new Point(389, 364);
             ShowPasswordButton.Name = "ShowPasswordButton";
             ShowPasswordButton.Size = new Size(41, 35);
             ShowPasswordButton.TabIndex = 29;
@@ -220,7 +243,7 @@
             errorLabel.BackColor = Color.Transparent;
             errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(101, 602);
+            errorLabel.Location = new Point(101, 616);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(338, 27);
             errorLabel.TabIndex = 28;
@@ -273,7 +296,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(177, 659);
+            bunifuButton22.Location = new Point(177, 657);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 50;
@@ -340,17 +363,17 @@
             // 
             label5.BackColor = Color.OldLace;
             label5.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(88, 446);
+            label5.Location = new Point(86, 326);
             label5.Name = "label5";
             label5.Size = new Size(148, 27);
             label5.TabIndex = 25;
-            label5.Text = "Tên người dùng";
+            label5.Text = "Tài khoản";
             // 
             // label4
             // 
             label4.BackColor = Color.OldLace;
             label4.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(88, 406);
+            label4.Location = new Point(88, 447);
             label4.Name = "label4";
             label4.Size = new Size(73, 27);
             label4.TabIndex = 24;
@@ -360,7 +383,7 @@
             // 
             label3.BackColor = Color.OldLace;
             label3.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(88, 365);
+            label3.Location = new Point(86, 405);
             label3.Name = "label3";
             label3.Size = new Size(167, 27);
             label3.TabIndex = 23;
@@ -370,7 +393,7 @@
             // 
             label2.BackColor = Color.OldLace;
             label2.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(88, 328);
+            label2.Location = new Point(88, 367);
             label2.Name = "label2";
             label2.Size = new Size(97, 27);
             label2.TabIndex = 22;
@@ -484,8 +507,10 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(213, 293);
+            textBox1.BackColor = Color.White;
+            textBox1.Location = new Point(213, 287);
             textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
             textBox1.Size = new Size(217, 27);
             textBox1.TabIndex = 2;
             // 
@@ -493,69 +518,50 @@
             // 
             label1.BackColor = Color.OldLace;
             label1.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(88, 292);
+            label1.Location = new Point(88, 290);
             label1.Name = "label1";
             label1.Size = new Size(104, 27);
             label1.TabIndex = 1;
-            label1.Text = "Tài khoản ";
+            label1.Text = "ID của bạn ";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "Nam", "Nữ ", "Không muốn tiết lộ" });
-            comboBox1.Location = new Point(216, 526);
+            comboBox1.Location = new Point(192, 526);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(214, 28);
+            comboBox1.Size = new Size(238, 28);
             comboBox1.TabIndex = 17;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(213, 329);
-            textBox2.Name = "textBox2";
-            textBox2.PasswordChar = '*';
-            textBox2.Size = new Size(175, 27);
-            textBox2.TabIndex = 3;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(267, 365);
+            textBox3.Location = new Point(259, 406);
+            textBox3.Multiline = true;
             textBox3.Name = "textBox3";
             textBox3.PasswordChar = '*';
-            textBox3.Size = new Size(163, 27);
+            textBox3.Size = new Size(171, 27);
             textBox3.TabIndex = 11;
             // 
             // textBox6
             // 
-            textBox6.Location = new Point(216, 485);
+            textBox6.Location = new Point(192, 485);
             textBox6.Name = "textBox6";
-            textBox6.Size = new Size(214, 27);
+            textBox6.Size = new Size(238, 27);
             textBox6.TabIndex = 15;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(177, 406);
+            textBox4.Location = new Point(177, 447);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(253, 27);
             textBox4.TabIndex = 8;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(242, 447);
+            textBox5.Location = new Point(242, 326);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(188, 27);
             textBox5.TabIndex = 13;
-            // 
-            // label9
-            // 
-            label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.ForeColor = Color.LimeGreen;
-            label9.Location = new Point(88, 628);
-            label9.Name = "label9";
-            label9.Size = new Size(378, 27);
-            label9.TabIndex = 33;
-            label9.Text = "Mã xác thực đã được gửi đến mail của bạn ";
-            label9.TextAlign = ContentAlignment.TopCenter;
             // 
             // DangKi
             // 
@@ -587,7 +593,6 @@
         private TextBox textBox1;
         private Label label1;
         private ComboBox comboBox1;
-        private TextBox textBox2;
         private TextBox textBox3;
         private TextBox textBox6;
         private TextBox textBox4;
@@ -598,5 +603,6 @@
         private Label label8;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 btnLayma;
         private Label label9;
+        private TextBox textBox2;
     }
 }

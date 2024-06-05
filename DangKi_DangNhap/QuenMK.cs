@@ -19,8 +19,8 @@ namespace DangKi_DangNhap
             InitializeComponent();
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
@@ -30,9 +30,9 @@ namespace DangKi_DangNhap
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
             string email = textBox1.Text.Trim();
-            string taikhoan = textBox2.Text.Trim();
-            string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
-            if (encodedEmail == "")
+            string tentaikhoan = textBox2.Text.Trim();
+            //string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
+            if (email == "")
             {
                 //MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
@@ -41,8 +41,7 @@ namespace DangKi_DangNhap
             try
             {
 
-                FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{taikhoan}");
-
+                FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{tentaikhoan}");
                 if (userResponse.Body == "null")
                 {
                     //MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -51,16 +50,16 @@ namespace DangKi_DangNhap
                 }
 
                 var user = userResponse.ResultAs<User>();
-                if (user.Email != (encodedEmail))
+                if (user.Email != (email))
                 {
                     //MessageBox.Show("Email không đúng vui lòng nhập lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     errorLabel.Text = "Email không đúng hoặc không tồn tại email này !";
                     return;
                 }
                 string password = user.MatKhau;
-                string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(encodedEmail));
+                //string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(encodedEmail));
                 // Gửi email chứa mật khẩu đến người dùng
-                GuiEmailMatKhau(email1, password);
+                GuiEmailMatKhau(email, password);
 
                 MessageBox.Show("Mật khẩu đã được gửi đến email của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 errorLabel.Text = "";

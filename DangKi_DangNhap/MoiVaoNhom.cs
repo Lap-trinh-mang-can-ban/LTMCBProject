@@ -27,8 +27,8 @@ namespace DangKi_DangNhap
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
             firebaseClient = new FireSharp.FirebaseClient(config);
             //làm rông lable báo lỗi 
@@ -44,7 +44,7 @@ namespace DangKi_DangNhap
         {
             int temp = 0;
             string ten = textBox1.Text;
-            FirebaseResponse response2 = await firebaseClient.GetAsync($"Username");
+            FirebaseResponse response2 = await firebaseClient.GetAsync($"Tentaikhoan");
             if (response2.Body == "null")
             {
                 MessageBox.Show("Không tìm thấy dữ liệu");

@@ -24,8 +24,8 @@ namespace DangKi_DangNhap
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
@@ -36,11 +36,11 @@ namespace DangKi_DangNhap
         }
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
-            string taiKhoan = textBox1.Text;
+            string tentaikhoan = textBox1.Text;
             string matKhau = textBox2.Text;
             errorLabel.Text = ""; // Xóa thông báo lỗi trước đó
 
-            if (string.IsNullOrWhiteSpace(taiKhoan))
+            if (string.IsNullOrWhiteSpace(tentaikhoan))
             {
                 //MessageBox.Show("Vui lòng nhập tên đăng nhập của bạn!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 errorLabel.Text = "Vui lòng nhập tên đăng nhập của bạn !";
@@ -56,7 +56,7 @@ namespace DangKi_DangNhap
             try
             {
                 // Kiểm tra xem tài khoản có tồn tại và mật khẩu đúng không trên Firebase
-                FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{taiKhoan}");
+                FirebaseResponse userResponse = await firebaseClient.GetAsync($"users/{tentaikhoan}");
                 if (userResponse.Body == "null")
                 {
                     // MessageBox.Show("Tài khoản không tồn tại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -74,7 +74,7 @@ namespace DangKi_DangNhap
                     return;
                 }
 
-                string userName = user.Username;
+                string userName = user.Tentaikhoan;
                 // Đăng nhập thành công
                 //MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = "";

@@ -16,5 +16,10 @@ namespace DangKi_DangNhap
         {
             InitializeComponent();
         }
+
+        private void TrangChuThatSu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
