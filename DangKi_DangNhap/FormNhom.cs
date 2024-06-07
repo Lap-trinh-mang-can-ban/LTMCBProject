@@ -106,7 +106,7 @@ namespace DangKi_DangNhap
             }*/
         }
 
-    
+
 
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
@@ -160,7 +160,7 @@ namespace DangKi_DangNhap
 
 
 
-     
+
         private async Task UploadFileAsync(string filePath)
         {
             /*try
@@ -197,10 +197,10 @@ namespace DangKi_DangNhap
         }
 
         // btn_click_link open File on this page
-       
 
 
-     
+
+
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
 
@@ -289,7 +289,8 @@ namespace DangKi_DangNhap
             }
             else
             {
-                MessageBox.Show("Chỉ người tạo nhóm mới có quyền mời người khác vào nhóm !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show("Chỉ người tạo nhóm mới có quyền mời người khác vào nhóm !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -322,7 +323,8 @@ namespace DangKi_DangNhap
             }
             else
             {
-                MessageBox.Show("Chỉ người tạo nhóm mới có quyền xóa nhóm", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show("Chỉ người tạo nhóm mới có quyền xóa nhóm !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -336,15 +338,25 @@ namespace DangKi_DangNhap
             // Kiểm tra nếu giá trị của "tenNhom" là "true"
             if (tenNhomValue != "true")
             {
-                GiaoBaoTapAdmin admin = new GiaoBaoTapAdmin(tenNhom);
+                AdminGroup admin = new AdminGroup(tenNhom);
                 admin.Show();
 
             }
             else
             {
-                GiaoBaiTap tv = new GiaoBaiTap(tenNhom);
-                tv.Show();
+                KhoQuiz q = new KhoQuiz(tenNhom, userName);
+                q.Show();
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

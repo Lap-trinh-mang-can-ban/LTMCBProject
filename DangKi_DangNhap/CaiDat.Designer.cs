@@ -1,4 +1,5 @@
-﻿namespace DangKi_DangNhap
+﻿
+namespace DangKi_DangNhap
 {
     partial class CaiDat
     {
@@ -71,10 +72,10 @@
             bunifuPanel1.Controls.Add(text1);
             bunifuPanel1.Controls.Add(label3);
             bunifuPanel1.Controls.Add(label2);
-            bunifuPanel1.Location = new Point(76, 106);
+            bunifuPanel1.Location = new Point(76, 80);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(647, 367);
+            bunifuPanel1.Size = new Size(647, 378);
             bunifuPanel1.TabIndex = 1;
             bunifuPanel1.Click += bunifuPanel1_Click;
             // 
@@ -124,7 +125,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(250, 210);
+            bunifuButton21.Location = new Point(259, 241);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 45;
@@ -194,7 +195,7 @@
             text3.IconPadding = 10;
             text3.IconRight = null;
             text3.IconRightCursor = Cursors.IBeam;
-            text3.Location = new Point(250, 141);
+            text3.Location = new Point(259, 159);
             text3.MaxLength = 32767;
             text3.MinimumSize = new Size(1, 1);
             text3.Modified = false;
@@ -246,7 +247,7 @@
             label5.BackColor = Color.OldLace;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(65, 152);
+            label5.Location = new Point(65, 170);
             label5.Name = "label5";
             label5.Size = new Size(152, 27);
             label5.TabIndex = 5;
@@ -279,7 +280,7 @@
             text2.IconPadding = 10;
             text2.IconRight = null;
             text2.IconRightCursor = Cursors.IBeam;
-            text2.Location = new Point(250, 80);
+            text2.Location = new Point(259, 100);
             text2.MaxLength = 32767;
             text2.MinimumSize = new Size(1, 1);
             text2.Modified = false;
@@ -353,7 +354,7 @@
             text1.IconPadding = 10;
             text1.IconRight = null;
             text1.IconRightCursor = Cursors.IBeam;
-            text1.Location = new Point(250, 30);
+            text1.Location = new Point(259, 44);
             text1.MaxLength = 32767;
             text1.MinimumSize = new Size(1, 1);
             text1.Modified = false;
@@ -405,7 +406,7 @@
             label3.BackColor = Color.OldLace;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(65, 91);
+            label3.Location = new Point(65, 100);
             label3.Name = "label3";
             label3.Size = new Size(179, 27);
             label3.TabIndex = 1;
@@ -416,7 +417,7 @@
             label2.BackColor = Color.OldLace;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(65, 41);
+            label2.Location = new Point(65, 44);
             label2.Name = "label2";
             label2.Size = new Size(179, 27);
             label2.TabIndex = 0;
@@ -431,10 +432,10 @@
             bunifuPanel2.BorderRadius = 50;
             bunifuPanel2.BorderThickness = 1;
             bunifuPanel2.Controls.Add(label1);
-            bunifuPanel2.Location = new Point(177, 12);
+            bunifuPanel2.Location = new Point(141, 12);
             bunifuPanel2.Name = "bunifuPanel2";
             bunifuPanel2.ShowBorders = true;
-            bunifuPanel2.Size = new Size(444, 65);
+            bunifuPanel2.Size = new Size(517, 65);
             bunifuPanel2.TabIndex = 0;
             bunifuPanel2.Tag = "";
             // 
@@ -443,11 +444,11 @@
             label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Navy;
-            label1.Location = new Point(43, 11);
+            label1.Location = new Point(37, 10);
             label1.Name = "label1";
-            label1.Size = new Size(352, 42);
+            label1.Size = new Size(432, 48);
             label1.TabIndex = 0;
-            label1.Text = "Bảo mật";
+            label1.Text = "Đổi thông tin đăng nhập";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // CaiDat
@@ -455,7 +456,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSkyBlue;
-            ClientSize = new Size(820, 528);
+            ClientSize = new Size(820, 562);
             Controls.Add(bunifuPanel2);
             Controls.Add(bunifuPanel1);
             Name = "CaiDat";

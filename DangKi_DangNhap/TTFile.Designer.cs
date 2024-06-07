@@ -70,9 +70,9 @@
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(170, 56);
+            label3.Location = new Point(85, 56);
             label3.Name = "label3";
-            label3.Size = new Size(205, 30);
+            label3.Size = new Size(360, 30);
             label3.TabIndex = 2;
             label3.Click += label3_Click;
             // 
@@ -168,7 +168,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
-            ClientSize = new Size(491, 445);
+            ClientSize = new Size(473, 445);
             Controls.Add(label1);
             Controls.Add(bunifuPanel1);
             Name = "TTFile";

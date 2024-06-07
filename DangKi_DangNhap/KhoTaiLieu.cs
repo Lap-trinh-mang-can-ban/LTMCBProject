@@ -52,15 +52,8 @@ namespace DangKi_DangNhap
  
         private async void bunifuButton24_Click(object sender, EventArgs e)
         {
-            FirebaseResponse rsp = await firebaseClient.GetAsync($"group/{tenNhom}");
-            if (rsp.Body != "null")
-            {
-                
-            }
-            else
-            {
-                MessageBox.Show("Nhóm không còn hoạt động do đó không thể mở file!");
-            }
+           // FirebaseResponse rsp = await firebaseClient.GetAsync($"group/{tenNhom}");
+            
             string link = textBox1.Text.Trim();
             string tenfile = textBox2.Text.Trim();
             string tempNameFile = textBox2.Text;

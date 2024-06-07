@@ -8,6 +8,10 @@ using FireSharp.Interfaces;
 using FireSharp.Response;
 using System.Threading.Tasks;
 using Firebase.Storage;
+using static System.Windows.Forms.LinkLabel;
+using System.Formats.Tar;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
@@ -40,6 +44,7 @@ namespace DangKi_DangNhap
             string username = textBox5.Text;
             string ngaysinh = textBox6.Text;
             string gioitinh = comboBox1.Text;
+            string imagePath = textBox7.Text;
             if (string.IsNullOrWhiteSpace(taiKhoan) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -85,7 +90,11 @@ namespace DangKi_DangNhap
                     MessageBox.Show("Mật khẩu đã tồn tại!! Vui lòng nhập 1 mật khẩu khác: ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
+                var data1 = new Dictionary<string, object>
+                {
+                    { "Anh", imagePath }
+                };
+                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"ẠnhDaiDien/{username}", data1);
                 // Tạo dữ liệu người dùng mới
                 var newUser = new User
                 {
@@ -120,8 +129,9 @@ namespace DangKi_DangNhap
             }
         }
         
-        private void bunifuButton21_Click(object sender, EventArgs e)
+        private async void bunifuButton21_Click(object sender, EventArgs e)
         {
+            string username = textBox5.Text;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg; *.jpeg; *.png";
 
@@ -134,7 +144,8 @@ namespace DangKi_DangNhap
 
                     // Hiển thị ảnh đã chọn trên PictureBox
                     bunifuPictureBox1.Image = new Bitmap(imagePath);
-
+                    textBox7.Text = imagePath;
+                
                     // Upload ảnh đại diện lên Firebase Storage
                     // string avatarUrl = await UploadImageToFirebaseStorage(imagePath);
 
@@ -154,6 +165,7 @@ namespace DangKi_DangNhap
 
         private async Task<string> UploadImageToFirebaseStorage(string imagePath)
         {
+           
             try
             {
                 // Tạo một bản sao của tệp tin ảnh

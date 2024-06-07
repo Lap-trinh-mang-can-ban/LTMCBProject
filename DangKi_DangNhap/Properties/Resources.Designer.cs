@@ -344,6 +344,16 @@ namespace DangKi_DangNhap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap kokurikozaka049 {
+            get {
+                object obj = ResourceManager.GetObject("kokurikozaka049", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap man_4140037 {
             get {
                 object obj = ResourceManager.GetObject("man_4140037", resourceCulture);
@@ -467,6 +477,26 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap user_1144760 {
             get {
                 object obj = ResourceManager.GetObject("user_1144760", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_11447601 {
+            get {
+                object obj = ResourceManager.GetObject("user_11447601", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_11447602 {
+            get {
+                object obj = ResourceManager.GetObject("user_11447602", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

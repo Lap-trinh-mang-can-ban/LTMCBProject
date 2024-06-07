@@ -42,13 +42,13 @@ namespace DangKi_DangNhap
             string pass = text1.Text;
             string newpass = text2.Text;
             string mail = text3.Text;
-         
+
             if (string.IsNullOrWhiteSpace(pass) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(newpass))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-          if(userName != pass)
+            if (userName != pass)
             {
                 MessageBox.Show("Mật khẩu cũ không đúng xin hãy nhập lại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -64,6 +64,16 @@ namespace DangKi_DangNhap
             FirebaseResponse response1 = await firebaseClient.UpdateAsync($"users/{account}", Data);
             FirebaseResponse response2 = await firebaseClient.UpdateAsync($"users/{account}", Data1);
             MessageBox.Show("Đã thay đổi mật khẩu và email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void CaiDat_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuPanel2_Click(object sender, EventArgs e)
+        {
 
         }
     }

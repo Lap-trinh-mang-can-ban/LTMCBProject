@@ -127,14 +127,14 @@
   <data name="download-icon-message-131976794391720906_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download-icon-message-131976794391720906_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="circuit-digital-art-wallpaper-1920x1280_38" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\circuit-digital-art-wallpaper-1920x1280_38.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="istockphoto-1266601145-612x612" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\istockphoto-1266601145-612x612.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="AnhTingTing" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AnhTingTing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="download-icon-message-131976794662403642_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\download-icon-message-131976794662403642_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="kokurikozaka049" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\kokurikozaka049.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user_1177568" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_1177568.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,6 +145,9 @@
   <data name="download-icon-home+house+shelf+study+icon-1320183785297551957_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download-icon-home+house+shelf+study+icon-1320183785297551957_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="download-icon-message-131976794662403642_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download-icon-message-131976794662403642_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="AnhTingTing1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\AnhTingTing1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -153,9 +156,6 @@
   </data>
   <data name="nguon-tai-lieu-vo-han-tren-internet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\nguon-tai-lieu-vo-han-tren-internet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="download-icon-home+house+shelf+study+icon-1320183785297551957_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\download-icon-home+house+shelf+study+icon-1320183785297551957_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="download-icon-home+house+thiago+pontes+icon-1320086034131259248_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download-icon-home+house+thiago+pontes+icon-1320086034131259248_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,17 +172,14 @@
   <data name="istockphoto-1266601145-612x6121" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\istockphoto-1266601145-612x6121.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="istockphoto-1266601145-612x612" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\istockphoto-1266601145-612x612.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download-icon-home+house+shelf+study+icon-1320183785297551957_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download-icon-home+house+shelf+study+icon-1320183785297551957_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="0af3c9613761d2d2394d99312aeba397" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\0af3c9613761d2d2394d99312aeba397.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="man_4140037" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\man_4140037.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="download-icon-home+house+thiago+pontes+icon-1320086034131259248_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\download-icon-home+house+thiago+pontes+icon-1320086034131259248_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="notification-bell_72634591" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\notification-bell_72634591.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -208,11 +205,20 @@
   <data name="pngtree-students-using-e-learning-platform-png-image_6707282" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\pngtree-students-using-e-learning-platform-png-image_6707282.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="circuit-digital-art-wallpaper-1920x1280_38" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\circuit-digital-art-wallpaper-1920x1280_38.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="download-icon-message+messenger+network+plane+social+media+telegram+icon-1320137113135966803_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download-icon-message+messenger+network+plane+social+media+telegram+icon-1320137113135966803_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user_11775681" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user_11775681.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hello-2488" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hello-2488.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_11447601" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_11447601.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="notification_6996775" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\notification_6996775.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -232,8 +238,8 @@
   <data name="download-icon-home+house+shelf+study+icon-1320183785297551957_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download-icon-home+house+shelf+study+icon-1320183785297551957_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hello-2488" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hello-2488.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download-icon-home+house+thiago+pontes+icon-1320086034131259248_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download-icon-home+house+thiago+pontes+icon-1320086034131259248_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="download-icon-calender+date+dates+reminder+reminders+icon-1320184526019246404_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download-icon-calender+date+dates+reminder+reminders+icon-1320184526019246404_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -244,7 +250,10 @@
   <data name="hinh-nen-xanh-duong-dep_101525211" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hinh-nen-xanh-duong-dep_101525211.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="download-icon-message-131976794662403642_321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\download-icon-message-131976794662403642_321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="download-icon-message-131976794662403642_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\download-icon-message-131976794662403642_32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user_11447602" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user_11447602.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -50,7 +50,7 @@
             flowLayoutPanel1.ForeColor = SystemColors.Control;
             flowLayoutPanel1.Location = new Point(0, 85);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(1077, 545);
+            flowLayoutPanel1.Size = new Size(1077, 593);
             flowLayoutPanel1.TabIndex = 0;
             flowLayoutPanel1.Paint += flowLayoutPanel1_Paint;
             // 
@@ -173,7 +173,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(879, 636);
+            bunifuButton22.Location = new Point(829, 7);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 25;
@@ -262,7 +262,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(975, 636);
+            bunifuButton21.Location = new Point(936, 7);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 25;
@@ -310,7 +310,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.OldLace;
-            ClientSize = new Size(1080, 667);
+            ClientSize = new Size(1080, 690);
             Controls.Add(bunifuButton22);
             Controls.Add(lbDates);
             Controls.Add(bunifuButton21);

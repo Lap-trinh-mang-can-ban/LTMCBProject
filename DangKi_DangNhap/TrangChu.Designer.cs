@@ -37,8 +37,8 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             linkLabel1 = new LinkLabel();
             panel1 = new Panel();
+            bunifuPictureBox7 = new Bunifu.UI.WinForms.BunifuPictureBox();
             linkLabel2 = new LinkLabel();
-            pictureBox1 = new PictureBox();
             label2 = new Label();
             panel2 = new Panel();
             bunifuPictureBox4 = new Bunifu.UI.WinForms.BunifuPictureBox();
@@ -57,7 +57,7 @@
             pictureBox2 = new PictureBox();
             label1 = new Label();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)bunifuPictureBox7).BeginInit();
             panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox6).BeginInit();
@@ -85,36 +85,43 @@
             // panel1
             // 
             panel1.BackColor = Color.MidnightBlue;
+            panel1.Controls.Add(bunifuPictureBox7);
             panel1.Controls.Add(linkLabel2);
-            panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(label2);
             panel1.Location = new Point(-7, 1);
             panel1.Name = "panel1";
             panel1.Size = new Size(1300, 85);
             panel1.TabIndex = 3;
             // 
+            // bunifuPictureBox7
+            // 
+            bunifuPictureBox7.AllowFocused = false;
+            bunifuPictureBox7.Anchor = AnchorStyles.None;
+            bunifuPictureBox7.AutoSizeHeight = true;
+            bunifuPictureBox7.BorderRadius = 44;
+            bunifuPictureBox7.Image = (Image)resources.GetObject("bunifuPictureBox7.Image");
+            bunifuPictureBox7.IsCircle = true;
+            bunifuPictureBox7.Location = new Point(1081, 0);
+            bunifuPictureBox7.Name = "bunifuPictureBox7";
+            bunifuPictureBox7.Size = new Size(88, 88);
+            bunifuPictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            bunifuPictureBox7.TabIndex = 4;
+            bunifuPictureBox7.TabStop = false;
+            bunifuPictureBox7.Type = Bunifu.UI.WinForms.BunifuPictureBox.Types.Circle;
+            bunifuPictureBox7.Click += bunifuPictureBox7_Click;
+            // 
             // linkLabel2
             // 
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(931, 26);
+            linkLabel2.Location = new Point(871, 26);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(125, 31);
             linkLabel2.TabIndex = 3;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "linkLabel2";
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
-            pictureBox1.Location = new Point(1162, 11);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(77, 67);
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
             // 
             // label2
             // 
@@ -144,7 +151,7 @@
             panel2.Controls.Add(linkLabel1);
             panel2.Location = new Point(0, 82);
             panel2.Name = "panel2";
-            panel2.Size = new Size(197, 676);
+            panel2.Size = new Size(197, 678);
             panel2.TabIndex = 4;
             // 
             // bunifuPictureBox4
@@ -154,9 +161,10 @@
             bunifuPictureBox4.AutoSizeHeight = true;
             bunifuPictureBox4.BackColor = Color.White;
             bunifuPictureBox4.BorderRadius = 0;
-            bunifuPictureBox4.Image = (Image)resources.GetObject("bunifuPictureBox4.Image");
+            bunifuPictureBox4.ErrorImage = Properties.Resources.user_11447601;
+            bunifuPictureBox4.Image = Properties.Resources.user_11447602;
             bunifuPictureBox4.IsCircle = true;
-            bunifuPictureBox4.Location = new Point(16, 359);
+            bunifuPictureBox4.Location = new Point(7, 356);
             bunifuPictureBox4.Name = "bunifuPictureBox4";
             bunifuPictureBox4.Size = new Size(42, 42);
             bunifuPictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -173,7 +181,7 @@
             bunifuPictureBox6.BorderRadius = 0;
             bunifuPictureBox6.Image = (Image)resources.GetObject("bunifuPictureBox6.Image");
             bunifuPictureBox6.IsCircle = false;
-            bunifuPictureBox6.Location = new Point(18, 438);
+            bunifuPictureBox6.Location = new Point(12, 438);
             bunifuPictureBox6.Name = "bunifuPictureBox6";
             bunifuPictureBox6.Size = new Size(42, 42);
             bunifuPictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
@@ -190,7 +198,7 @@
             bunifuPictureBox1.BorderRadius = 0;
             bunifuPictureBox1.Image = (Image)resources.GetObject("bunifuPictureBox1.Image");
             bunifuPictureBox1.IsCircle = false;
-            bunifuPictureBox1.Location = new Point(16, 35);
+            bunifuPictureBox1.Location = new Point(12, 35);
             bunifuPictureBox1.Name = "bunifuPictureBox1";
             bunifuPictureBox1.Size = new Size(42, 42);
             bunifuPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -207,7 +215,7 @@
             bunifuPictureBox5.BorderRadius = 0;
             bunifuPictureBox5.Image = (Image)resources.GetObject("bunifuPictureBox5.Image");
             bunifuPictureBox5.IsCircle = false;
-            bunifuPictureBox5.Location = new Point(16, 277);
+            bunifuPictureBox5.Location = new Point(12, 275);
             bunifuPictureBox5.Name = "bunifuPictureBox5";
             bunifuPictureBox5.Size = new Size(42, 42);
             bunifuPictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
@@ -295,7 +303,7 @@
             bunifuButton26.OnPressedState.ForeColor = Color.White;
             bunifuButton26.OnPressedState.IconLeftImage = null;
             bunifuButton26.OnPressedState.IconRightImage = null;
-            bunifuButton26.Size = new Size(182, 70);
+            bunifuButton26.Size = new Size(185, 70);
             bunifuButton26.TabIndex = 28;
             bunifuButton26.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton26.TextAlignment = HorizontalAlignment.Center;
@@ -313,7 +321,7 @@
             bunifuPictureBox3.BorderRadius = 0;
             bunifuPictureBox3.Image = (Image)resources.GetObject("bunifuPictureBox3.Image");
             bunifuPictureBox3.IsCircle = false;
-            bunifuPictureBox3.Location = new Point(16, 195);
+            bunifuPictureBox3.Location = new Point(12, 192);
             bunifuPictureBox3.Name = "bunifuPictureBox3";
             bunifuPictureBox3.Size = new Size(42, 42);
             bunifuPictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -335,7 +343,7 @@
             bunifuButton25.BackColor1 = Color.White;
             bunifuButton25.BackgroundImage = (Image)resources.GetObject("bunifuButton25.BackgroundImage");
             bunifuButton25.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            bunifuButton25.ButtonText = "Bảo mật";
+            bunifuButton25.ButtonText = "  Sửa thông tin";
             bunifuButton25.ButtonTextMarginLeft = 0;
             bunifuButton25.ColorContrastOnClick = 45;
             bunifuButton25.ColorContrastOnHover = 45;
@@ -401,7 +409,7 @@
             bunifuButton25.OnPressedState.ForeColor = Color.White;
             bunifuButton25.OnPressedState.IconLeftImage = null;
             bunifuButton25.OnPressedState.IconRightImage = null;
-            bunifuButton25.Size = new Size(182, 70);
+            bunifuButton25.Size = new Size(186, 70);
             bunifuButton25.TabIndex = 26;
             bunifuButton25.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton25.TextAlignment = HorizontalAlignment.Center;
@@ -419,7 +427,7 @@
             bunifuPictureBox2.BorderRadius = 0;
             bunifuPictureBox2.Image = (Image)resources.GetObject("bunifuPictureBox2.Image");
             bunifuPictureBox2.IsCircle = false;
-            bunifuPictureBox2.Location = new Point(16, 116);
+            bunifuPictureBox2.Location = new Point(12, 115);
             bunifuPictureBox2.Name = "bunifuPictureBox2";
             bunifuPictureBox2.Size = new Size(42, 42);
             bunifuPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -507,7 +515,7 @@
             bunifuButton24.OnPressedState.ForeColor = Color.White;
             bunifuButton24.OnPressedState.IconLeftImage = null;
             bunifuButton24.OnPressedState.IconRightImage = null;
-            bunifuButton24.Size = new Size(182, 70);
+            bunifuButton24.Size = new Size(185, 70);
             bunifuButton24.TabIndex = 24;
             bunifuButton24.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton24.TextAlignment = HorizontalAlignment.Center;
@@ -596,7 +604,7 @@
             bunifuButton23.OnPressedState.ForeColor = Color.White;
             bunifuButton23.OnPressedState.IconLeftImage = null;
             bunifuButton23.OnPressedState.IconRightImage = null;
-            bunifuButton23.Size = new Size(182, 70);
+            bunifuButton23.Size = new Size(188, 70);
             bunifuButton23.TabIndex = 22;
             bunifuButton23.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton23.TextAlignment = HorizontalAlignment.Center;
@@ -685,7 +693,7 @@
             bunifuButton22.OnPressedState.ForeColor = Color.White;
             bunifuButton22.OnPressedState.IconLeftImage = null;
             bunifuButton22.OnPressedState.IconRightImage = null;
-            bunifuButton22.Size = new Size(182, 70);
+            bunifuButton22.Size = new Size(191, 70);
             bunifuButton22.TabIndex = 20;
             bunifuButton22.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton22.TextAlignment = HorizontalAlignment.Center;
@@ -774,7 +782,7 @@
             bunifuButton21.OnPressedState.ForeColor = Color.White;
             bunifuButton21.OnPressedState.IconLeftImage = null;
             bunifuButton21.OnPressedState.IconRightImage = null;
-            bunifuButton21.Size = new Size(182, 70);
+            bunifuButton21.Size = new Size(186, 70);
             bunifuButton21.TabIndex = 30;
             bunifuButton21.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton21.TextAlignment = HorizontalAlignment.Center;
@@ -820,7 +828,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1294, 781);
+            ClientSize = new Size(1294, 728);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -828,7 +836,7 @@
             Text = "Giao diện chính";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)bunifuPictureBox7).EndInit();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox4).EndInit();
@@ -849,7 +857,6 @@
         private Panel panel3;
         private Label label1;
         private Label label2;
-        private PictureBox pictureBox1;
         private PictureBox pictureBox2;
         private LinkLabel linkLabel2;
         private Bunifu.UI.WinForms.BunifuPictureBox bunifuPictureBox4;
@@ -864,5 +871,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton23;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton22;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton21;
+        private Bunifu.UI.WinForms.BunifuPictureBox bunifuPictureBox7;
     }
 }

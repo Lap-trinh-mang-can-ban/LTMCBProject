@@ -47,6 +47,7 @@
             richTextBox1 = new RichTextBox();
             bunifuButton25 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton27 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             bunifuPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -100,7 +101,7 @@
             bunifuButton23.IdleIconLeftImage = null;
             bunifuButton23.IdleIconRightImage = null;
             bunifuButton23.IndicateFocus = false;
-            bunifuButton23.Location = new Point(560, 549);
+            bunifuButton23.Location = new Point(563, 532);
             bunifuButton23.Name = "bunifuButton23";
             bunifuButton23.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.OnDisabledState.BorderRadius = 45;
@@ -134,7 +135,7 @@
             bunifuButton23.OnPressedState.ForeColor = Color.White;
             bunifuButton23.OnPressedState.IconLeftImage = null;
             bunifuButton23.OnPressedState.IconRightImage = null;
-            bunifuButton23.Size = new Size(101, 82);
+            bunifuButton23.Size = new Size(101, 93);
             bunifuButton23.TabIndex = 18;
             bunifuButton23.TextAlign = ContentAlignment.MiddleCenter;
             bunifuButton23.TextAlignment = HorizontalAlignment.Center;
@@ -450,16 +451,18 @@
             listView1.TabIndex = 0;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // textBox1
             // 
             textBox1.BackColor = Color.OldLace;
             textBox1.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(19, 549);
+            textBox1.Location = new Point(19, 532);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(538, 82);
+            textBox1.Size = new Size(538, 93);
             textBox1.TabIndex = 13;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // richTextBox1
             // 
@@ -467,7 +470,7 @@
             richTextBox1.Location = new Point(19, 18);
             richTextBox1.Margin = new Padding(0);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(642, 518);
+            richTextBox1.Size = new Size(642, 497);
             richTextBox1.TabIndex = 14;
             richTextBox1.Text = "";
             // 
@@ -576,7 +579,7 @@
             bunifuButton27.BackgroundImage = (Image)resources.GetObject("bunifuButton27.BackgroundImage");
             bunifuButton27.BackgroundImageLayout = ImageLayout.Zoom;
             bunifuButton27.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
-            bunifuButton27.ButtonText = "Giao bài tập ";
+            bunifuButton27.ButtonText = "Quiz";
             bunifuButton27.ButtonTextMarginLeft = 0;
             bunifuButton27.ColorContrastOnClick = 45;
             bunifuButton27.ColorContrastOnHover = 45;
@@ -656,7 +659,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
-            ClientSize = new Size(1082, 646);
+            ClientSize = new Size(1082, 649);
             Controls.Add(bunifuButton27);
             Controls.Add(bunifuButton25);
             Controls.Add(bunifuButton23);
@@ -683,5 +686,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton25;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton26;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton27;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
