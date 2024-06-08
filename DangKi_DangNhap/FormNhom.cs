@@ -42,8 +42,8 @@ namespace DangKi_DangNhap
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
@@ -52,6 +52,9 @@ namespace DangKi_DangNhap
             SubscribeToFirebase();
             SubscribeToFirebase1();
             richTextBox1.Padding = new Padding(10);
+
+            //Làm rỗng label báo lỗi 
+            errorLabel.Text = "";
         }
 
         private async void SubscribeToFirebase1()
@@ -155,13 +158,15 @@ namespace DangKi_DangNhap
            
             if (textBox1.Text == "")
             {
-                MessageBox.Show("Vui lòng nhập tin nhắn!");
+                //MessageBox.Show("Vui lòng nhập tin nhắn!");
+                errorLabel.Text = "Bạn chưa nhập gì !";
                 return;
             }
             else
             {
                 string data = this.userName + ": " + textBox1.Text; // Lấy dữ liệu từ textBox1
                 await PushDataToFirebase(tenNhom, data);
+                errorLabel.Text = "";
             }
             
 
@@ -266,7 +271,7 @@ namespace DangKi_DangNhap
                     pra += value; // Ví dụ: thêm giá trị vào linkLabel1.Text với mỗi giá trị trên một dòng mới
                 }
 
-                linkLabel1.Text = pra;
+               // linkLabel1.Text = pra;
             }
             else
             {

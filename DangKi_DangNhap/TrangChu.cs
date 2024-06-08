@@ -47,7 +47,7 @@ namespace DangKi_DangNhap
             originalButtonColors.Add(bunifuButton25, bunifuButton25.BackColor);
             originalButtonColors.Add(bunifuButton26, bunifuButton25.BackColor);
             currentUser = user;
-            linkLabel2.Text = currentUser.Username;
+            linkLabel2.Text = currentUser.Tentaikhoan;
         }
         private void OpenChildForm(Form childForm)
         {
@@ -112,22 +112,22 @@ namespace DangKi_DangNhap
         private string user;
         private void bunifuButton22_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ThongBao(currentUser.Username));
+            OpenChildForm(new ThongBao(currentUser.Tentaikhoan));
         }
 
         private void bunifuButton23_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom(currentUser.Username)); // Truyền username của người dùng hiện tại
+            OpenChildForm(new TaoNhom(currentUser.Tentaikhoan)); // Truyền username của người dùng hiện tại
         }
 
         private void bunifuButton24_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new LapLich(currentUser.Username));
+            OpenChildForm(new LapLich(currentUser.Tentaikhoan));
         }
 
         private void bunifuButton25_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom(currentUser.Username)); 
+            OpenChildForm(new TaoNhom(currentUser.Tentaikhoan)); 
         }
 
         private void bunifuButton26_Click(object sender, EventArgs e)

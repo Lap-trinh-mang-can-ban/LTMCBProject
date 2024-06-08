@@ -42,12 +42,15 @@ namespace DangKi_DangNhap
         {
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+
+            //Làm rông label báo lỗi 
+            errorLabel.Text = "";
         }
 
         private async void bunifuButton24_Click(object sender, EventArgs e)
@@ -126,6 +129,7 @@ namespace DangKi_DangNhap
                     await LoadLinksFromFirebase();
 
                     MessageBox.Show("Tải tệp lên Firebase thành công!");
+                    errorLabel.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -134,7 +138,8 @@ namespace DangKi_DangNhap
             }
             else
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
+                // MessageBox.Show("Vui lòng nhập đầy đủ thông tin link và tên!");
+                errorLabel.Text = "Vui lòng nhập đầy đủ thông tin !";
             }
         }
 

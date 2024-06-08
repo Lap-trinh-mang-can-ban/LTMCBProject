@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace DangKi_DangNhap
 {
@@ -17,10 +18,10 @@ namespace DangKi_DangNhap
         private void HienThiThongTinNguoiDung()
         {
             // Hiển thị tên người dùng
-            label2.Text = user.Username;
+            label2.Text = user.Tentaikhoan;
             // Hiển thị email người dùng
-            string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(user.Email));
-            label4.Text = email1;
+            //string email1 = Encoding.UTF8.GetString(Convert.FromBase64String(user.Email));
+            label4.Text = user.Email;
             // Các thông tin khác có thể được hiển thị tương tự
             label6.Text = user.Ngaysinh;
             label8.Text = user.Gioitinh;

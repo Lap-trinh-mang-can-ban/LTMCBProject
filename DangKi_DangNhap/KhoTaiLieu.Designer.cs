@@ -41,7 +41,9 @@
             bunifuButton23 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton22 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton24 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+            errorLabel = new Label();
             bunifuButton25 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
+
             SuspendLayout();
             // 
             // textBox1
@@ -425,6 +427,17 @@
             bunifuButton24.UseDefaultRadiusAndThickness = true;
             bunifuButton24.Click += bunifuButton24_Click;
             // 
+            // errorLabel
+            // 
+            errorLabel.BackColor = Color.Transparent;
+            errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            errorLabel.ForeColor = Color.LightCoral;
+            errorLabel.Location = new Point(258, 541);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(422, 28);
+            errorLabel.TabIndex = 29;
+            errorLabel.Text = "errorLabel";
+            errorLabel.TextAlign = ContentAlignment.TopCenter;
             // bunifuButton25
             // 
             bunifuButton25.AllowAnimations = true;
@@ -520,6 +533,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SteelBlue;
             ClientSize = new Size(971, 589);
+            Controls.Add(errorLabel);
             Controls.Add(bunifuButton25);
             Controls.Add(bunifuButton24);
             Controls.Add(bunifuButton22);
@@ -543,6 +557,7 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton23;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton22;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton24;
+        private Label errorLabel;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton25;
     }
 }

@@ -31,8 +31,8 @@ namespace DangKi_DangNhap
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
@@ -76,7 +76,7 @@ namespace DangKi_DangNhap
             foreach (string nhom in allNhom)
             {
                 // Truy vấn dữ liệu từ Firebase
-                FirebaseResponse response = await firebaseClient.GetAsync($"Notify_TL/{nhom}");
+                FirebaseResponse response = await firebaseClient.GetAsync($"Thongbao_TL/{nhom}");
 
                 if (response.Body == "null")
                 {
@@ -225,7 +225,7 @@ namespace DangKi_DangNhap
             try
             {
                 // Truy vấn dữ liệu từ Firebase
-                FirebaseResponse response = await firebaseClient.GetAsync($"Calendar/{userName}");
+                FirebaseResponse response = await firebaseClient.GetAsync($"Lich/{userName}");
                 if (response.Body == "null")
                 {
 

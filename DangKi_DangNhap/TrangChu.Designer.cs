@@ -98,12 +98,14 @@
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel2.LinkColor = Color.White;
-            linkLabel2.Location = new Point(931, 26);
+            linkLabel2.Location = new Point(1022, 26);
             linkLabel2.Name = "linkLabel2";
+            linkLabel2.RightToLeft = RightToLeft.No;
             linkLabel2.Size = new Size(125, 31);
             linkLabel2.TabIndex = 3;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "linkLabel2";
+            linkLabel2.TextAlign = ContentAlignment.TopRight;
             linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
             // pictureBox1

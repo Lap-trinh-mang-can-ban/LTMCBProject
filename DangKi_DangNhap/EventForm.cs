@@ -22,8 +22,8 @@ namespace DangKi_DangNhap
             // Cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
@@ -32,12 +32,13 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Không thể kết nối tới máy chủ Firebase");
             }
+            errorLabel.Text = "";
         }
 
         private void EventForm_Load(object sender, EventArgs e)
         {
-                string date = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
-                textBox1.Text = date;   
+            string date = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
+            textBox1.Text = date;
         }
 
         private async void bunifuButton22_Click(object sender, EventArgs e)
@@ -48,7 +49,8 @@ namespace DangKi_DangNhap
             // Kiểm tra dữ liệu hợp lệ
             if (string.IsNullOrEmpty(eventName))
             {
-                MessageBox.Show("Vui lòng nhập sự kiện.");
+                //MessageBox.Show("Vui lòng nhập sự kiện.");
+                errorLabel.Text = "Vui lòng nhập sự kiện !";
                 return;
             }
 
@@ -60,16 +62,18 @@ namespace DangKi_DangNhap
                 };
 
                 // Thực hiện thêm dữ liệu vào Firebase với tên của người dùng làm nút cha
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"Calendar/{_userName}/", data);
+                FirebaseResponse response = await firebaseClient.UpdateAsync($"Lich/{_userName}/", data);
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Thêm sự kiện thành công.");
-
+                    textBox2.Text = "";
+                    errorLabel.Text = "";
                 }
                 else
                 {
-                    MessageBox.Show("Đã xảy ra lỗi khi thêm sự kiện.");
+                    //MessageBox.Show("Đã xảy ra lỗi khi thêm sự kiện.");
+                    errorLabel.Text = "Không thể thêm sự kiện ";
                 }
             }
             catch (Exception ex)
@@ -77,13 +81,13 @@ namespace DangKi_DangNhap
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-      
+
         private async Task<int> GetCurrentEventCount()
         {
             try
             {
                 // Thực hiện truy vấn dữ liệu từ Firebase để lấy danh sách các sự kiện
-                FirebaseResponse response = await firebaseClient.GetAsync($"Calendar/{_userName}");
+                FirebaseResponse response = await firebaseClient.GetAsync($"Lich/{_userName}");
 
                 // Kiểm tra xem có dữ liệu hay không
                 if (response.Body != "null")
@@ -108,7 +112,7 @@ namespace DangKi_DangNhap
             }
         }
 
- 
+
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
             string eventDate = textBox1.Text.Trim();
@@ -116,15 +120,17 @@ namespace DangKi_DangNhap
             try
             {
                 // Thực hiện xóa dữ liệu từ Firebase cho ngày cụ thể của người dùng
-                FirebaseResponse response = await firebaseClient.DeleteAsync($"Calendar/{_userName}/{eventDate}");
+                FirebaseResponse response = await firebaseClient.DeleteAsync($"Lich/{_userName}/{eventDate}");
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Đã xóa sự kiện.");
+                    errorLabel.Text = ""; 
                 }
                 else
                 {
-                    MessageBox.Show("Đã xảy ra lỗi khi xóa sự kiện.");
+                    //MessageBox.Show("Đã xảy ra lỗi khi xóa sự kiện.");
+                    errorLabel.Text = "Không thể xóa sự kiện !";
                 }
             }
             catch (Exception ex)
@@ -132,10 +138,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
         }
-  
-    
 
-
-       
+        
     }
 }

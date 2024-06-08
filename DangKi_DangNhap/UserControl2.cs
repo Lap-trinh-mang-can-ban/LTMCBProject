@@ -20,8 +20,8 @@ namespace DangKi_DangNhap
             userName = user;
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
@@ -58,7 +58,7 @@ namespace DangKi_DangNhap
             try
             {
                 // Ghi dữ liệu sự kiện lên Firebase cho ngày cụ thể của người dùng
-                FirebaseResponse response = await firebaseClient.SetAsync($"Calendar/{userName}/{static_day}", "Event Data");
+                FirebaseResponse response = await firebaseClient.SetAsync($"Lich/{userName}/{static_day}", "Event Data");
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -93,7 +93,7 @@ namespace DangKi_DangNhap
                
               
                   string eventDate = $"{LapLich.static_month}_{number}_{LapLich.static_year}";
-                    FirebaseResponse response = await firebaseClient.GetAsync($"Calendar/{userName}/{eventDate}");
+                    FirebaseResponse response = await firebaseClient.GetAsync($"Lich/{userName}/{eventDate}");
                     if (response.Body == "null")
                     {
                        // MessageBox.Show("Không tìm thấy dữ liệu cho ngày này.");

@@ -30,16 +30,16 @@ namespace DangKi_DangNhap
             // Khởi tạo cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
-                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/"
+                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
+                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
             };
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
 
-        private void DanhGia_Load(object sender, EventArgs e)
+        private async void DanhGia_Load(object sender, EventArgs e)
         {
-
+            await LoadRatings();
         }
 
         private async void bunifuButton21_Click(object sender, EventArgs e)
@@ -47,11 +47,9 @@ namespace DangKi_DangNhap
 
             try
             {
-                // Lấy giá trị từ BunifuRating và BunifuTextBox
                 double ratingValue = bunifuRating1.Value;
                 string feedbackText = bunifuTextBox1.Text;
 
-                // Tạo đối tượng dữ liệu để lưu trữ
                 var feedbackData = new
                 {
                     Rating = ratingValue,
@@ -59,24 +57,76 @@ namespace DangKi_DangNhap
                     Timestamp = DateTime.Now
                 };
 
-                // Đẩy dữ liệu lên Firebase
-                PushResponse response = await firebaseClient.PushAsync("feedbacks", feedbackData);
+                PushResponse response = await firebaseClient.PushAsync("Danhgia", feedbackData);
 
-                // Hiển thị thông báo khi lưu thành công
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Đánh giá của bạn đã được gửi thành công!");
 
-                    // Xóa nội dung đã nhập sau khi lưu thành công
-                    bunifuRating1.Value = 3; // assuming 0 is the default value
+                    bunifuRating1.Value = 3;
                     bunifuTextBox1.Text = string.Empty;
+
+                    await LoadRatings(); // Load lại đánh giá sau khi gửi thành công
                 }
             }
             catch (Exception ex)
             {
-                // Hiển thị thông báo lỗi nếu có
                 MessageBox.Show("Đã có lỗi xảy ra: " + ex.Message);
             }
         }
+
+        private async Task LoadRatings()
+        {
+            try
+            {
+                FirebaseResponse response = await firebaseClient.GetAsync("Danhgia");
+                var feedbacks = response.ResultAs<Dictionary<string, Feedback>>();
+
+                if (feedbacks != null)
+                {
+                    int totalRatings = feedbacks.Count;
+                    int count5Star = feedbacks.Count(f => f.Value.Rating == 5);
+                    int count4Star = feedbacks.Count(f => f.Value.Rating == 4);
+                    int count3Star = feedbacks.Count(f => f.Value.Rating == 3);
+                    int count2Star = feedbacks.Count(f => f.Value.Rating == 2);
+                    int count1Star = feedbacks.Count(f => f.Value.Rating == 1);
+                    //Tính tỉ lệ giữa các số sao 
+                    int percentage5Star = (count5Star * 100) / totalRatings;
+                    int percentage4Star = (count4Star * 100) / totalRatings;
+                    int percentage3Star = (count3Star * 100) / totalRatings;
+                    int percentage2Star = (count2Star * 100) / totalRatings;
+                    int percentage1Star = (count1Star * 100) / totalRatings;
+
+                    progressBar5Star.Value = percentage5Star;
+                    progressBar4Star.Value = percentage4Star;
+                    progressBar3Star.Value = percentage3Star;
+                    progressBar2Star.Value = percentage2Star;
+                    progressBar1Star.Value = percentage1Star;
+
+                    //Đếm số lượt đánh giá 
+                    lblSoluotDG.Text = $"Số lượt đánh giá: {totalRatings}";
+
+                    // Tính trung bình số sao 
+                    double averageRating = feedbacks.Average(f => f.Value.Rating);
+                    labelAverageRating.Text = $"{averageRating:F1}";
+                    bunifuRatingAverage.Value = (int)Math.Round(averageRating);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Đã có lỗi xảy ra khi lấy dữ liệu đánh giá: " + ex.Message);
+            }
+        }
+
+        public class Feedback
+        {
+            public double Rating { get; set; }
+            public string FeedbackText { get; set; }
+            public DateTime Timestamp { get; set; }
+        }
+
+       
     }
 }
+
