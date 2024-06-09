@@ -52,12 +52,25 @@ namespace DangKi_DangNhap
             //Làm rông label báo lỗi 
             errorLabel.Text = "";
         }
- 
+
         private async void bunifuButton24_Click(object sender, EventArgs e)
         {
             string link = textBox1.Text.Trim();
-            string tenfile = textBox2.Text.Trim();
-            string tempNameFile = textBox2.Text;
+            string filename = Path.GetFileNameWithoutExtension(link);
+
+            string extension = "";
+            int underscoreIndex = filename.LastIndexOf('_'); // Find the last underscore index
+            if (underscoreIndex != -1 && underscoreIndex < filename.Length - 1) // Check if underscore exists and it's not the last character
+            {
+                extension = filename.Substring(underscoreIndex + 1); // Get the substring after the underscore
+                int dotIndex = extension.LastIndexOf('.'); // Find the last dot index
+                if (dotIndex != -1) // Check if dot exists
+                {
+                    extension = extension.Substring(0, dotIndex); // Exclude the .hex part
+                }
+            }
+            string tenfile = $"{textBox2.Text.Trim()}_{extension}";
+            string tempNameFile = $"{textBox2.Text}_{extension}";
             DateTime currentTime = DateTime.Now;
             string Date = currentTime.ToString("yyyy-MM-dd"); // Định dạng ngày tháng năm theo yyyy-MM-dd
             if (!string.IsNullOrEmpty(link))
@@ -73,7 +86,7 @@ namespace DangKi_DangNhap
                 byte[] fileBytes = File.ReadAllBytes(link);
 
                 // Tạo một đường dẫn duy nhất trên Firebase Storage để lưu trữ tệp
-              //  string fileName = Path.GetFileName(link);
+                //  string fileName = Path.GetFileName(link);
                 string uniquePath = $"{tenNhom}/{tenfile}";
 
                 // Tải lên nội dung của tệp lên Firebase Storage
@@ -100,7 +113,7 @@ namespace DangKi_DangNhap
             {
                 { tempNameFile, true }
             };
-                    
+
                     var data_notify = new Dictionary<string, object>
                     {
                         {currentTime.ToString("yyyy-MM-dd HH:mm:ss"), $"{tenNhom}" }
@@ -129,7 +142,7 @@ namespace DangKi_DangNhap
                 errorLabel.Text = "Vui lòng nhập đầy đủ thông tin !";
             }
         }
-        
+
 
         public async Task LoadLinksFromFirebase()
         {
@@ -225,7 +238,7 @@ namespace DangKi_DangNhap
 
             }
         }
-      
+
         private string EncodePath(string path)
         {
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(path);
@@ -237,8 +250,11 @@ namespace DangKi_DangNhap
 
         }
 
-
-       
+        private void bunifuButton25_Click(object sender, EventArgs e)
+        {
+            MaHoaFile maHoaFile = new MaHoaFile();
+            maHoaFile.ShowDialog();
+        }
     }
     public class TaiLieu
     {
