@@ -22,8 +22,8 @@ namespace DangKi_DangNhap
             // Cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
             {
-                AuthSecret = "g7l2WxQL7BbEjDvofcxItvBcHJVP8SStumdLKHUc",
-                BasePath = "https://fir-test-a42d4-default-rtdb.firebaseio.com/",
+                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
+                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
             };
 
             // Khởi tạo FirebaseClient
