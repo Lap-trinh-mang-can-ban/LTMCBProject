@@ -42,6 +42,33 @@ namespace DangKi_DangNhap
         {
             try
             {
+                // Lấy tất cả các nhánh con của "nhoms/{userName}"
+                FirebaseResponse response1 = await firebaseClient.GetAsync($"nhoms/{userName}");
+                Dictionary<string, object> nhomsData = response1.ResultAs<Dictionary<string, object>>();
+
+                if (nhomsData != null)
+                {
+                    foreach (var nhomDatam in nhomsData)
+                    {
+                        string tenNhom = nhomDatam.Key;
+                        string value = nhomDatam.Value.ToString();
+
+                        // Kiểm tra nếu giá trị là "true"
+                        if (value == "True")
+                        {
+
+                            // Kiểm tra xem có nhóm tương ứng trong "group/{tenNhom}" không
+                            FirebaseResponse rsp = await firebaseClient.GetAsync($"group /{tenNhom}");
+                            if (rsp.Body == "null")
+                            {
+                                // Nếu không có nhóm tương ứng, xóa nhánh con đó
+                                await firebaseClient.DeleteAsync($"nhoms/{userName}/{tenNhom}");
+                            }
+
+                        }
+
+                    }
+                }
                 // Truy vấn dữ liệu từ Firebase
                 FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{userName}");
                 if (response.Body == "null")
@@ -57,8 +84,13 @@ namespace DangKi_DangNhap
                 foreach (var pair in nhomData)
                 {
                     string tenNhom = pair.Key;
+                    string value = pair.Value.ToString();
+                    if(value != "true")
+                    {
+                        AddNhomButton(tenNhom);
+                    }
                     // Tạo button nhóm và thêm vào form
-                    AddNhomButton(tenNhom);
+                   
                 }
             }
             catch (Exception ex)
@@ -66,6 +98,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private async void AddNhomButton(string tenNhom)
         {
@@ -248,9 +281,13 @@ namespace DangKi_DangNhap
                 // Thêm các thành viên của nhóm vào ListView
                 foreach (var member in nhomData)
                 {
-                    string userName = member.Key;
-                    ListViewItem item = new ListViewItem(userName);
-                    listView.Items.Add(item);
+                    // Kiểm tra xem tên thành viên có chứa các từ khóa cụ thể không
+                    if (!member.Key.Contains("message") && !member.Key.Contains("ports"))
+                    {
+                        string userName = member.Key;
+                        ListViewItem item = new ListViewItem(userName);
+                        listView.Items.Add(item);
+                    }
                 }
             }
             catch (Exception ex)
@@ -260,7 +297,8 @@ namespace DangKi_DangNhap
         }
 
 
-       
+
+
         private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             ThamGiaNhom jointeam = new ThamGiaNhom(userName);

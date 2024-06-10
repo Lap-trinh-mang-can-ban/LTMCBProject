@@ -34,12 +34,12 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.OldLace;
+            pictureBox1.BackColor = Color.White;
             pictureBox1.BackgroundImage = Properties.Resources.AnhDoAn_NT106;
             pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
             pictureBox1.Location = new Point(232, 108);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(629, 339);
+            pictureBox1.Size = new Size(657, 394);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -48,7 +48,7 @@
             AccessibleRole = AccessibleRole.None;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightBlue;
+            BackColor = Color.White;
             ClientSize = new Size(1080, 628);
             Controls.Add(pictureBox1);
             Name = "TrangChuThatSu";

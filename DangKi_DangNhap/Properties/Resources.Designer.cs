@@ -113,6 +113,26 @@ namespace DangKi_DangNhap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap calendar {
+            get {
+                object obj = ResourceManager.GetObject("calendar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap calendar1 {
+            get {
+                object obj = ResourceManager.GetObject("calendar1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap circuit_digital_art_wallpaper_1920x1280_38 {
             get {
                 object obj = ResourceManager.GetObject("circuit-digital-art-wallpaper-1920x1280_38", resourceCulture);
@@ -186,6 +206,17 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap download_icon_calender_date_dates_reminder_reminders_icon_1320184526019246404_48 {
             get {
                 object obj = ResourceManager.GetObject("download-icon-calender+date+dates+reminder+reminders+icon-1320184526019246404_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap download_icon_calender_date_dates_reminder_reminders_icon_1320184526019246404_481 {
+            get {
+                object obj = ResourceManager.GetObject("download-icon-calender+date+dates+reminder+reminders+icon-1320184526019246404_481" +
+                        "", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -454,6 +485,26 @@ namespace DangKi_DangNhap.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap setting {
+            get {
+                object obj = ResourceManager.GetObject("setting", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap setting1 {
+            get {
+                object obj = ResourceManager.GetObject("setting1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap tinh_nang_website_hoc_truc_tuyen {
             get {
                 object obj = ResourceManager.GetObject("tinh-nang-website-hoc-truc-tuyen", resourceCulture);
@@ -467,6 +518,16 @@ namespace DangKi_DangNhap.Properties {
         internal static System.Drawing.Bitmap user_1144760 {
             get {
                 object obj = ResourceManager.GetObject("user_1144760", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_11447601 {
+            get {
+                object obj = ResourceManager.GetObject("user_11447601", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

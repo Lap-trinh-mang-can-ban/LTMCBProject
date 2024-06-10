@@ -2,6 +2,7 @@
 using FireSharp.Config;
 using FireSharp.Interfaces;
 using FireSharp.Response;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,13 +22,14 @@ namespace DangKi_DangNhap
         public IFirebaseClient firebaseClient;
         private string tenNhom;
         private string tenfile1;
+        private string tentaikhoan;
         private TaiLieu currentailieu;
-        public ThongTinFile(LinkLabel tenfile, string tenNhom, TaiLieu teptin)
+        public ThongTinFile(LinkLabel tenfile, string tenNhom, TaiLieu teptin, string nametk)
         {
             InitializeComponent();
             this.tenNhom = tenNhom;
             this.tenfile1 = tenfile.Text;
-
+            this.tentaikhoan = nametk;
             IFirebaseConfig config = new FirebaseConfig
             {
                 AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
@@ -102,19 +104,51 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton22_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa file không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dialogResult == DialogResult.Yes)
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{tentaikhoan}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+            // Retrieve the file information from Firebase
+            FirebaseResponse FileResponse = await firebaseClient.GetAsync($"TaiLieu/{tenNhom}/{tenfile1}");
+
+            // Deserialize the response to get the file data
+            FirebaseFileData fileData = JsonConvert.DeserializeObject<FirebaseFileData>(FileResponse.Body);
+
+            // Get the value of UserUp
+            string userUpValue = fileData.UserUp;
+
+            // Display the value of UserUp (optional, for verification)
+           if(tentaikhoan == userUpValue || tenNhomValue != "true")
             {
-                FirebaseResponse res = firebaseClient.Delete("TaiLieu/" + tenNhom + "/" + tenfile1);
-                FirebaseResponse res1 = firebaseClient.Delete("TuyenTapTaiLieu/" + tenNhom + "/" + tenfile1);
-                MessageBox.Show("Đã xóa file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa file không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    // Delete the file from Firebase
+                    FirebaseResponse res = firebaseClient.Delete($"TaiLieu/{tenNhom}/{tenfile1}");
+                    FirebaseResponse res1 = firebaseClient.Delete($"TuyenTapTaiLieu/{tenNhom}/{tenfile1}");
+                    MessageBox.Show("Đã xóa file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            else
+            {
+                MessageBox.Show("Chỉ có người đăng hoặc người quản lý nhóm mới được quyền xóa file !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+            // Ask for confirmation before deleting the file
+       
         }
+
 
         private void bunifuButton23_Click(object sender, EventArgs e)
         {
             TTFile tf = new TTFile(currentailieu);
             tf.Show();
+        }
+        public class FirebaseFileData
+        {
+            public string Date { get; set; }
+            public string PathFile { get; set; }
+            public string UserUp { get; set; }
+            public string fileName { get; set; }
         }
     }
 }

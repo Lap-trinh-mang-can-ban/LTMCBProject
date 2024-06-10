@@ -82,6 +82,7 @@
             // 
             // richTextBox2
             // 
+            richTextBox2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextBox2.Location = new Point(4, 3);
             richTextBox2.Margin = new Padding(4, 3, 4, 3);
             richTextBox2.Name = "richTextBox2";
@@ -89,9 +90,11 @@
             richTextBox2.Size = new Size(311, 528);
             richTextBox2.TabIndex = 8;
             richTextBox2.Text = "";
+            richTextBox2.TextChanged += richTextBox2_TextChanged;
             // 
             // richTextBox5
             // 
+            richTextBox5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextBox5.Location = new Point(323, 3);
             richTextBox5.Margin = new Padding(4, 3, 4, 3);
             richTextBox5.Name = "richTextBox5";
@@ -102,6 +105,7 @@
             // 
             // richTextBox6
             // 
+            richTextBox6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             richTextBox6.Location = new Point(649, 3);
             richTextBox6.Margin = new Padding(4, 3, 4, 3);
             richTextBox6.Name = "richTextBox6";

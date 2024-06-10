@@ -33,6 +33,7 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            textBox8 = new TextBox();
             textBox2 = new TextBox();
             label9 = new Label();
             btnLayma = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -68,6 +69,7 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(textBox8);
             bunifuPanel1.Controls.Add(textBox2);
             bunifuPanel1.Controls.Add(label9);
             bunifuPanel1.Controls.Add(btnLayma);
@@ -94,8 +96,15 @@
             bunifuPanel1.Location = new Point(384, 7);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(526, 722);
+            bunifuPanel1.Size = new Size(510, 722);
             bunifuPanel1.TabIndex = 24;
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(532, 149);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(125, 27);
+            textBox8.TabIndex = 35;
             // 
             // textBox2
             // 
@@ -408,7 +417,7 @@
             bunifuPictureBox1.BorderRadius = 94;
             bunifuPictureBox1.Image = (Image)resources.GetObject("bunifuPictureBox1.Image");
             bunifuPictureBox1.IsCircle = true;
-            bunifuPictureBox1.Location = new Point(163, 11);
+            bunifuPictureBox1.Location = new Point(155, 11);
             bunifuPictureBox1.Name = "bunifuPictureBox1";
             bunifuPictureBox1.Size = new Size(188, 188);
             bunifuPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -562,6 +571,7 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(188, 27);
             textBox5.TabIndex = 13;
+            textBox5.TextChanged += textBox5_TextChanged;
             // 
             // DangKi
             // 
@@ -604,5 +614,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 btnLayma;
         private Label label9;
         private TextBox textBox2;
+        private TextBox textBox8;
     }
 }

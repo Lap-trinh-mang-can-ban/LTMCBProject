@@ -12,6 +12,7 @@ using BCrypt.Net;
 using System.Net.Mail;
 using System.Net;
 using Newtonsoft.Json;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
@@ -54,7 +55,7 @@ namespace DangKi_DangNhap
             string ngaysinh = textBox6.Text;
             string gioitinh = comboBox1.Text;
             string maXacThuc = textBox7.Text;
-
+            string imagePath = textBox8.Text;
             if (string.IsNullOrWhiteSpace(ID) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(tentaikhoan) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh) || string.IsNullOrWhiteSpace(maXacThuc))
             {
                 //MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -108,7 +109,11 @@ namespace DangKi_DangNhap
 
 
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(matKhau);
-
+                var data1 = new Dictionary<string, object>
+                {
+                    { "Anh", imagePath }
+                };
+                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"AnhDaiDien/{tentaikhoan}", data1);
                 // Tạo dữ liệu người dùng mới
                 var newUser = new User
                 {
@@ -157,6 +162,7 @@ namespace DangKi_DangNhap
         }
         private void bunifuButton21_Click(object sender, EventArgs e)
         {
+         
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg; *.jpeg; *.png";
 
@@ -169,6 +175,7 @@ namespace DangKi_DangNhap
 
                     // Hiển thị ảnh đã chọn trên PictureBox
                     bunifuPictureBox1.Image = new Bitmap(imagePath);
+                    textBox7.Text = imagePath;
 
                     // Upload ảnh đại diện lên Firebase Storage
                     // string avatarUrl = await UploadImageToFirebaseStorage(imagePath);
@@ -182,9 +189,8 @@ namespace DangKi_DangNhap
                     MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
         }
-
-
 
 
         private async Task<string> UploadImageToFirebaseStorage(string imagePath)
@@ -312,7 +318,10 @@ namespace DangKi_DangNhap
             }
         }
 
-      
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class User

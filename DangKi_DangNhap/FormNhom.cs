@@ -18,7 +18,7 @@ namespace DangKi_DangNhap
     public partial class FormNhom : Form
     {
         // Cài đặt lề cho RichTextBox
-        
+
         public string SelectedEmoticon { get; private set; }
         public event EventHandler<string> TenNhomCreated;
         public event EventHandler ButtonClickEvent;
@@ -155,7 +155,7 @@ namespace DangKi_DangNhap
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
         {
-           
+
             if (textBox1.Text == "")
             {
                 //MessageBox.Show("Vui lòng nhập tin nhắn!");
@@ -168,7 +168,7 @@ namespace DangKi_DangNhap
                 await PushDataToFirebase(tenNhom, data);
                 errorLabel.Text = "";
             }
-            
+
 
         }
 
@@ -271,7 +271,7 @@ namespace DangKi_DangNhap
                     pra += value; // Ví dụ: thêm giá trị vào linkLabel1.Text với mỗi giá trị trên một dòng mới
                 }
 
-               // linkLabel1.Text = pra;
+                // linkLabel1.Text = pra;
             }
             else
             {
@@ -314,34 +314,10 @@ namespace DangKi_DangNhap
         }
 
         // btn_click_link open File on this page
-        private async void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            await DownloadFileFromStorage();
-        }
 
 
-        private async Task DownloadFileFromStorage()
-        {
-            if (linkLabel1.Text == "Upload File môn học.")
-                return;
-            /*try
-            {*/
-            string a = tenNhom;
-            string b = linkLabel1.Text;
 
-            var storage = new FirebaseStorage(Bucket);
-            var downloadUrl = await storage
-                .Child(a).Child(b)
-                .GetDownloadUrlAsync();
 
-            // Start a new process to download the file
-            Process.Start("C:\\Program Files\\Internet Explorer\\iexplore.exe", downloadUrl);
-            /* }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("Error: " + ex.Message);
-             }*/
-        }
 
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
@@ -456,6 +432,53 @@ namespace DangKi_DangNhap
             iconSuggestionForm.Show(); // Show the form
         }
 
+        private async void bunifuButton27_Click(object sender, EventArgs e)
+        {
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{userName}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+
+            // Kiểm tra nếu giá trị của "tenNhom" là "true"
+            if (tenNhomValue != "true")
+            {
+                DialogResult dialogResult = MessageBox.Show("Toàn bộ dữ liệu nhóm sẽ bị xóa bạn có chắc chắn muốn xóa nhóm không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    FirebaseResponse res = await firebaseClient.DeleteAsync($"nhoms/{userName}/{tenNhom}");
+                    FirebaseResponse res1 = await firebaseClient.DeleteAsync($"group /{tenNhom}");
+                    MessageBox.Show("Xóa nhóm thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+
+            }
+            else
+            {
+
+                MessageBox.Show("Chỉ người tạo nhóm mới có quyền xóa nhóm !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async  void bunifuButton28_Click(object sender, EventArgs e)
+        {
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"nhoms/{userName}/{tenNhom}");
+
+            // Lấy giá trị của "tenNhom" từ thuộc tính "Result"
+            string tenNhomValue = rsp.ResultAs<string>();
+
+            // Kiểm tra nếu giá trị của "tenNhom" là "true"
+            if (tenNhomValue != "true")
+            {
+                AdminGroup admin = new AdminGroup(tenNhom);
+                admin.Show();
+
+            }
+            else
+            {
+                KhoQuiz q = new KhoQuiz(tenNhom, userName);
+                q.Show();
+            }
+        }
     }
 }
 
