@@ -111,11 +111,11 @@
             // label9
             // 
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.LimeGreen;
-            label9.Location = new Point(72, 557);
+            label9.Location = new Point(72, 554);
             label9.Name = "label9";
-            label9.Size = new Size(378, 16);
+            label9.Size = new Size(378, 21);
             label9.TabIndex = 33;
             label9.Text = "Hãy đảm bảo bạn đã nhập đúng email";
             label9.TextAlign = ContentAlignment.TopCenter;
@@ -166,7 +166,7 @@
             btnLayma.IdleIconLeftImage = null;
             btnLayma.IdleIconRightImage = null;
             btnLayma.IndicateFocus = false;
-            btnLayma.Location = new Point(361, 577);
+            btnLayma.Location = new Point(361, 578);
             btnLayma.Name = "btnLayma";
             btnLayma.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             btnLayma.OnDisabledState.BorderRadius = 30;
@@ -296,7 +296,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(177, 657);
+            bunifuButton22.Location = new Point(177, 652);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 50;

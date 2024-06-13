@@ -19,6 +19,7 @@ namespace DangKi_DangNhap
     {
         private IFirebaseClient firebaseClient;
         private string verificationCode;
+        private bool isPasswordVisible = false;
         public QuenMK()
         {
             InitializeComponent();
@@ -39,8 +40,9 @@ namespace DangKi_DangNhap
             string maXacThuc = textBox3.Text;
             string matKhau = textBox4.Text;
             string xacNhanMatKhau = textBox5.Text;
+            errorLabel.ForeColor = Color.Red;// chỉ là đổi màu thành đỏ thôi
             //string encodedEmail = Convert.ToBase64String(Encoding.UTF8.GetBytes(email));
-            if (email == "")
+            if (email=="" || tentaikhoan=="" || maXacThuc=="" || matKhau=="" || xacNhanMatKhau=="")
             {
                 //MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
@@ -75,7 +77,7 @@ namespace DangKi_DangNhap
                     errorLabel.Text = "Email không đúng hoặc không tồn tại email này !";
                     return;
                 }
-                
+
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(matKhau);
                 var Data = new Dictionary<string, object>
 
@@ -84,6 +86,11 @@ namespace DangKi_DangNhap
         };
                 FirebaseResponse response1 = await firebaseClient.UpdateAsync($"users/{tentaikhoan}", Data);
                 MessageBox.Show("Mật khẩu đã được đặt lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                textBox1.Text = "";
+                textBox2.Text = "";
+                textBox3.Text = "";
+                textBox4.Text = "";
+                textBox5.Text = "";
                 errorLabel.Text = "";
             }
             catch (Exception ex)
@@ -214,7 +221,12 @@ namespace DangKi_DangNhap
 
                 verificationCode = GenerateVerificationCode();
                 GuiEmailXacThuc(email, verificationCode);
-                errorLabel.Text = "Mã xác thực đã được gửi đi ";
+                {
+                    errorLabel.ForeColor = Color.LimeGreen;
+                    errorLabel.Text = "Mã xác thực đã được gửi đi ";
+                }
+                
+
             }
             catch (Exception ex)
             {
@@ -222,9 +234,18 @@ namespace DangKi_DangNhap
             }
         }
 
-        private void bunifuPanel1_Click(object sender, EventArgs e)
+        private void ShowPasswordButton_Click(object sender, EventArgs e)
         {
+            // Chuyển đổi giữa hiển thị và ẩn mật khẩu
+            isPasswordVisible = !isPasswordVisible;
+            textBox4.UseSystemPasswordChar = !isPasswordVisible;
+        }
 
+        private void ShowPasswordButton2_Click(object sender, EventArgs e)
+        {
+            // Chuyển đổi giữa hiển thị và ẩn mật khẩu
+            isPasswordVisible = !isPasswordVisible;
+            textBox5.UseSystemPasswordChar = !isPasswordVisible;
         }
     }
 }
