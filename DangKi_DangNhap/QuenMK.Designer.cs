@@ -38,6 +38,8 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             label3 = new Label();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            ShowPasswordButton2 = new Button();
+            ShowPasswordButton1 = new Button();
             bunifuButton25 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton26 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             textBox4 = new TextBox();
@@ -73,6 +75,8 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(ShowPasswordButton2);
+            bunifuPanel1.Controls.Add(ShowPasswordButton1);
             bunifuPanel1.Controls.Add(bunifuButton25);
             bunifuPanel1.Controls.Add(bunifuButton26);
             bunifuPanel1.Controls.Add(textBox4);
@@ -92,7 +96,30 @@
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(576, 716);
             bunifuPanel1.TabIndex = 11;
-            bunifuPanel1.Click += bunifuPanel1_Click;
+            // 
+            // ShowPasswordButton2
+            // 
+            ShowPasswordButton2.Image = (Image)resources.GetObject("ShowPasswordButton2.Image");
+            ShowPasswordButton2.ImageAlign = ContentAlignment.TopLeft;
+            ShowPasswordButton2.Location = new Point(488, 552);
+            ShowPasswordButton2.Name = "ShowPasswordButton2";
+            ShowPasswordButton2.Size = new Size(50, 44);
+            ShowPasswordButton2.TabIndex = 39;
+            ShowPasswordButton2.UseVisualStyleBackColor = true;
+            ShowPasswordButton2.UseWaitCursor = true;
+            ShowPasswordButton2.Click += ShowPasswordButton2_Click;
+            // 
+            // ShowPasswordButton1
+            // 
+            ShowPasswordButton1.Image = (Image)resources.GetObject("ShowPasswordButton1.Image");
+            ShowPasswordButton1.ImageAlign = ContentAlignment.TopLeft;
+            ShowPasswordButton1.Location = new Point(487, 482);
+            ShowPasswordButton1.Name = "ShowPasswordButton1";
+            ShowPasswordButton1.Size = new Size(50, 44);
+            ShowPasswordButton1.TabIndex = 38;
+            ShowPasswordButton1.UseVisualStyleBackColor = true;
+            ShowPasswordButton1.UseWaitCursor = true;
+            ShowPasswordButton1.Click += ShowPasswordButton_Click;
             // 
             // bunifuButton25
             // 
@@ -277,16 +304,18 @@
             textBox4.Location = new Point(194, 478);
             textBox4.Multiline = true;
             textBox4.Name = "textBox4";
+            textBox4.PasswordChar = '*';
             textBox4.Size = new Size(348, 53);
             textBox4.TabIndex = 35;
             // 
             // textBox5
             // 
             textBox5.BackColor = Color.WhiteSmoke;
-            textBox5.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox5.Font = new Font("Segoe UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox5.Location = new Point(194, 547);
             textBox5.Multiline = true;
             textBox5.Name = "textBox5";
+            textBox5.PasswordChar = '*';
             textBox5.Size = new Size(348, 53);
             textBox5.TabIndex = 34;
             // 
@@ -482,7 +511,7 @@
             errorLabel.BackColor = Color.Transparent;
             errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(37, 614);
+            errorLabel.Location = new Point(27, 609);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(515, 28);
             errorLabel.TabIndex = 29;
@@ -836,5 +865,7 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton26;
         private TextBox textBox4;
         private TextBox textBox5;
+        private Button ShowPasswordButton2;
+        private Button ShowPasswordButton1;
     }
 }
