@@ -8,16 +8,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
 {
-    public partial class EventForm : Form
+    public partial class EventFormGroup : Form
     {
         private readonly IFirebaseClient firebaseClient;
-        private readonly string user;
+        private readonly string nhom;
 
-        public EventForm(string userName)
+        public EventFormGroup(string nhomHoc)
         {
             InitializeComponent();
 
-            user = userName;
+            nhom = nhomHoc;
 
             // Cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
@@ -35,19 +35,21 @@ namespace DangKi_DangNhap
             errorLabel.Text = "";
         }
 
-        private void EventForm_Load(object sender, EventArgs e)
+        private void EventFormGroup_Load(object sender, EventArgs e)
         {
-            string date = $"{LapLich.static_month}_{UserControl2.static_day}_{LapLich.static_year}";
+            string date = $"{GroupCalender.static_month}_{UserControl3.static_day}_{GroupCalender.static_year}";
+           
             textBox1.Text = date;
         }
 
         private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             int eventCount = await GetCurrentEventCount();
-            string eventName = textBox2.Text.Trim();
+         
             string eventDate = textBox1.Text.Trim();
+            string evantpart = richTextBox1.Text.Trim();
             // Kiểm tra dữ liệu hợp lệ
-            if (string.IsNullOrEmpty(eventName))
+            if (string.IsNullOrEmpty(evantpart))
             {
                 //MessageBox.Show("Vui lòng nhập sự kiện.");
                 errorLabel.Text = "Vui lòng nhập sự kiện !";
@@ -58,16 +60,17 @@ namespace DangKi_DangNhap
             {
                 var data = new Dictionary<string, object>
                 {
-                    { eventDate, eventName }
+                    { eventDate, evantpart },
+                    
                 };
 
                 // Thực hiện thêm dữ liệu vào Firebase với tên của người dùng làm nút cha
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"Lich/{user}/", data);
+                FirebaseResponse response = await firebaseClient.UpdateAsync($"Calendar/{nhom}/", data);
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Thêm sự kiện thành công.");
-                    textBox2.Text = "";
+                  richTextBox1.Text = "";
                     errorLabel.Text = "";
                 }
                 else
@@ -87,7 +90,7 @@ namespace DangKi_DangNhap
             try
             {
                 // Thực hiện truy vấn dữ liệu từ Firebase để lấy danh sách các sự kiện
-                FirebaseResponse response = await firebaseClient.GetAsync($"Lich/{user}");
+                FirebaseResponse response = await firebaseClient.GetAsync($"Calender/{nhom}");
 
                 // Kiểm tra xem có dữ liệu hay không
                 if (response.Body != "null")
@@ -120,12 +123,12 @@ namespace DangKi_DangNhap
             try
             {
                 // Thực hiện xóa dữ liệu từ Firebase cho ngày cụ thể của người dùng
-                FirebaseResponse response = await firebaseClient.DeleteAsync($"Lich/{user}/{eventDate}");
+                FirebaseResponse response = await firebaseClient.DeleteAsync($"Calendar/{nhom}/{eventDate}");
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Đã xóa sự kiện.");
-                    errorLabel.Text = ""; 
+                    errorLabel.Text = "";
                 }
                 else
                 {
@@ -139,6 +142,9 @@ namespace DangKi_DangNhap
             }
         }
 
-        
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

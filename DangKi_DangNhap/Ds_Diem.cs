@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Formats.Asn1.AsnWriter;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace DangKi_DangNhap
@@ -48,7 +49,7 @@ namespace DangKi_DangNhap
         private async void Ds_Diem_Load(object sender, EventArgs e)
         {
             int count = 0;
-            int totalScore = 0; // Tổng điểm
+            double totalScore = 0; // Tổng điểm
             try
             {
 
@@ -74,15 +75,16 @@ namespace DangKi_DangNhap
                         string formattedText = $"Điểm làm bài quiz lần {i} là: {score.Value}";
                         listView1.Items.Add(new ListViewItem(formattedText));
                         i++;
-                        int.TryParse(score.Value, out int scoreValue); // Lấy giá trị điểm từ dữ liệu
-
+                        double.TryParse(score.Value, out double scoreValue);
+                     
                         totalScore += scoreValue; // Cộng điểm
+                      
                         count++; // Tăng biến đếm số lượng quiz
                     }
 
                     // Tính điểm trung bình
                     double averageScore = (double)totalScore / count;
-
+                
                     // Hiển thị điểm trung bình trên Label 3
                     label3.Text = $"{averageScore:F2}"; // Hiển thị điểm trung bình với 2 chữ số sau dấu phẩy
                     label5.Text = user;

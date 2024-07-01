@@ -12,22 +12,23 @@ using System.Windows.Forms;
 namespace DangKi_DangNhap
 {
 
-    public partial class LapLich : Form
+    public partial class GroupCalender : Form
 
     {
         private readonly string userName;
+        private string nhom;
         int month, year, day;
         public static int static_month, static_year;
-        public LapLich(string user, string temp)
+        public GroupCalender(string tenNhom, string user)
         {
             InitializeComponent();
-            userName = user;
-
+            this.nhom = tenNhom;
+            this.userName = user;
 
         }
         private void OpenEventForm()
         {
-            EventForm eventForm = new EventForm(userName); // Truyền giá trị userName vào constructor của EventForm
+            EventForm eventForm = new EventForm(nhom); // Truyền giá trị userName vào constructor của EventForm
             eventForm.Show();
         }
         private void LapLich_Load(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace DangKi_DangNhap
         }
         private void displayDays()
         {
+
             DateTime now = DateTime.Now;
             month = now.Month;
             year = now.Year;
@@ -60,15 +62,15 @@ namespace DangKi_DangNhap
             }
             for (int i = 1; i <= days; i++)
             {
-                UserControl2 uscontrol2 = new UserControl2(userName);
-                uscontrol2.Days(i);
-                uscontrol2.DisplayEvent(i);
-                uscontrol2.ColorBack(i, month);
-                flowLayoutPanel1.Controls.Add(uscontrol2);
+                UserControl3 uscontrol3 = new UserControl3(nhom, userName);
+                uscontrol3.Days(i);
+                uscontrol3.DisplayEvent(i);
+                uscontrol3.ColorBack(i, month);
+                flowLayoutPanel1.Controls.Add(uscontrol3);
             }
         }
 
-   
+
 
         private void bunifuButton22_Click(object sender, EventArgs e)
         {
@@ -91,11 +93,11 @@ namespace DangKi_DangNhap
             }
             for (int i = 1; i <= days; i++)
             {
-                UserControl2 uscontrol2 = new UserControl2(userName);
-                uscontrol2.Days(i);
-                uscontrol2.DisplayEvent(i);
-                uscontrol2.ColorBack(i, month);
-                flowLayoutPanel1.Controls.Add(uscontrol2);
+                UserControl3 uscontrol3 = new UserControl3(nhom, userName);
+                uscontrol3.Days(i);
+                uscontrol3.DisplayEvent(i);
+                uscontrol3.ColorBack(i, month);
+                flowLayoutPanel1.Controls.Add(uscontrol3);
             }
         }
 
@@ -118,11 +120,11 @@ namespace DangKi_DangNhap
             }
             for (int i = 1; i <= days; i++)
             {
-                UserControl2 uscontrol2 = new UserControl2(userName);
-                uscontrol2.Days(i);
-                uscontrol2.DisplayEvent(i);
-                uscontrol2.ColorBack(i, month);
-                flowLayoutPanel1.Controls.Add(uscontrol2);
+                UserControl3 uscontrol3 = new UserControl3(nhom, userName);
+                uscontrol3.Days(i);
+                uscontrol3.DisplayEvent(i);
+                uscontrol3.ColorBack(i, month);
+                flowLayoutPanel1.Controls.Add(uscontrol3);
             }
         }
     }

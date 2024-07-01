@@ -1,6 +1,6 @@
 ﻿namespace DangKi_DangNhap
 {
-    partial class UserControl2
+    partial class UserControl3
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,45 +28,41 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lbDays = new Label();
             lbEvent = new Label();
+            lbDays = new Label();
             SuspendLayout();
-            // 
-            // lbDays
-            // 
-            lbDays.Location = new Point(17, 11);
-            lbDays.Name = "lbDays";
-            lbDays.Size = new Size(44, 25);
-            lbDays.TabIndex = 0;
-            lbDays.Text = "00";
-            lbDays.Click += lbDays_Click;
             // 
             // lbEvent
             // 
-            lbEvent.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbEvent.ForeColor = Color.White;
-            lbEvent.Location = new Point(51, 36);
+            lbEvent.Location = new Point(58, 43);
             lbEvent.Name = "lbEvent";
-            lbEvent.Size = new Size(96, 64);
-            lbEvent.TabIndex = 1;
-            lbEvent.Click += lbEvent_Click;
+            lbEvent.Size = new Size(87, 50);
+            lbEvent.TabIndex = 0;
+            lbEvent.Click += UserControl3_Click;
             // 
-            // UserControl2
+            // lbDays
+            // 
+            lbDays.Location = new Point(3, 0);
+            lbDays.Name = "lbDays";
+            lbDays.Size = new Size(42, 33);
+            lbDays.TabIndex = 1;
+            // 
+            // UserControl3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(lbEvent);
             Controls.Add(lbDays);
-            Name = "UserControl2";
-            Size = new Size(147, 88);
-            Load += UserControl2_Load;
-            Click += UserControl2_Click;
+            Controls.Add(lbEvent);
+            Name = "UserControl3";
+            Size = new Size(145, 97);
             ResumeLayout(false);
+            Load += UserControl3_Load;
+            Click += UserControl3_Click;
         }
 
         #endregion
 
-        private Label lbDays;
         private Label lbEvent;
+        private Label lbDays;
     }
 }

@@ -77,7 +77,7 @@
             linkLabel1.BackColor = Color.Transparent;
             linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.DeepSkyBlue;
-            linkLabel1.Location = new Point(146, 613);
+            linkLabel1.Location = new Point(227, 654);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(85, 28);
             linkLabel1.TabIndex = 5;
@@ -93,7 +93,7 @@
             linkLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             linkLabel2.ForeColor = Color.WhiteSmoke;
             linkLabel2.LinkColor = Color.DeepSkyBlue;
-            linkLabel2.Location = new Point(292, 613);
+            linkLabel2.Location = new Point(190, 602);
             linkLabel2.Name = "linkLabel2";
             linkLabel2.Size = new Size(159, 28);
             linkLabel2.TabIndex = 6;
@@ -166,9 +166,9 @@
             errorLabel.BackColor = Color.Transparent;
             errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(185, 461);
+            errorLabel.Location = new Point(185, 468);
             errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(172, 41);
+            errorLabel.Size = new Size(338, 29);
             errorLabel.TabIndex = 19;
             errorLabel.Text = "errorLabel";
             errorLabel.Click += errorLabel_Click;

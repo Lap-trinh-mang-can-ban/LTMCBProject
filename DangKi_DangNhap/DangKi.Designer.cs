@@ -33,7 +33,6 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
-            textBox8 = new TextBox();
             textBox2 = new TextBox();
             label9 = new Label();
             btnLayma = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
@@ -57,6 +56,7 @@
             textBox6 = new TextBox();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
+            textBox8 = new TextBox();
             bunifuPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox1).BeginInit();
             SuspendLayout();
@@ -96,15 +96,8 @@
             bunifuPanel1.Location = new Point(384, 7);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(510, 722);
+            bunifuPanel1.Size = new Size(549, 722);
             bunifuPanel1.TabIndex = 24;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(532, 149);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(125, 27);
-            textBox8.TabIndex = 35;
             // 
             // textBox2
             // 
@@ -120,11 +113,11 @@
             // label9
             // 
             label9.BackColor = Color.Transparent;
-            label9.Font = new Font("Segoe UI", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label9.ForeColor = Color.LimeGreen;
-            label9.Location = new Point(72, 557);
+            label9.Location = new Point(72, 554);
             label9.Name = "label9";
-            label9.Size = new Size(378, 16);
+            label9.Size = new Size(378, 21);
             label9.TabIndex = 33;
             label9.Text = "Hãy đảm bảo bạn đã nhập đúng email";
             label9.TextAlign = ContentAlignment.TopCenter;
@@ -175,7 +168,7 @@
             btnLayma.IdleIconLeftImage = null;
             btnLayma.IdleIconRightImage = null;
             btnLayma.IndicateFocus = false;
-            btnLayma.Location = new Point(361, 577);
+            btnLayma.Location = new Point(361, 578);
             btnLayma.Name = "btnLayma";
             btnLayma.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             btnLayma.OnDisabledState.BorderRadius = 30;
@@ -305,7 +298,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(177, 657);
+            bunifuButton22.Location = new Point(177, 652);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 50;
@@ -417,7 +410,7 @@
             bunifuPictureBox1.BorderRadius = 94;
             bunifuPictureBox1.Image = (Image)resources.GetObject("bunifuPictureBox1.Image");
             bunifuPictureBox1.IsCircle = true;
-            bunifuPictureBox1.Location = new Point(155, 11);
+            bunifuPictureBox1.Location = new Point(174, 11);
             bunifuPictureBox1.Name = "bunifuPictureBox1";
             bunifuPictureBox1.Size = new Size(188, 188);
             bunifuPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -571,7 +564,13 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(188, 27);
             textBox5.TabIndex = 13;
-            textBox5.TextChanged += textBox5_TextChanged;
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(560, 155);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(125, 27);
+            textBox8.TabIndex = 35;
             // 
             // DangKi
             // 

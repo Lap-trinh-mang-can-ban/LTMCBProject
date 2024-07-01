@@ -13,6 +13,8 @@ using System.Net.Mail;
 using System.Net;
 using Newtonsoft.Json;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using static System.Windows.Forms.LinkLabel;
+using System.Formats.Tar;
 
 namespace DangKi_DangNhap
 {
@@ -22,7 +24,8 @@ namespace DangKi_DangNhap
         private string verificationCode;
         private bool isPasswordVisible = false;
         private string newUserID;
-
+        private OpenFileDialog openFileDialog = new OpenFileDialog();
+        private const string Bucket = "databeseaccess.appspot.com";
         public DangKi()
         {
             InitializeComponent();
@@ -55,8 +58,12 @@ namespace DangKi_DangNhap
             string ngaysinh = textBox6.Text;
             string gioitinh = comboBox1.Text;
             string maXacThuc = textBox7.Text;
-            string imagePath = textBox8.Text;
-            if (string.IsNullOrWhiteSpace(ID) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(tentaikhoan) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh) || string.IsNullOrWhiteSpace(maXacThuc))
+            string path = textBox8.Text;
+            byte[] fileBytes = File.ReadAllBytes(path);
+            string uniquePath = $"ProfilePictures/{tentaikhoan}";
+
+            //  string imagePath = textBox8.Text;
+            if (string.IsNullOrWhiteSpace(ID) || string.IsNullOrWhiteSpace(matKhau) || string.IsNullOrWhiteSpace(xacNhanMatKhau) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(tentaikhoan) || string.IsNullOrWhiteSpace(ngaysinh) || string.IsNullOrWhiteSpace(gioitinh) || string.IsNullOrWhiteSpace(maXacThuc) || string.IsNullOrWhiteSpace(path))
             {
                 //MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
@@ -87,7 +94,13 @@ namespace DangKi_DangNhap
                     return;
                 }
                 */
+                var firebaseStorage = new FirebaseStorage(Bucket);
 
+                // Lưu trữ tệp lên Firebase Storage
+                await firebaseStorage.Child(uniquePath).PutAsync(new MemoryStream(fileBytes));
+
+                // Tạo đường dẫn tới tệp trên Firebase Storage
+                string firebaseStoragePath = await firebaseStorage.Child(uniquePath).GetDownloadUrlAsync();
                 // Kiểm tra xem email đã tồn tại chưa
                 FirebaseResponse emailExistsResponse = firebaseClient.Get($"emails/{encodedEmail}");
                 if (emailExistsResponse.Body != "null")
@@ -109,11 +122,8 @@ namespace DangKi_DangNhap
 
 
                 string hashedPassword = BCrypt.Net.BCrypt.HashPassword(matKhau);
-                var data1 = new Dictionary<string, object>
-                {
-                    { "Anh", imagePath }
-                };
-                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"AnhDaiDien/{tentaikhoan}", data1);
+             
+               
                 // Tạo dữ liệu người dùng mới
                 var newUser = new User
                 {
@@ -165,7 +175,7 @@ namespace DangKi_DangNhap
          
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files (*.jpg, *.jpeg, *.png)|*.jpg; *.jpeg; *.png";
-
+            
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
@@ -175,7 +185,7 @@ namespace DangKi_DangNhap
 
                     // Hiển thị ảnh đã chọn trên PictureBox
                     bunifuPictureBox1.Image = new Bitmap(imagePath);
-                    textBox7.Text = imagePath;
+                    textBox8.Text = imagePath;
 
                     // Upload ảnh đại diện lên Firebase Storage
                     // string avatarUrl = await UploadImageToFirebaseStorage(imagePath);

@@ -98,8 +98,9 @@ namespace DangKi_DangNhap
             string link = linkLabel.Text;
             if (linkLabel != null)
             {
-                Quiz quiz = new Quiz(tenNhom, user, link, time);
-                quiz.Show();
+                Choose ch = new Choose(tenNhom, user, link, time);
+               // Quiz quiz = new Quiz(tenNhom, user, link, time);
+                ch.Show();
                 // You can add additional logic to handle user interaction with the link, such as opening the corresponding quiz
             }
         }

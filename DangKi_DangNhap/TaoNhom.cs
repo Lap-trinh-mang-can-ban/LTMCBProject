@@ -136,7 +136,7 @@ namespace DangKi_DangNhap
                 AddNhomButton(tenNhom);
             };
         }
-       
+
 
         private async void BtnNhomMoi_Click(object sender, EventArgs e)
         {
@@ -146,13 +146,16 @@ namespace DangKi_DangNhap
             FormNhom newForm = new FormNhom(tenNhom, userName);
             newForm.Text = "Danh sách thành viên của nhóm" + tenNhom; // Đặt tiêu đề cho form
             newForm.Show();
+
+            // Chờ 0.5 giây trước khi tải danh sách thành viên của nhóm
+            await Task.Delay(500);
+
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới
             LoadMembersOfGroup(tenNhom, newForm.listView1);
 
+            // LoadClick là một hàm khác mà bạn muốn thực hiện sau khi show form
             LoadClick(tenNhom, newForm.richTextBox1);
-
         }
-
 
 
         public async Task<Dictionary<string, object>> GetGroupData(string tenNhom)
@@ -284,10 +287,19 @@ namespace DangKi_DangNhap
                     // Kiểm tra xem tên thành viên có chứa các từ khóa cụ thể không
                     if (!member.Key.Contains("message") && !member.Key.Contains("ports"))
                     {
-                        string userName = member.Key;
-                        ListViewItem item = new ListViewItem(userName);
+                        string key = member.Key;
+                        string value = member.Value.ToString();
+                        string combinedText = $"{key} {value}";
+
+                        ListViewItem item = new ListViewItem(combinedText);
                         listView.Items.Add(item);
                     }
+                }
+
+                // Tự động điều chỉnh độ rộng các cột theo nội dung
+                foreach (ColumnHeader column in listView.Columns)
+                {
+                    column.Width = -2;
                 }
             }
             catch (Exception ex)
@@ -295,6 +307,8 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
 
 

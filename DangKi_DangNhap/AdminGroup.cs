@@ -20,8 +20,10 @@ namespace DangKi_DangNhap
     {
         private IFirebaseClient firebaseClient;
         private string nhom;
-        public AdminGroup(string tenNhom)
+        private string username;
+        public AdminGroup(string tenNhom, string user)
         {
+            this.username = user;
             InitializeComponent();
             textBox6.KeyPress += new KeyPressEventHandler(textBox6_KeyPress);
             this.nhom = tenNhom;
@@ -34,7 +36,7 @@ namespace DangKi_DangNhap
             firebaseClient = new FireSharp.FirebaseClient(config);
         }
 
-    
+
 
 
         private void textBox6_KeyPress(object sender, KeyPressEventArgs e)
@@ -110,7 +112,16 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Bạn cần nhập name quiz !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            if (string.IsNullOrWhiteSpace(Question))
+            {
+                MessageBox.Show("Bạn cần nhập câu hỏi !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(ans1) || string.IsNullOrWhiteSpace(ans2) || string.IsNullOrWhiteSpace(ans3) || string.IsNullOrWhiteSpace(ans4) || string.IsNullOrWhiteSpace(bool1) || string.IsNullOrWhiteSpace(bool2) || string.IsNullOrWhiteSpace(bool3) || string.IsNullOrWhiteSpace(bool4))
+            {
+                MessageBox.Show("Bạn cần nhập đầy đủ các câu trả lời !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var postData = new Dictionary<string, object>
         {
             { "Question", Question },
@@ -138,20 +149,41 @@ namespace DangKi_DangNhap
         {
             string time = textBox6.Text;
             string QuizName = textBox5.Text;
+
             if (string.IsNullOrWhiteSpace(QuizName))
             {
-                MessageBox.Show("Yêu cầu name quiz để cập nhật !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Yêu cầu name quiz để cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(time))
+            {
+                MessageBox.Show("Thiết lập thời gian làm quiz!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            FirebaseResponse rsp = await firebaseClient.GetAsync($"Quiz/{nhom}/{QuizName}");
+            var quizData = rsp.ResultAs<object>(); // Deserialize to object to check for existence
+
+            if (quizData == null)
+            {
+                MessageBox.Show("Không thể cập nhật vì quiz này chưa tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             var postData2 = new Dictionary<string, object>
+    {
+        { QuizName, time.ToString() }
+    };
 
-            {
-                {QuizName, time.ToString() }
-        };
             FirebaseResponse response2 = await firebaseClient.UpdateAsync($"TuyenTapBaiQuiz/{nhom}", postData2);
-            MessageBox.Show("Đã đăng cập nhật quiz thành công !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Đã đăng cập nhật quiz thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void bunifuButton23_Click_1(object sender, EventArgs e)
+        {
+            KhoQuiz q = new KhoQuiz(nhom, username);
+            q.Show();
         }
     }
-
 }

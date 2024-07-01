@@ -1,6 +1,6 @@
 ﻿namespace DangKi_DangNhap
 {
-    partial class LapLich
+    partial class GroupCalender
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LapLich));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupCalender));
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             flowLayoutPanel1 = new FlowLayoutPanel();
@@ -46,7 +46,7 @@
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.BackColor = Color.LightBlue;
+            flowLayoutPanel1.BackColor = Color.DeepSkyBlue;
             flowLayoutPanel1.ForeColor = SystemColors.Control;
             flowLayoutPanel1.Location = new Point(0, 85);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -305,7 +305,7 @@
             bunifuButton21.UseDefaultRadiusAndThickness = true;
             bunifuButton21.Click += bunifuButton21_Click;
             // 
-            // LapLich
+            // GroupCalender
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -322,8 +322,8 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(flowLayoutPanel1);
-            Name = "LapLich";
-            Text = "LapLich";
+            Name = "GroupCalender";
+            Text = "Lịch nhóm";
             Load += LapLich_Load;
             ResumeLayout(false);
         }

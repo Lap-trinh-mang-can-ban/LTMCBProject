@@ -57,6 +57,7 @@
             // 
             // listView1
             // 
+            listView1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             listView1.Location = new Point(43, 74);
             listView1.Name = "listView1";
             listView1.Size = new Size(710, 382);
