@@ -58,7 +58,7 @@
             Controls.Add(lbEvent);
             Controls.Add(lbDays);
             Name = "UserControl2";
-            Size = new Size(147, 100);
+            Size = new Size(147, 88);
             Load += UserControl2_Load;
             Click += UserControl2_Click;
             ResumeLayout(false);

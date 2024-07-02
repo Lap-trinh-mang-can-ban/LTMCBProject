@@ -79,7 +79,7 @@ namespace DangKi_DangNhap
                 //MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 textBox1.Text = "";
                 textBox2.Text = "";
-                errorLabel.Text = ""; 
+                errorLabel.Text = "";
                 this.Hide();
                 TrangChu tc = new TrangChu(user);
                 tc.ShowDialog();
@@ -114,7 +114,12 @@ namespace DangKi_DangNhap
             // Chuyển đổi giữa hiển thị và ẩn mật khẩu
             isPasswordVisible = !isPasswordVisible;
             textBox2.UseSystemPasswordChar = !isPasswordVisible;
-      
+
+        }
+
+        private void errorLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

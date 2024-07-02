@@ -7,21 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bunifu.UI.WinForms;
 using Bunifu.UI.WinForms.BunifuButton;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
+using System.IO;
+using System.Net.Http;
+using Firebase.Storage;
 
 namespace DangKi_DangNhap
 {
     public partial class TrangChu : Form
     {
-        // Dictionary để lưu màu ban đầu của các button
+        public event Func<Task> ImagePathChanged;
+        IFirebaseClient firebaseClient;
         Dictionary<Bunifu.UI.WinForms.BunifuButton.BunifuButton2, Color> originalButtonColors = new Dictionary<Bunifu.UI.WinForms.BunifuButton.BunifuButton2, Color>();
         private Form currentChildForm;
-        private User currentUser; // Thêm trường để lưu thông tin tài khoản
+        private User currentUser;
+        private string temp;
+        private OpenFileDialog openFileDialog = new OpenFileDialog();
+        private const string Bucket = "databeseaccess.appspot.com";
+
         public TrangChu(User user)
         {
             InitializeComponent();
-            // Gắn sự kiện MouseEnter và MouseLeave cho các button
+            IFirebaseConfig config = new FirebaseConfig
+            {
+                AuthSecret = "PFejsR6CHWL2zIGqFqZ1w3Orw0ljzeHnHubtuQN8",
+                BasePath = "https://databeseaccess-default-rtdb.firebaseio.com/",
+            };
+
+            firebaseClient = new FireSharp.FirebaseClient(config);
+
             bunifuButton21.MouseEnter += Button_MouseEnter;
             bunifuButton21.MouseLeave += Button_MouseLeave;
 
@@ -39,24 +57,82 @@ namespace DangKi_DangNhap
 
             bunifuButton26.MouseEnter += Button_MouseEnter;
             bunifuButton26.MouseLeave += Button_MouseLeave;
-            // Lưu màu ban đầu của các button
+
             originalButtonColors.Add(bunifuButton21, bunifuButton21.BackColor);
             originalButtonColors.Add(bunifuButton22, bunifuButton22.BackColor);
             originalButtonColors.Add(bunifuButton23, bunifuButton23.BackColor);
             originalButtonColors.Add(bunifuButton24, bunifuButton24.BackColor);
             originalButtonColors.Add(bunifuButton25, bunifuButton25.BackColor);
             originalButtonColors.Add(bunifuButton26, bunifuButton25.BackColor);
+
             currentUser = user;
             linkLabel2.Text = currentUser.Tentaikhoan;
+            LoadAnhDaiDien();
+            this.ImagePathChanged += TrangChu_ImagePathChanged;
         }
+
+        private async Task TrangChu_ImagePathChanged()
+        {
+            await LoadAnhDaiDien();
+        }
+
+        private async Task LoadAnhDaiDien()
+        {
+            string path = $"ProfilePictures/{currentUser.Tentaikhoan}";
+
+            var firebaseStorage = new FirebaseStorage(Bucket);
+
+            try
+            {
+                string downloadUrl = await firebaseStorage.Child(path).GetDownloadUrlAsync();
+                var image = await DownloadImageFromUrl(downloadUrl);
+                if (image != null)
+                {
+                    bunifuPictureBox7.Image = image;
+                }
+                else
+                {
+                    MessageBox.Show("Không thể tải xuống ảnh từ Firebase Storage.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task<Bitmap> DownloadImageFromUrl(string url)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    using (var stream = await response.Content.ReadAsStreamAsync())
+                    {
+                        return new Bitmap(stream);
+                    }
+                }
+                return null;
+            }
+        }
+
+        public async void UpdateImagePath()
+        {
+            if (ImagePathChanged != null)
+            {
+                await ImagePathChanged.Invoke();
+            }
+        }
+
         private void OpenChildForm(Form childForm)
         {
             if (currentChildForm != null)
             {
-                currentChildForm.Close(); // Đóng form con hiện tại nếu có
+                currentChildForm.Close();
             }
 
-            currentChildForm = childForm; // Cập nhật form con hiện tại
+            currentChildForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
@@ -65,6 +141,7 @@ namespace DangKi_DangNhap
             childForm.BringToFront();
             childForm.Show();
         }
+
         private void Button_MouseEnter(object sender, EventArgs e)
         {
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2 button = (Bunifu.UI.WinForms.BunifuButton.BunifuButton2)sender;
@@ -77,7 +154,6 @@ namespace DangKi_DangNhap
         private void Button_MouseLeave(object sender, EventArgs e)
         {
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2 button = (Bunifu.UI.WinForms.BunifuButton.BunifuButton2)sender;
-            // Trở lại màu của button trước khi rê chuột vào
             if (originalButtonColors.ContainsKey(button))
             {
                 button.BackColor = originalButtonColors[button];
@@ -89,19 +165,13 @@ namespace DangKi_DangNhap
             DialogResult result = MessageBox.Show("Bạn có muốn đăng xuất không?", "Xác nhận đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
-
-                this.Close(); // Đóng form hiện tại
-            }
-            else
-            {
-                // Người dùng chọn không đăng xuất, không làm gì cả
+                this.Close();
             }
         }
 
-
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ThongTinNguoiDungForm infoForm = new ThongTinNguoiDungForm(currentUser);
+            ThongTinNguoiDungForm infoForm = new ThongTinNguoiDungForm(currentUser, this);
             infoForm.Show();
         }
 
@@ -109,7 +179,7 @@ namespace DangKi_DangNhap
         {
             OpenChildForm(new TrangChuThatSu());
         }
-        private string user;
+
         private void bunifuButton22_Click(object sender, EventArgs e)
         {
             OpenChildForm(new ThongBao(currentUser.Tentaikhoan));
@@ -117,22 +187,37 @@ namespace DangKi_DangNhap
 
         private void bunifuButton23_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom(currentUser.Tentaikhoan)); // Truyền username của người dùng hiện tại
+            OpenChildForm(new TaoNhom(currentUser.Tentaikhoan));
         }
 
         private void bunifuButton24_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new LapLich(currentUser.Tentaikhoan));
+            OpenChildForm(new LapLich(currentUser.Tentaikhoan, temp));
         }
 
         private void bunifuButton25_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new TaoNhom(currentUser.Tentaikhoan)); 
+            OpenChildForm(new CaiDat(currentUser.MatKhau, currentUser.Tentaikhoan));
         }
 
         private void bunifuButton26_Click(object sender, EventArgs e)
         {
             OpenChildForm(new DanhGia());
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuPictureBox5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bunifuPictureBox7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

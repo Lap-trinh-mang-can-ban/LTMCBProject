@@ -56,6 +56,7 @@
             textBox6 = new TextBox();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
+            textBox8 = new TextBox();
             bunifuPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bunifuPictureBox1).BeginInit();
             SuspendLayout();
@@ -68,6 +69,7 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(textBox8);
             bunifuPanel1.Controls.Add(textBox2);
             bunifuPanel1.Controls.Add(label9);
             bunifuPanel1.Controls.Add(btnLayma);
@@ -94,7 +96,7 @@
             bunifuPanel1.Location = new Point(384, 7);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(526, 722);
+            bunifuPanel1.Size = new Size(549, 722);
             bunifuPanel1.TabIndex = 24;
             // 
             // textBox2
@@ -408,7 +410,7 @@
             bunifuPictureBox1.BorderRadius = 94;
             bunifuPictureBox1.Image = (Image)resources.GetObject("bunifuPictureBox1.Image");
             bunifuPictureBox1.IsCircle = true;
-            bunifuPictureBox1.Location = new Point(163, 11);
+            bunifuPictureBox1.Location = new Point(174, 11);
             bunifuPictureBox1.Name = "bunifuPictureBox1";
             bunifuPictureBox1.Size = new Size(188, 188);
             bunifuPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -563,6 +565,13 @@
             textBox5.Size = new Size(188, 27);
             textBox5.TabIndex = 13;
             // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(560, 155);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(125, 27);
+            textBox8.TabIndex = 35;
+            // 
             // DangKi
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -604,5 +613,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 btnLayma;
         private Label label9;
         private TextBox textBox2;
+        private TextBox textBox8;
     }
 }

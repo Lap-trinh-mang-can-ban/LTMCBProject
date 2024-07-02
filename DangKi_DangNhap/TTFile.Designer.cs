@@ -161,6 +161,7 @@
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(448, 373);
             bunifuPanel1.TabIndex = 19;
+            bunifuPanel1.Click += bunifuPanel1_Click;
             // 
             // TTFile
             // 

@@ -11,13 +11,13 @@ namespace DangKi_DangNhap
     public partial class EventForm : Form
     {
         private readonly IFirebaseClient firebaseClient;
-        private readonly string _userName;
+        private readonly string user;
 
         public EventForm(string userName)
         {
             InitializeComponent();
 
-            _userName = userName;
+            user = userName;
 
             // Cấu hình Firebase
             IFirebaseConfig config = new FirebaseConfig
@@ -62,7 +62,7 @@ namespace DangKi_DangNhap
                 };
 
                 // Thực hiện thêm dữ liệu vào Firebase với tên của người dùng làm nút cha
-                FirebaseResponse response = await firebaseClient.UpdateAsync($"Lich/{_userName}/", data);
+                FirebaseResponse response = await firebaseClient.UpdateAsync($"Lich/{user}/", data);
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
@@ -87,7 +87,7 @@ namespace DangKi_DangNhap
             try
             {
                 // Thực hiện truy vấn dữ liệu từ Firebase để lấy danh sách các sự kiện
-                FirebaseResponse response = await firebaseClient.GetAsync($"Lich/{_userName}");
+                FirebaseResponse response = await firebaseClient.GetAsync($"Lich/{user}");
 
                 // Kiểm tra xem có dữ liệu hay không
                 if (response.Body != "null")
@@ -120,7 +120,7 @@ namespace DangKi_DangNhap
             try
             {
                 // Thực hiện xóa dữ liệu từ Firebase cho ngày cụ thể của người dùng
-                FirebaseResponse response = await firebaseClient.DeleteAsync($"Lich/{_userName}/{eventDate}");
+                FirebaseResponse response = await firebaseClient.DeleteAsync($"Lich/{user}/{eventDate}");
 
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {

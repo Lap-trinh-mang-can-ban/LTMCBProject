@@ -42,6 +42,33 @@ namespace DangKi_DangNhap
         {
             try
             {
+                // Lấy tất cả các nhánh con của "nhoms/{userName}"
+                FirebaseResponse response1 = await firebaseClient.GetAsync($"nhoms/{userName}");
+                Dictionary<string, object> nhomsData = response1.ResultAs<Dictionary<string, object>>();
+
+                if (nhomsData != null)
+                {
+                    foreach (var nhomDatam in nhomsData)
+                    {
+                        string tenNhom = nhomDatam.Key;
+                        string value = nhomDatam.Value.ToString();
+
+                        // Kiểm tra nếu giá trị là "true"
+                        if (value == "True")
+                        {
+
+                            // Kiểm tra xem có nhóm tương ứng trong "group/{tenNhom}" không
+                            FirebaseResponse rsp = await firebaseClient.GetAsync($"group /{tenNhom}");
+                            if (rsp.Body == "null")
+                            {
+                                // Nếu không có nhóm tương ứng, xóa nhánh con đó
+                                await firebaseClient.DeleteAsync($"nhoms/{userName}/{tenNhom}");
+                            }
+
+                        }
+
+                    }
+                }
                 // Truy vấn dữ liệu từ Firebase
                 FirebaseResponse response = await firebaseClient.GetAsync($"nhoms/{userName}");
                 if (response.Body == "null")
@@ -57,8 +84,13 @@ namespace DangKi_DangNhap
                 foreach (var pair in nhomData)
                 {
                     string tenNhom = pair.Key;
+                    string value = pair.Value.ToString();
+                    if(value != "true")
+                    {
+                        AddNhomButton(tenNhom);
+                    }
                     // Tạo button nhóm và thêm vào form
-                    AddNhomButton(tenNhom);
+                   
                 }
             }
             catch (Exception ex)
@@ -66,6 +98,7 @@ namespace DangKi_DangNhap
                 MessageBox.Show("Đã xảy ra lỗi khi tải dữ liệu nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private async void AddNhomButton(string tenNhom)
         {
@@ -103,7 +136,7 @@ namespace DangKi_DangNhap
                 AddNhomButton(tenNhom);
             };
         }
-       
+
 
         private async void BtnNhomMoi_Click(object sender, EventArgs e)
         {
@@ -113,13 +146,16 @@ namespace DangKi_DangNhap
             FormNhom newForm = new FormNhom(tenNhom, userName);
             newForm.Text = "Danh sách thành viên của nhóm" + tenNhom; // Đặt tiêu đề cho form
             newForm.Show();
+
+            // Chờ 0.5 giây trước khi tải danh sách thành viên của nhóm
+            await Task.Delay(500);
+
             // Tải danh sách thành viên của nhóm từ Firebase và cập nhật vào ListView trong form mới
             LoadMembersOfGroup(tenNhom, newForm.listView1);
 
+            // LoadClick là một hàm khác mà bạn muốn thực hiện sau khi show form
             LoadClick(tenNhom, newForm.richTextBox1);
-
         }
-
 
 
         public async Task<Dictionary<string, object>> GetGroupData(string tenNhom)
@@ -248,9 +284,22 @@ namespace DangKi_DangNhap
                 // Thêm các thành viên của nhóm vào ListView
                 foreach (var member in nhomData)
                 {
-                    string userName = member.Key;
-                    ListViewItem item = new ListViewItem(userName);
-                    listView.Items.Add(item);
+                    // Kiểm tra xem tên thành viên có chứa các từ khóa cụ thể không
+                    if (!member.Key.Contains("message") && !member.Key.Contains("ports"))
+                    {
+                        string key = member.Key;
+                        string value = member.Value.ToString();
+                        string combinedText = $"{key} {value}";
+
+                        ListViewItem item = new ListViewItem(combinedText);
+                        listView.Items.Add(item);
+                    }
+                }
+
+                // Tự động điều chỉnh độ rộng các cột theo nội dung
+                foreach (ColumnHeader column in listView.Columns)
+                {
+                    column.Width = -2;
                 }
             }
             catch (Exception ex)
@@ -260,7 +309,10 @@ namespace DangKi_DangNhap
         }
 
 
-       
+
+
+
+
         private async void bunifuButton22_Click(object sender, EventArgs e)
         {
             ThamGiaNhom jointeam = new ThamGiaNhom(userName);

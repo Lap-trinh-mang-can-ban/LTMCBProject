@@ -171,6 +171,7 @@
             errorLabel.Size = new Size(338, 29);
             errorLabel.TabIndex = 19;
             errorLabel.Text = "errorLabel";
+            errorLabel.Click += errorLabel_Click;
             // 
             // bunifuButton22
             // 
@@ -466,8 +467,7 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton23;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton22;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton21;
-        private Label errorLabel;
-        private CheckBox checkBox1;
         private Button ShowPasswordButton;
+        private Label errorLabel;
     }
 }

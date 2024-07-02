@@ -43,7 +43,6 @@
             bunifuButton24 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             errorLabel = new Label();
             bunifuButton25 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
-
             SuspendLayout();
             // 
             // textBox1
@@ -434,10 +433,11 @@
             errorLabel.ForeColor = Color.LightCoral;
             errorLabel.Location = new Point(258, 541);
             errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(422, 28);
+            errorLabel.Size = new Size(442, 28);
             errorLabel.TabIndex = 29;
             errorLabel.Text = "errorLabel";
             errorLabel.TextAlign = ContentAlignment.TopCenter;
+            // 
             // bunifuButton25
             // 
             bunifuButton25.AllowAnimations = true;

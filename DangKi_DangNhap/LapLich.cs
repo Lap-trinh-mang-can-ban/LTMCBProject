@@ -18,7 +18,7 @@ namespace DangKi_DangNhap
         private readonly string userName;
         int month, year, day;
         public static int static_month, static_year;
-        public LapLich(string user)
+        public LapLich(string user, string temp)
         {
             InitializeComponent();
             userName = user;

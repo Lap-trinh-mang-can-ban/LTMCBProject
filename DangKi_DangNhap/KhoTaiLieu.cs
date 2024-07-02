@@ -195,7 +195,7 @@ namespace DangKi_DangNhap
             var TepTin = FileResponse.ResultAs<TaiLieu>();
 
             this.Hide();
-            ThongTinFile f = new ThongTinFile(linkLabel0, tenNhom, TepTin);
+            ThongTinFile f = new ThongTinFile(linkLabel0, tenNhom, TepTin, user);
             f.FormClosing += ThongTinFile_FormClosing;
             f.ShowDialog();
 

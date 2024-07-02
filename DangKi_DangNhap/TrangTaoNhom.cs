@@ -69,7 +69,7 @@ namespace DangKi_DangNhap
                 errorLabel.Text = "";
 
                 // Thêm button nhóm mới vào form
-
+              
                 var data = new Dictionary<string, object>
                 {
                     { userName, true }
