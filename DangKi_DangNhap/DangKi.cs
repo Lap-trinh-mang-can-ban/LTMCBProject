@@ -285,7 +285,7 @@ namespace DangKi_DangNhap
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
                         smtp.EnableSsl = true;
-                        smtp.Credentials = new NetworkCredential(fromAddress, "svlo zxtg dblm nycv");
+                        smtp.Credentials = new NetworkCredential(fromAddress, "uit1429256805c#");
                         smtp.Send(mail);
                     }
                 }
