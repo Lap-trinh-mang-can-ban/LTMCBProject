@@ -36,6 +36,7 @@ namespace DangKi_DangNhap
             };
             // Khởi tạo Firebase client
             firebaseClient = new FireSharp.FirebaseClient(config);
+            errorLabel.Text = "";
         }
 
         private async void bunifuButton23_Click(object sender, EventArgs e)
@@ -67,7 +68,8 @@ namespace DangKi_DangNhap
             else
             {
 
-                MessageBox.Show("Chỉ người tạo quiz mới có quyền xóa !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Chỉ người tạo quiz mới có quyền xóa !", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Bạn không có quyền xóa !";
                 return;
             }
 

@@ -48,7 +48,7 @@
             // textBox1
             // 
             textBox1.BackColor = Color.OldLace;
-            textBox1.Location = new Point(160, 488);
+            textBox1.Location = new Point(160, 513);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(644, 41);
@@ -59,14 +59,14 @@
             richTextBox1.BackColor = Color.OldLace;
             richTextBox1.Location = new Point(42, 24);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(877, 348);
+            richTextBox1.Size = new Size(877, 373);
             richTextBox1.TabIndex = 3;
             richTextBox1.Text = "";
             // 
             // textBox2
             // 
             textBox2.BackColor = Color.OldLace;
-            textBox2.Location = new Point(160, 441);
+            textBox2.Location = new Point(160, 466);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(644, 41);
@@ -118,7 +118,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(294, 378);
+            bunifuButton21.Location = new Point(294, 403);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 45;
@@ -207,7 +207,7 @@
             bunifuButton23.IdleIconLeftImage = null;
             bunifuButton23.IdleIconRightImage = null;
             bunifuButton23.IndicateFocus = false;
-            bunifuButton23.Location = new Point(42, 441);
+            bunifuButton23.Location = new Point(42, 466);
             bunifuButton23.Name = "bunifuButton23";
             bunifuButton23.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.OnDisabledState.BorderRadius = 25;
@@ -295,7 +295,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(42, 488);
+            bunifuButton22.Location = new Point(42, 513);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 25;
@@ -348,7 +348,7 @@
             bunifuButton24.AutoSizeLeftIcon = true;
             bunifuButton24.AutoSizeRightIcon = true;
             bunifuButton24.BackColor = Color.Transparent;
-            bunifuButton24.BackColor1 = Color.Navy;
+            bunifuButton24.BackColor1 = Color.SteelBlue;
             bunifuButton24.BackgroundImage = (Image)resources.GetObject("bunifuButton24.BackgroundImage");
             bunifuButton24.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton24.ButtonText = "Đăng";
@@ -379,11 +379,11 @@
             bunifuButton24.IdleBorderColor = Color.Azure;
             bunifuButton24.IdleBorderRadius = 45;
             bunifuButton24.IdleBorderThickness = 2;
-            bunifuButton24.IdleFillColor = Color.Navy;
+            bunifuButton24.IdleFillColor = Color.SteelBlue;
             bunifuButton24.IdleIconLeftImage = null;
             bunifuButton24.IdleIconRightImage = null;
             bunifuButton24.IndicateFocus = false;
-            bunifuButton24.Location = new Point(810, 441);
+            bunifuButton24.Location = new Point(810, 466);
             bunifuButton24.Name = "bunifuButton24";
             bunifuButton24.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton24.OnDisabledState.BorderRadius = 45;
@@ -405,7 +405,7 @@
             bunifuButton24.OnIdleState.BorderRadius = 45;
             bunifuButton24.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton24.OnIdleState.BorderThickness = 2;
-            bunifuButton24.OnIdleState.FillColor = Color.Navy;
+            bunifuButton24.OnIdleState.FillColor = Color.SteelBlue;
             bunifuButton24.OnIdleState.ForeColor = Color.White;
             bunifuButton24.OnIdleState.IconLeftImage = null;
             bunifuButton24.OnIdleState.IconRightImage = null;
@@ -428,10 +428,10 @@
             // 
             // errorLabel
             // 
-            errorLabel.BackColor = Color.Transparent;
+            errorLabel.BackColor = Color.OldLace;
             errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            errorLabel.ForeColor = Color.LightCoral;
-            errorLabel.Location = new Point(258, 541);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(258, 369);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(442, 28);
             errorLabel.TabIndex = 29;
@@ -484,7 +484,7 @@
             bunifuButton25.IdleIconLeftImage = null;
             bunifuButton25.IdleIconRightImage = null;
             bunifuButton25.IndicateFocus = false;
-            bunifuButton25.Location = new Point(487, 378);
+            bunifuButton25.Location = new Point(487, 403);
             bunifuButton25.Name = "bunifuButton25";
             bunifuButton25.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton25.OnDisabledState.BorderRadius = 45;

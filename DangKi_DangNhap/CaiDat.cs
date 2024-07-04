@@ -19,6 +19,7 @@ namespace DangKi_DangNhap
         private IFirebaseClient firebaseClient;
         private readonly string matkhau;
         private readonly string account;
+
         public CaiDat(string mk, string acc)
         {
             matkhau = mk;
@@ -31,12 +32,10 @@ namespace DangKi_DangNhap
             };
             // Khởi tạo FirebaseClient
             firebaseClient = new FireSharp.FirebaseClient(config);
+            errorLabel.Text = "";
         }
 
-        private void bunifuPanel1_Click(object sender, EventArgs e)
-        {
-
-        }
+      
 
         private async void bunifuButton21_Click(object sender, EventArgs e)
         {
@@ -44,13 +43,13 @@ namespace DangKi_DangNhap
             string newpass = text2.Text;
             string mail = text3.Text;
             string newpass1 = BCrypt.Net.BCrypt.HashPassword(newpass);
-            string enpass= BCrypt.Net.BCrypt.HashPassword(pass);
+            string enpass = BCrypt.Net.BCrypt.HashPassword(pass);
             if (string.IsNullOrWhiteSpace(pass) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(newpass))
             {
                 MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (matkhau !=enpass)
+            if (matkhau != enpass)
             {
                 MessageBox.Show("Mật khẩu cũ không đúng xin hãy nhập lại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -71,17 +70,8 @@ namespace DangKi_DangNhap
 
         }
 
-        private void CaiDat_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void bunifuPanel2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private async  void bunifuButton21_Click_1(object sender, EventArgs e)
+        private async void bunifuButton21_Click_1(object sender, EventArgs e)
         {
             string pass = text1.Text;
             string newpass = text2.Text;
@@ -90,7 +80,7 @@ namespace DangKi_DangNhap
 
             if (string.IsNullOrWhiteSpace(pass) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(newpass))
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
                 return;
             }
 
@@ -117,6 +107,7 @@ namespace DangKi_DangNhap
             text1.Text = "";
             text2.Text = "";
             text3.Text = "";
+            errorLabel.Text = "";
 
         }
     }

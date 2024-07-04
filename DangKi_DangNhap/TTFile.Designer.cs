@@ -46,7 +46,7 @@
             // 
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.Indigo;
-            label1.Location = new Point(81, 9);
+            label1.Location = new Point(102, 9);
             label1.Name = "label1";
             label1.Size = new Size(267, 48);
             label1.TabIndex = 0;
@@ -167,7 +167,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightBlue;
+            BackColor = Color.SteelBlue;
             ClientSize = new Size(491, 445);
             Controls.Add(label1);
             Controls.Add(bunifuPanel1);

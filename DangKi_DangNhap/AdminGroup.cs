@@ -34,6 +34,7 @@ namespace DangKi_DangNhap
             };
             // Khởi tạo Firebase client
             firebaseClient = new FireSharp.FirebaseClient(config);
+            errorLabel.Text = "";
         }
 
 
@@ -44,7 +45,8 @@ namespace DangKi_DangNhap
             // Allow only digits and control characters (e.g., backspace)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                MessageBox.Show("Chỉ nhập số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                // MessageBox.Show("Chỉ nhập số!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                errorLabel.Text = "Chỉ nhập số !";
                 e.Handled = true; // Ignore the key press
             }
         }
@@ -109,17 +111,20 @@ namespace DangKi_DangNhap
 
             if (string.IsNullOrWhiteSpace(QuizName))
             {
-                MessageBox.Show("Bạn cần nhập name quiz !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // MessageBox.Show("Bạn cần nhập name quiz !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Bạn cần nhập name quiz !";
                 return;
             }
             if (string.IsNullOrWhiteSpace(Question))
             {
-                MessageBox.Show("Bạn cần nhập câu hỏi !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Bạn cần nhập câu hỏi !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Bạn cần nhập câu hỏi !";
                 return;
             }
             if (string.IsNullOrWhiteSpace(ans1) || string.IsNullOrWhiteSpace(ans2) || string.IsNullOrWhiteSpace(ans3) || string.IsNullOrWhiteSpace(ans4) || string.IsNullOrWhiteSpace(bool1) || string.IsNullOrWhiteSpace(bool2) || string.IsNullOrWhiteSpace(bool3) || string.IsNullOrWhiteSpace(bool4))
             {
-                MessageBox.Show("Bạn cần nhập đầy đủ các câu trả lời !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Bạn cần nhập đầy đủ các câu trả lời !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Bạn cần nhập đầy đủ các câu trả lời !";
                 return;
             }
             var postData = new Dictionary<string, object>
@@ -152,13 +157,15 @@ namespace DangKi_DangNhap
 
             if (string.IsNullOrWhiteSpace(QuizName))
             {
-                MessageBox.Show("Yêu cầu name quiz để cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Yêu cầu name quiz để cập nhật!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Yêu cầu name quiz để cập nhật !";
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(time))
             {
-                MessageBox.Show("Thiết lập thời gian làm quiz!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Thiết lập thời gian làm quiz!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Thiết lập thời gian làm quiz !";
                 return;
             }
 
@@ -167,7 +174,8 @@ namespace DangKi_DangNhap
 
             if (quizData == null)
             {
-                MessageBox.Show("Không thể cập nhật vì quiz này chưa tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //MessageBox.Show("Không thể cập nhật vì quiz này chưa tồn tại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorLabel.Text = "Không thể cập nhật vì quiz này chưa tồn tại !";
                 return;
             }
 

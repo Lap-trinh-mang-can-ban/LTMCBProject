@@ -98,12 +98,12 @@
             bunifuPictureBox7.AllowFocused = false;
             bunifuPictureBox7.Anchor = AnchorStyles.None;
             bunifuPictureBox7.AutoSizeHeight = true;
-            bunifuPictureBox7.BorderRadius = 44;
+            bunifuPictureBox7.BorderRadius = 39;
             bunifuPictureBox7.Image = (Image)resources.GetObject("bunifuPictureBox7.Image");
             bunifuPictureBox7.IsCircle = true;
             bunifuPictureBox7.Location = new Point(1108, 3);
             bunifuPictureBox7.Name = "bunifuPictureBox7";
-            bunifuPictureBox7.Size = new Size(88, 88);
+            bunifuPictureBox7.Size = new Size(78, 78);
             bunifuPictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
             bunifuPictureBox7.TabIndex = 4;
             bunifuPictureBox7.TabStop = false;
@@ -153,7 +153,7 @@
             panel2.Controls.Add(linkLabel1);
             panel2.Location = new Point(0, 82);
             panel2.Name = "panel2";
-            panel2.Size = new Size(197, 707);
+            panel2.Size = new Size(197, 753);
             panel2.TabIndex = 4;
             // 
             // bunifuPictureBox4
@@ -165,7 +165,7 @@
             bunifuPictureBox4.BorderRadius = 0;
             bunifuPictureBox4.Image = Properties.Resources.setting1;
             bunifuPictureBox4.IsCircle = true;
-            bunifuPictureBox4.Location = new Point(12, 343);
+            bunifuPictureBox4.Location = new Point(14, 358);
             bunifuPictureBox4.Name = "bunifuPictureBox4";
             bunifuPictureBox4.Size = new Size(42, 42);
             bunifuPictureBox4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -182,7 +182,7 @@
             bunifuPictureBox6.BorderRadius = 0;
             bunifuPictureBox6.Image = (Image)resources.GetObject("bunifuPictureBox6.Image");
             bunifuPictureBox6.IsCircle = false;
-            bunifuPictureBox6.Location = new Point(16, 426);
+            bunifuPictureBox6.Location = new Point(16, 438);
             bunifuPictureBox6.Name = "bunifuPictureBox6";
             bunifuPictureBox6.Size = new Size(42, 42);
             bunifuPictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
@@ -199,7 +199,7 @@
             bunifuPictureBox1.BorderRadius = 0;
             bunifuPictureBox1.Image = (Image)resources.GetObject("bunifuPictureBox1.Image");
             bunifuPictureBox1.IsCircle = false;
-            bunifuPictureBox1.Location = new Point(12, 25);
+            bunifuPictureBox1.Location = new Point(12, 37);
             bunifuPictureBox1.Name = "bunifuPictureBox1";
             bunifuPictureBox1.Size = new Size(42, 42);
             bunifuPictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -216,7 +216,7 @@
             bunifuPictureBox5.BorderRadius = 0;
             bunifuPictureBox5.Image = Properties.Resources.calendar1;
             bunifuPictureBox5.IsCircle = false;
-            bunifuPictureBox5.Location = new Point(16, 268);
+            bunifuPictureBox5.Location = new Point(16, 278);
             bunifuPictureBox5.Name = "bunifuPictureBox5";
             bunifuPictureBox5.Size = new Size(42, 42);
             bunifuPictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
@@ -323,7 +323,7 @@
             bunifuPictureBox3.BorderRadius = 0;
             bunifuPictureBox3.Image = (Image)resources.GetObject("bunifuPictureBox3.Image");
             bunifuPictureBox3.IsCircle = false;
-            bunifuPictureBox3.Location = new Point(16, 189);
+            bunifuPictureBox3.Location = new Point(16, 198);
             bunifuPictureBox3.Name = "bunifuPictureBox3";
             bunifuPictureBox3.Size = new Size(42, 42);
             bunifuPictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -429,7 +429,7 @@
             bunifuPictureBox2.BorderRadius = 0;
             bunifuPictureBox2.Image = (Image)resources.GetObject("bunifuPictureBox2.Image");
             bunifuPictureBox2.IsCircle = false;
-            bunifuPictureBox2.Location = new Point(16, 108);
+            bunifuPictureBox2.Location = new Point(16, 118);
             bunifuPictureBox2.Name = "bunifuPictureBox2";
             bunifuPictureBox2.Size = new Size(42, 42);
             bunifuPictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -800,7 +800,7 @@
             panel3.Controls.Add(label1);
             panel3.Location = new Point(198, 85);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1098, 697);
+            panel3.Size = new Size(1098, 750);
             panel3.TabIndex = 5;
             // 
             // pictureBox2
@@ -830,7 +830,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1294, 776);
+            ClientSize = new Size(1294, 815);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
