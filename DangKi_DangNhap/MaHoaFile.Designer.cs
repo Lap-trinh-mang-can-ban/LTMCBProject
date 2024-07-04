@@ -37,6 +37,7 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            errorLabel = new Label();
             bunifuButton28 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             bunifuButton27 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             save = new TextBox();
@@ -58,6 +59,7 @@
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 50;
             bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Controls.Add(errorLabel);
             bunifuPanel1.Controls.Add(bunifuButton28);
             bunifuPanel1.Controls.Add(bunifuButton27);
             bunifuPanel1.Controls.Add(save);
@@ -71,8 +73,20 @@
             bunifuPanel1.Location = new Point(12, 12);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(776, 348);
+            bunifuPanel1.Size = new Size(776, 322);
             bunifuPanel1.TabIndex = 19;
+            // 
+            // errorLabel
+            // 
+            errorLabel.BackColor = Color.Transparent;
+            errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(202, 197);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(330, 28);
+            errorLabel.TabIndex = 30;
+            errorLabel.Text = "errorLabel";
+            errorLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // bunifuButton28
             // 
@@ -718,7 +732,7 @@
             Key.Location = new Point(150, 25);
             Key.Multiline = true;
             Key.Name = "Key";
-            Key.Size = new Size(610, 48);
+            Key.Size = new Size(506, 48);
             Key.TabIndex = 0;
             // 
             // MaHoaFile
@@ -726,7 +740,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.SteelBlue;
-            ClientSize = new Size(801, 374);
+            ClientSize = new Size(801, 348);
             Controls.Add(bunifuPanel1);
             Name = "MaHoaFile";
             Text = "MaHoaFile";
@@ -748,5 +762,6 @@
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 encrypt_btn;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 button1;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 button4;
+        private Label errorLabel;
     }
 }

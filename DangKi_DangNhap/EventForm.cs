@@ -125,7 +125,7 @@ namespace DangKi_DangNhap
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show("Đã xóa sự kiện.");
-                    errorLabel.Text = ""; 
+                    errorLabel.Text = "";
                 }
                 else
                 {
@@ -139,6 +139,5 @@ namespace DangKi_DangNhap
             }
         }
 
-        
     }
 }

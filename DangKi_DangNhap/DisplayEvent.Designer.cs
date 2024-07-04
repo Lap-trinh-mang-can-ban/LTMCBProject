@@ -129,7 +129,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DeepSkyBlue;
+            BackColor = Color.SteelBlue;
             ClientSize = new Size(628, 535);
             Controls.Add(label1);
             Controls.Add(bunifuPanel1);

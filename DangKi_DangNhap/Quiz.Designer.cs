@@ -58,10 +58,10 @@
             bunifuPanel1.Controls.Add(radioButton3);
             bunifuPanel1.Controls.Add(radioButton2);
             bunifuPanel1.Controls.Add(radioButton1);
-            bunifuPanel1.Location = new Point(44, 217);
+            bunifuPanel1.Location = new Point(63, 217);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(761, 271);
+            bunifuPanel1.Size = new Size(742, 271);
             bunifuPanel1.TabIndex = 0;
             // 
             // radioButton4
@@ -186,7 +186,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(656, 504);
+            bunifuButton21.Location = new Point(656, 497);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 45;
@@ -251,7 +251,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSkyBlue;
+            BackColor = Color.SteelBlue;
             ClientSize = new Size(883, 556);
             Controls.Add(label3);
             Controls.Add(label2);

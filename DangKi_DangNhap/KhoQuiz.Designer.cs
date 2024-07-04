@@ -38,13 +38,13 @@
             bunifuPanel1.BackgroundColor = Color.OldLace;
             bunifuPanel1.BackgroundImage = (Image)resources.GetObject("bunifuPanel1.BackgroundImage");
             bunifuPanel1.BackgroundImageLayout = ImageLayout.Stretch;
-            bunifuPanel1.BorderColor = Color.Transparent;
+            bunifuPanel1.BorderColor = Color.MidnightBlue;
             bunifuPanel1.BorderRadius = 80;
-            bunifuPanel1.BorderThickness = 1;
-            bunifuPanel1.Location = new Point(46, 92);
+            bunifuPanel1.BorderThickness = 2;
+            bunifuPanel1.Location = new Point(46, 82);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(761, 358);
+            bunifuPanel1.Size = new Size(761, 372);
             bunifuPanel1.TabIndex = 1;
             bunifuPanel1.Click += bunifuPanel1_Click;
             // 
@@ -62,8 +62,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSkyBlue;
-            ClientSize = new Size(853, 517);
+            BackColor = Color.SteelBlue;
+            ClientSize = new Size(853, 482);
             Controls.Add(label1);
             Controls.Add(bunifuPanel1);
             Name = "KhoQuiz";

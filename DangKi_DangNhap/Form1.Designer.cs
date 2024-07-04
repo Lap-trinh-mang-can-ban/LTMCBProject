@@ -168,7 +168,7 @@
             errorLabel.ForeColor = Color.Red;
             errorLabel.Location = new Point(185, 468);
             errorLabel.Name = "errorLabel";
-            errorLabel.Size = new Size(338, 29);
+            errorLabel.Size = new Size(323, 29);
             errorLabel.TabIndex = 19;
             errorLabel.Text = "errorLabel";
             errorLabel.Click += errorLabel_Click;

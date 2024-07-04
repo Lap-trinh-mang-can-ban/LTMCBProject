@@ -169,15 +169,15 @@ namespace DangKi_DangNhap
             {
                 // Truy vấn dữ liệu từ Firebase
 
-                FirebaseResponse response1 = await firebaseClient.GetAsync($"group /{nhom}/message");
-                if (response1.Body == "null")
+                FirebaseResponse response = await firebaseClient.GetAsync($"Notify_TL/{nhom}");
+                if (response.Body == "null")
                 {
                     continue; // Skip to next iteration
                 }
 
                 // Parse dữ liệu trả về thành một danh sách các nhóm
 
-                Dictionary<string, object> nhomData1 = response1.ResultAs<Dictionary<string, object>>();
+                Dictionary<string, object> nhomData1 = response.ResultAs<Dictionary<string, object>>();
 
                 foreach (var pair in nhomData1)
                 {
@@ -283,11 +283,6 @@ namespace DangKi_DangNhap
 
         }
 
-        private void vScrollBar1_Scroll_1(object sender, ScrollEventArgs e)
-        {
-
-        }
-
         private async void ThongBao_Load_1(object sender, EventArgs e)
         {
             loadnotify_ll();
@@ -297,14 +292,6 @@ namespace DangKi_DangNhap
 
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

@@ -16,6 +16,7 @@ namespace DangKi_DangNhap
         public MaHoaFile()
         {
             InitializeComponent();
+            errorLabel.Text = "";
         }
 
         public string key;
@@ -105,7 +106,7 @@ namespace DangKi_DangNhap
             catch (Exception ex)
             {
                 // Xử lý ngoại lệ nếu có lỗi xảy ra
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               // MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -131,7 +132,7 @@ namespace DangKi_DangNhap
             catch (Exception ex)
             {
                 // Xử lý ngoại lệ nếu có lỗi xảy ra
-                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               // MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -152,6 +153,14 @@ namespace DangKi_DangNhap
 
         private void encrypt_btn_Click(object sender, EventArgs e)
         {
+            string KEY = Key.Text;
+            string TB = tb_link.Text;
+            string SAVE = save.Text;
+            if( KEY.Length == 0 || TB.Length == 0 || SAVE.Length == 0)
+            {
+                errorLabel.Text = " Vui lòng nhập đầy đủ thông tin !";
+            }
+
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 string hashedValue = GetHash(sha256Hash, Key.Text);
@@ -183,6 +192,13 @@ namespace DangKi_DangNhap
 
         private void decrypt_btn_Click(object sender, EventArgs e)
         {
+            string KEY = Key.Text;
+            string TB = tb_link.Text;
+            string SAVE = save.Text;
+            if (KEY.Length == 0 || TB.Length == 0 || SAVE.Length == 0)
+            {
+                errorLabel.Text = " Vui lòng nhập đầy đủ thông tin !";
+            }
             using (SHA256 sha256Hash = SHA256.Create())
             {
                 string hashedValue = GetHash(sha256Hash, Key.Text);
@@ -219,7 +235,7 @@ namespace DangKi_DangNhap
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   // MessageBox.Show($"error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

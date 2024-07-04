@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KhoTaiLieu));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges9 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges borderEdges10 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderEdges();
             textBox1 = new TextBox();
             richTextBox1 = new RichTextBox();
             textBox2 = new TextBox();
@@ -48,7 +48,7 @@
             // textBox1
             // 
             textBox1.BackColor = Color.OldLace;
-            textBox1.Location = new Point(160, 488);
+            textBox1.Location = new Point(160, 513);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(644, 41);
@@ -59,14 +59,14 @@
             richTextBox1.BackColor = Color.OldLace;
             richTextBox1.Location = new Point(42, 24);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(877, 348);
+            richTextBox1.Size = new Size(877, 373);
             richTextBox1.TabIndex = 3;
             richTextBox1.Text = "";
             // 
             // textBox2
             // 
             textBox2.BackColor = Color.OldLace;
-            textBox2.Location = new Point(160, 441);
+            textBox2.Location = new Point(160, 466);
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(644, 41);
@@ -90,11 +90,11 @@
             bunifuButton21.ButtonTextMarginLeft = 0;
             bunifuButton21.ColorContrastOnClick = 45;
             bunifuButton21.ColorContrastOnHover = 45;
-            borderEdges1.BottomLeft = true;
-            borderEdges1.BottomRight = true;
-            borderEdges1.TopLeft = true;
-            borderEdges1.TopRight = true;
-            bunifuButton21.CustomizableEdges = borderEdges1;
+            borderEdges6.BottomLeft = true;
+            borderEdges6.BottomRight = true;
+            borderEdges6.TopLeft = true;
+            borderEdges6.TopRight = true;
+            bunifuButton21.CustomizableEdges = borderEdges6;
             bunifuButton21.DialogResult = DialogResult.None;
             bunifuButton21.DisabledBorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.DisabledFillColor = Color.FromArgb(204, 204, 204);
@@ -118,7 +118,7 @@
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(294, 378);
+            bunifuButton21.Location = new Point(294, 403);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 45;
@@ -179,18 +179,18 @@
             bunifuButton23.ButtonTextMarginLeft = 0;
             bunifuButton23.ColorContrastOnClick = 45;
             bunifuButton23.ColorContrastOnHover = 45;
-            borderEdges2.BottomLeft = true;
-            borderEdges2.BottomRight = true;
-            borderEdges2.TopLeft = true;
-            borderEdges2.TopRight = true;
-            bunifuButton23.CustomizableEdges = borderEdges2;
+            borderEdges7.BottomLeft = true;
+            borderEdges7.BottomRight = true;
+            borderEdges7.TopLeft = true;
+            borderEdges7.TopRight = true;
+            bunifuButton23.CustomizableEdges = borderEdges7;
             bunifuButton23.DialogResult = DialogResult.None;
             bunifuButton23.DisabledBorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.DisabledFillColor = Color.FromArgb(204, 204, 204);
             bunifuButton23.DisabledForecolor = Color.FromArgb(168, 160, 168);
             bunifuButton23.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
             bunifuButton23.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bunifuButton23.ForeColor = Color.White;
+            bunifuButton23.ForeColor = Color.Black;
             bunifuButton23.IconLeftAlign = ContentAlignment.MiddleLeft;
             bunifuButton23.IconLeftCursor = Cursors.Default;
             bunifuButton23.IconLeftPadding = new Padding(11, 3, 3, 3);
@@ -207,7 +207,7 @@
             bunifuButton23.IdleIconLeftImage = null;
             bunifuButton23.IdleIconRightImage = null;
             bunifuButton23.IndicateFocus = false;
-            bunifuButton23.Location = new Point(42, 441);
+            bunifuButton23.Location = new Point(42, 466);
             bunifuButton23.Name = "bunifuButton23";
             bunifuButton23.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton23.OnDisabledState.BorderRadius = 25;
@@ -230,7 +230,7 @@
             bunifuButton23.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton23.OnIdleState.BorderThickness = 1;
             bunifuButton23.OnIdleState.FillColor = Color.Transparent;
-            bunifuButton23.OnIdleState.ForeColor = Color.White;
+            bunifuButton23.OnIdleState.ForeColor = Color.Black;
             bunifuButton23.OnIdleState.IconLeftImage = null;
             bunifuButton23.OnIdleState.IconRightImage = null;
             bunifuButton23.OnPressedState.BorderColor = Color.Azure;
@@ -267,18 +267,18 @@
             bunifuButton22.ButtonTextMarginLeft = 0;
             bunifuButton22.ColorContrastOnClick = 45;
             bunifuButton22.ColorContrastOnHover = 45;
-            borderEdges3.BottomLeft = true;
-            borderEdges3.BottomRight = true;
-            borderEdges3.TopLeft = true;
-            borderEdges3.TopRight = true;
-            bunifuButton22.CustomizableEdges = borderEdges3;
+            borderEdges8.BottomLeft = true;
+            borderEdges8.BottomRight = true;
+            borderEdges8.TopLeft = true;
+            borderEdges8.TopRight = true;
+            bunifuButton22.CustomizableEdges = borderEdges8;
             bunifuButton22.DialogResult = DialogResult.None;
             bunifuButton22.DisabledBorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.DisabledFillColor = Color.FromArgb(204, 204, 204);
             bunifuButton22.DisabledForecolor = Color.FromArgb(168, 160, 168);
             bunifuButton22.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.ButtonStates.Pressed;
             bunifuButton22.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            bunifuButton22.ForeColor = Color.White;
+            bunifuButton22.ForeColor = Color.Black;
             bunifuButton22.IconLeftAlign = ContentAlignment.MiddleLeft;
             bunifuButton22.IconLeftCursor = Cursors.Default;
             bunifuButton22.IconLeftPadding = new Padding(11, 3, 3, 3);
@@ -295,7 +295,7 @@
             bunifuButton22.IdleIconLeftImage = null;
             bunifuButton22.IdleIconRightImage = null;
             bunifuButton22.IndicateFocus = false;
-            bunifuButton22.Location = new Point(42, 488);
+            bunifuButton22.Location = new Point(42, 513);
             bunifuButton22.Name = "bunifuButton22";
             bunifuButton22.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton22.OnDisabledState.BorderRadius = 25;
@@ -318,7 +318,7 @@
             bunifuButton22.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton22.OnIdleState.BorderThickness = 1;
             bunifuButton22.OnIdleState.FillColor = Color.Transparent;
-            bunifuButton22.OnIdleState.ForeColor = Color.White;
+            bunifuButton22.OnIdleState.ForeColor = Color.Black;
             bunifuButton22.OnIdleState.IconLeftImage = null;
             bunifuButton22.OnIdleState.IconRightImage = null;
             bunifuButton22.OnPressedState.BorderColor = Color.Azure;
@@ -348,18 +348,18 @@
             bunifuButton24.AutoSizeLeftIcon = true;
             bunifuButton24.AutoSizeRightIcon = true;
             bunifuButton24.BackColor = Color.Transparent;
-            bunifuButton24.BackColor1 = Color.Navy;
+            bunifuButton24.BackColor1 = Color.SteelBlue;
             bunifuButton24.BackgroundImage = (Image)resources.GetObject("bunifuButton24.BackgroundImage");
             bunifuButton24.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton24.ButtonText = "Đăng";
             bunifuButton24.ButtonTextMarginLeft = 0;
             bunifuButton24.ColorContrastOnClick = 45;
             bunifuButton24.ColorContrastOnHover = 45;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            bunifuButton24.CustomizableEdges = borderEdges4;
+            borderEdges9.BottomLeft = true;
+            borderEdges9.BottomRight = true;
+            borderEdges9.TopLeft = true;
+            borderEdges9.TopRight = true;
+            bunifuButton24.CustomizableEdges = borderEdges9;
             bunifuButton24.DialogResult = DialogResult.None;
             bunifuButton24.DisabledBorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton24.DisabledFillColor = Color.FromArgb(204, 204, 204);
@@ -379,11 +379,11 @@
             bunifuButton24.IdleBorderColor = Color.Azure;
             bunifuButton24.IdleBorderRadius = 45;
             bunifuButton24.IdleBorderThickness = 2;
-            bunifuButton24.IdleFillColor = Color.Navy;
+            bunifuButton24.IdleFillColor = Color.SteelBlue;
             bunifuButton24.IdleIconLeftImage = null;
             bunifuButton24.IdleIconRightImage = null;
             bunifuButton24.IndicateFocus = false;
-            bunifuButton24.Location = new Point(810, 441);
+            bunifuButton24.Location = new Point(810, 466);
             bunifuButton24.Name = "bunifuButton24";
             bunifuButton24.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton24.OnDisabledState.BorderRadius = 45;
@@ -405,7 +405,7 @@
             bunifuButton24.OnIdleState.BorderRadius = 45;
             bunifuButton24.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton2.BorderStyles.Solid;
             bunifuButton24.OnIdleState.BorderThickness = 2;
-            bunifuButton24.OnIdleState.FillColor = Color.Navy;
+            bunifuButton24.OnIdleState.FillColor = Color.SteelBlue;
             bunifuButton24.OnIdleState.ForeColor = Color.White;
             bunifuButton24.OnIdleState.IconLeftImage = null;
             bunifuButton24.OnIdleState.IconRightImage = null;
@@ -428,10 +428,10 @@
             // 
             // errorLabel
             // 
-            errorLabel.BackColor = Color.Transparent;
+            errorLabel.BackColor = Color.OldLace;
             errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            errorLabel.ForeColor = Color.LightCoral;
-            errorLabel.Location = new Point(258, 541);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(258, 369);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(442, 28);
             errorLabel.TabIndex = 29;
@@ -456,11 +456,11 @@
             bunifuButton25.ButtonTextMarginLeft = 0;
             bunifuButton25.ColorContrastOnClick = 45;
             bunifuButton25.ColorContrastOnHover = 45;
-            borderEdges5.BottomLeft = true;
-            borderEdges5.BottomRight = true;
-            borderEdges5.TopLeft = true;
-            borderEdges5.TopRight = true;
-            bunifuButton25.CustomizableEdges = borderEdges5;
+            borderEdges10.BottomLeft = true;
+            borderEdges10.BottomRight = true;
+            borderEdges10.TopLeft = true;
+            borderEdges10.TopRight = true;
+            bunifuButton25.CustomizableEdges = borderEdges10;
             bunifuButton25.DialogResult = DialogResult.None;
             bunifuButton25.DisabledBorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton25.DisabledFillColor = Color.FromArgb(204, 204, 204);
@@ -484,7 +484,7 @@
             bunifuButton25.IdleIconLeftImage = null;
             bunifuButton25.IdleIconRightImage = null;
             bunifuButton25.IndicateFocus = false;
-            bunifuButton25.Location = new Point(487, 378);
+            bunifuButton25.Location = new Point(487, 403);
             bunifuButton25.Name = "bunifuButton25";
             bunifuButton25.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton25.OnDisabledState.BorderRadius = 45;

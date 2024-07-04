@@ -44,6 +44,7 @@ namespace DangKi_DangNhap
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties11 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties12 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
+            errorLabel = new Label();
             bunifuButton21 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton2();
             text3 = new Bunifu.UI.WinForms.BunifuTextBox();
             label5 = new Label();
@@ -65,6 +66,7 @@ namespace DangKi_DangNhap
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 80;
             bunifuPanel1.BorderThickness = 1;
+            bunifuPanel1.Controls.Add(errorLabel);
             bunifuPanel1.Controls.Add(bunifuButton21);
             bunifuPanel1.Controls.Add(text3);
             bunifuPanel1.Controls.Add(label5);
@@ -77,6 +79,18 @@ namespace DangKi_DangNhap
             bunifuPanel1.ShowBorders = true;
             bunifuPanel1.Size = new Size(647, 378);
             bunifuPanel1.TabIndex = 1;
+            // 
+            // errorLabel
+            // 
+            errorLabel.BackColor = Color.Transparent;
+            errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            errorLabel.ForeColor = Color.Red;
+            errorLabel.Location = new Point(147, 207);
+            errorLabel.Name = "errorLabel";
+            errorLabel.Size = new Size(338, 27);
+            errorLabel.TabIndex = 29;
+            errorLabel.Text = "errorLabel";
+            errorLabel.TextAlign = ContentAlignment.TopCenter;
             // 
             // bunifuButton21
             // 
@@ -124,7 +138,7 @@ namespace DangKi_DangNhap
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(259, 241);
+            bunifuButton21.Location = new Point(259, 269);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 45;
@@ -194,7 +208,7 @@ namespace DangKi_DangNhap
             text3.IconPadding = 10;
             text3.IconRight = null;
             text3.IconRightCursor = Cursors.IBeam;
-            text3.Location = new Point(259, 159);
+            text3.Location = new Point(259, 154);
             text3.MaxLength = 32767;
             text3.MinimumSize = new Size(1, 1);
             text3.Modified = false;
@@ -246,7 +260,7 @@ namespace DangKi_DangNhap
             label5.BackColor = Color.OldLace;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(65, 170);
+            label5.Location = new Point(65, 161);
             label5.Name = "label5";
             label5.Size = new Size(152, 27);
             label5.TabIndex = 5;
@@ -279,7 +293,7 @@ namespace DangKi_DangNhap
             text2.IconPadding = 10;
             text2.IconRight = null;
             text2.IconRightCursor = Cursors.IBeam;
-            text2.Location = new Point(259, 100);
+            text2.Location = new Point(259, 95);
             text2.MaxLength = 32767;
             text2.MinimumSize = new Size(1, 1);
             text2.Modified = false;
@@ -353,7 +367,7 @@ namespace DangKi_DangNhap
             text1.IconPadding = 10;
             text1.IconRight = null;
             text1.IconRightCursor = Cursors.IBeam;
-            text1.Location = new Point(259, 44);
+            text1.Location = new Point(259, 39);
             text1.MaxLength = 32767;
             text1.MinimumSize = new Size(1, 1);
             text1.Modified = false;
@@ -454,8 +468,8 @@ namespace DangKi_DangNhap
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSkyBlue;
-            ClientSize = new Size(820, 562);
+            BackColor = Color.LightBlue;
+            ClientSize = new Size(794, 488);
             Controls.Add(bunifuPanel2);
             Controls.Add(bunifuPanel1);
             Name = "CaiDat";
@@ -476,5 +490,6 @@ namespace DangKi_DangNhap
         private Bunifu.UI.WinForms.BunifuTextBox text3;
         private Label label5;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton2 bunifuButton21;
+        private Label errorLabel;
     }
 }
