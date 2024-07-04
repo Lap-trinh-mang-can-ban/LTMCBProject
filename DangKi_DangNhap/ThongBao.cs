@@ -76,7 +76,7 @@ namespace DangKi_DangNhap
             foreach (string nhom in allNhom)
             {
                 // Truy vấn dữ liệu từ Firebase
-                FirebaseResponse response = await firebaseClient.GetAsync($"Thongbao_TL/{nhom}");
+                FirebaseResponse response = await firebaseClient.GetAsync($"Notify_TL/{nhom}");
 
                 if (response.Body == "null")
                 {
