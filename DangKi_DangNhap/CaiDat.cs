@@ -78,32 +78,67 @@ namespace DangKi_DangNhap
             string mail = text3.Text;
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newpass);
 
-            if (string.IsNullOrWhiteSpace(pass) || string.IsNullOrWhiteSpace(mail) || string.IsNullOrWhiteSpace(newpass))
-            {
-                errorLabel.Text = "Vui lòng điền đầy đủ thông tin !";
+            if (string.IsNullOrWhiteSpace(pass))
+            {              
+                errorLabel.Text = "Vui lòng nhập mật khẩu cũ !";
                 return;
             }
 
-            if (!BCrypt.Net.BCrypt.Verify(pass, matkhau))
+        
+            if (string.IsNullOrWhiteSpace(mail))
             {
-                //MessageBox.Show("Mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (!BCrypt.Net.BCrypt.Verify(pass, matkhau))
+                {
+                    //MessageBox.Show("Mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                MessageBox.Show("Mật khẩu cũ không đúng vui lòng nhập lại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            var Data = new Dictionary<string, object>
+                    MessageBox.Show("Mật khẩu cũ không đúng vui lòng nhập lại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var Data = new Dictionary<string, object>
         {
 
             { "MatKhau",  hashedPassword}
 
         };
-            var Data1 = new Dictionary<string, object>
+                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"users/{account}", Data);
+                MessageBox.Show("Đã thay đổi mật khẩu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+         if(string.IsNullOrWhiteSpace(matkhau))
+            {
+                var Data1 = new Dictionary<string, object>
         {
             { "Email",  mail}
         };
-            FirebaseResponse response1 = await firebaseClient.UpdateAsync($"users/{account}", Data);
-            FirebaseResponse response2 = await firebaseClient.UpdateAsync($"users/{account}", Data1);
-            MessageBox.Show("Đã thay đổi mật khẩu và email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                FirebaseResponse response2 = await firebaseClient.UpdateAsync($"users/{account}", Data1);
+                MessageBox.Show("Đã thay đổi email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+       else
+            {
+                if (!BCrypt.Net.BCrypt.Verify(pass, matkhau))
+                {
+                    //MessageBox.Show("Mật khẩu không đúng!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show("Mật khẩu cũ không đúng vui lòng nhập lại !", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                var Data = new Dictionary<string, object>
+        {
+
+            { "MatKhau",  hashedPassword}
+
+
+        };
+                FirebaseResponse response1 = await firebaseClient.UpdateAsync($"users/{account}", Data);
+                var Data1 = new Dictionary<string, object>
+        {
+            { "Email",  mail}
+        };
+
+                FirebaseResponse response2 = await firebaseClient.UpdateAsync($"users/{account}", Data1);
+                MessageBox.Show("Đã thay đổi mật khẩu và email thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+         
             text1.Text = "";
             text2.Text = "";
             text3.Text = "";
