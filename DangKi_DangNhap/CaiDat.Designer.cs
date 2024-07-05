@@ -65,7 +65,7 @@ namespace DangKi_DangNhap
             bunifuPanel1.BackgroundImageLayout = ImageLayout.Stretch;
             bunifuPanel1.BorderColor = Color.Navy;
             bunifuPanel1.BorderRadius = 80;
-            bunifuPanel1.BorderThickness = 1;
+            bunifuPanel1.BorderThickness = 2;
             bunifuPanel1.Controls.Add(errorLabel);
             bunifuPanel1.Controls.Add(bunifuButton21);
             bunifuPanel1.Controls.Add(text3);
@@ -77,7 +77,7 @@ namespace DangKi_DangNhap
             bunifuPanel1.Location = new Point(76, 80);
             bunifuPanel1.Name = "bunifuPanel1";
             bunifuPanel1.ShowBorders = true;
-            bunifuPanel1.Size = new Size(647, 378);
+            bunifuPanel1.Size = new Size(813, 387);
             bunifuPanel1.TabIndex = 1;
             // 
             // errorLabel
@@ -85,7 +85,7 @@ namespace DangKi_DangNhap
             errorLabel.BackColor = Color.Transparent;
             errorLabel.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             errorLabel.ForeColor = Color.Red;
-            errorLabel.Location = new Point(147, 207);
+            errorLabel.Location = new Point(235, 223);
             errorLabel.Name = "errorLabel";
             errorLabel.Size = new Size(338, 27);
             errorLabel.TabIndex = 29;
@@ -138,7 +138,7 @@ namespace DangKi_DangNhap
             bunifuButton21.IdleIconLeftImage = null;
             bunifuButton21.IdleIconRightImage = null;
             bunifuButton21.IndicateFocus = false;
-            bunifuButton21.Location = new Point(259, 269);
+            bunifuButton21.Location = new Point(318, 284);
             bunifuButton21.Name = "bunifuButton21";
             bunifuButton21.OnDisabledState.BorderColor = Color.FromArgb(191, 191, 191);
             bunifuButton21.OnDisabledState.BorderRadius = 45;
@@ -208,7 +208,7 @@ namespace DangKi_DangNhap
             text3.IconPadding = 10;
             text3.IconRight = null;
             text3.IconRightCursor = Cursors.IBeam;
-            text3.Location = new Point(259, 154);
+            text3.Location = new Point(467, 171);
             text3.MaxLength = 32767;
             text3.MinimumSize = new Size(1, 1);
             text3.Modified = false;
@@ -237,21 +237,21 @@ namespace DangKi_DangNhap
             text3.Padding = new Padding(3);
             text3.PasswordChar = '\0';
             text3.PlaceholderForeColor = Color.Silver;
-            text3.PlaceholderText = "Enter text";
+            text3.PlaceholderText = "Nhập email mới";
             text3.ReadOnly = false;
             text3.ScrollBars = ScrollBars.None;
             text3.SelectedText = "";
             text3.SelectionLength = 0;
             text3.SelectionStart = 0;
             text3.ShortcutsEnabled = true;
-            text3.Size = new Size(226, 38);
+            text3.Size = new Size(304, 38);
             text3.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             text3.TabIndex = 7;
             text3.TextAlign = HorizontalAlignment.Left;
             text3.TextMarginBottom = 0;
             text3.TextMarginLeft = 3;
             text3.TextMarginTop = 1;
-            text3.TextPlaceholder = "Enter text";
+            text3.TextPlaceholder = "Nhập email mới";
             text3.UseSystemPasswordChar = false;
             text3.WordWrap = true;
             // 
@@ -260,11 +260,11 @@ namespace DangKi_DangNhap
             label5.BackColor = Color.OldLace;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Black;
-            label5.Location = new Point(65, 161);
+            label5.Location = new Point(565, 141);
             label5.Name = "label5";
             label5.Size = new Size(152, 27);
             label5.TabIndex = 5;
-            label5.Text = "Nhập email mới:";
+            label5.Text = "Đổi email";
             // 
             // text2
             // 
@@ -293,7 +293,7 @@ namespace DangKi_DangNhap
             text2.IconPadding = 10;
             text2.IconRight = null;
             text2.IconRightCursor = Cursors.IBeam;
-            text2.Location = new Point(259, 95);
+            text2.Location = new Point(45, 171);
             text2.MaxLength = 32767;
             text2.MinimumSize = new Size(1, 1);
             text2.Modified = false;
@@ -322,21 +322,21 @@ namespace DangKi_DangNhap
             text2.Padding = new Padding(3);
             text2.PasswordChar = '\0';
             text2.PlaceholderForeColor = Color.Silver;
-            text2.PlaceholderText = "Enter text";
+            text2.PlaceholderText = "Nhập mật khẩu mới ";
             text2.ReadOnly = false;
             text2.ScrollBars = ScrollBars.None;
             text2.SelectedText = "";
             text2.SelectionLength = 0;
             text2.SelectionStart = 0;
             text2.ShortcutsEnabled = true;
-            text2.Size = new Size(226, 38);
+            text2.Size = new Size(304, 38);
             text2.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             text2.TabIndex = 3;
             text2.TextAlign = HorizontalAlignment.Left;
             text2.TextMarginBottom = 0;
             text2.TextMarginLeft = 3;
             text2.TextMarginTop = 1;
-            text2.TextPlaceholder = "Enter text";
+            text2.TextPlaceholder = "Nhập mật khẩu mới ";
             text2.UseSystemPasswordChar = false;
             text2.WordWrap = true;
             // 
@@ -367,7 +367,7 @@ namespace DangKi_DangNhap
             text1.IconPadding = 10;
             text1.IconRight = null;
             text1.IconRightCursor = Cursors.IBeam;
-            text1.Location = new Point(259, 39);
+            text1.Location = new Point(45, 73);
             text1.MaxLength = 32767;
             text1.MinimumSize = new Size(1, 1);
             text1.Modified = false;
@@ -396,21 +396,21 @@ namespace DangKi_DangNhap
             text1.Padding = new Padding(3);
             text1.PasswordChar = '\0';
             text1.PlaceholderForeColor = Color.Silver;
-            text1.PlaceholderText = "Enter text";
+            text1.PlaceholderText = "Nhập mật khẩu cũ ";
             text1.ReadOnly = false;
             text1.ScrollBars = ScrollBars.None;
             text1.SelectedText = "";
             text1.SelectionLength = 0;
             text1.SelectionStart = 0;
             text1.ShortcutsEnabled = true;
-            text1.Size = new Size(226, 38);
+            text1.Size = new Size(304, 38);
             text1.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             text1.TabIndex = 2;
             text1.TextAlign = HorizontalAlignment.Left;
             text1.TextMarginBottom = 0;
             text1.TextMarginLeft = 3;
             text1.TextMarginTop = 1;
-            text1.TextPlaceholder = "Enter text";
+            text1.TextPlaceholder = "Nhập mật khẩu cũ ";
             text1.UseSystemPasswordChar = false;
             text1.WordWrap = true;
             // 
@@ -419,22 +419,22 @@ namespace DangKi_DangNhap
             label3.BackColor = Color.OldLace;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(65, 100);
+            label3.Location = new Point(131, 141);
             label3.Name = "label3";
             label3.Size = new Size(179, 27);
             label3.TabIndex = 1;
-            label3.Text = "Nhập mật khẩu mới:";
+            label3.Text = "Đổi mật khẩu ";
             // 
             // label2
             // 
             label2.BackColor = Color.OldLace;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(65, 44);
+            label2.Location = new Point(45, 39);
             label2.Name = "label2";
-            label2.Size = new Size(179, 27);
+            label2.Size = new Size(299, 31);
             label2.TabIndex = 0;
-            label2.Text = "Nhập mật khẩu cũ: ";
+            label2.Text = "Nhập mật khẩu cũ để đổi thông tin ";
             // 
             // bunifuPanel2
             // 
@@ -469,7 +469,7 @@ namespace DangKi_DangNhap
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightBlue;
-            ClientSize = new Size(794, 488);
+            ClientSize = new Size(950, 615);
             Controls.Add(bunifuPanel2);
             Controls.Add(bunifuPanel1);
             Name = "CaiDat";
