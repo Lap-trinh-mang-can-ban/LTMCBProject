@@ -85,7 +85,7 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show("Đã xảy ra lỗi khi tạo nhóm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            this.Close();
         }
      
         private void TrangTaoNhom_Load(object sender, EventArgs e)
