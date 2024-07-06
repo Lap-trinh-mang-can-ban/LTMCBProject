@@ -36,7 +36,7 @@
             lbText.ForeColor = Color.White;
             lbText.Location = new Point(0, 34);
             lbText.Name = "lbText";
-            lbText.Size = new Size(147, 66);
+            lbText.Size = new Size(147, 54);
             lbText.TabIndex = 0;
             lbText.Click += label1_Click;
             // 
@@ -47,7 +47,7 @@
             BackColor = Color.Transparent;
             Controls.Add(lbText);
             Name = "UserControl1";
-            Size = new Size(147, 100);
+            Size = new Size(147, 88);
             Load += UserControl1_Load;
             ResumeLayout(false);
         }

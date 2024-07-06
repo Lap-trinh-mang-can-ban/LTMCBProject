@@ -188,6 +188,7 @@ namespace DangKi_DangNhap
                     MessageBox.Show($"error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            this.Close();
         }
 
         private void decrypt_btn_Click(object sender, EventArgs e)
@@ -238,6 +239,7 @@ namespace DangKi_DangNhap
                    // MessageBox.Show($"error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            this.Close();
         }
 
         private void button4_Click(object sender, EventArgs e)

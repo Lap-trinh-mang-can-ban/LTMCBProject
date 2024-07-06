@@ -80,6 +80,7 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
+            this.Close();
         }
 
         private async Task<int> GetCurrentEventCount()
@@ -137,6 +138,7 @@ namespace DangKi_DangNhap
             {
                 MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
             }
+            this.Close();
         }
 
     }
